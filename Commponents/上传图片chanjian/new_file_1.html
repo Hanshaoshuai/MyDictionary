@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <style type="text/css">
+  #preview{
+  	width: 600px;
+    height: 200px;
+  }
+  .img,
+  img {
+    width: 100px;
+    height: 100px;
+    float:left;
+  }
+   
+  #preview {
+    border: 1px solid #000;
+  }
+  .form-label{
+  	position:relative;
+  	width: 600px;
+    height: 100px;
+    border:1px solid #000000;
+    overflow: hidden;
+  }
+  .input_1{
+  	position:absolute;
+  	top:-100px;
+  }
+  .form-label_1{
+  	text-align: center;
+  	line-height: 40px;
+  	width: 100px;
+    height: 40px;
+    background:#f66;
+   	position:absolute;
+   	right:140px;
+   	top:20px;
+  }
+  .form-label_2{
+  	cursor: pointer;
+  	text-align: center;
+  	line-height: 40px;
+  	width: 100px;
+    height: 40px;
+    background:#f66;
+   	position:absolute;
+   	right:20px;
+   	top:20px;
+  }
+  #form-label_0{
+  	position:absolute;
+   	left:20px;
+   	top:20px;
+  }
+  .preview_2{
+  	overflow: hidden;
+  	float:left;
+  }
+  .cancel{
+  	width:100px;
+  	height:40px;
+  	text-align: center;
+  	line-height: 40px;
+  	cursor:pointer;
+  	position:absolute;
+  	color:#ffffff;
+  	top:-40px;
+  	left:0;
+  	background: rgba(0,0,0,0.6);
+  }
+  </style>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script src="js/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+</head>
+ 
+<body>
+  	<div id="preview"></div>
+  	<div class="form-label">
+  		<div id="form-label_0">
+	  			
+	  	</div>
+	  	<form id="zong" action="javascript" method= "post" enctype ="multipart/form-data">
+	  		<label>
+		  		<div class="form-label_1">
+		  			添加图片
+		  		</div>
+		  		<input class="input_1" name="imgs_0" type="file" onchange="preview(this,'#zong')" />
+	  		</label>
+	  		<div class="form-label_2">
+	  			上传图片
+	  		</div>
+  		</form>
+  	</div>
+  	
+  
+  <script type="text/javascript">
+	  var imgs="";
+	  var id=[];
+	  var i=0;
+	  var form_label_0="";
+	  var prevDiv="";
+	  var zong=$("#zong")[0];
+	  var url ="http://192.168.3.29:8082/web/third/platform/farm/audit";
+	  var kaiguan=0;
+	  var p=0;
+	  function preview(file,zong) {
+	  	var this_0=file;
+	  	var y=$(".input_1").length;
+	  	id[i]=file.value;
+	  	if(i>0){
+		  	for(p; p<i; p++){
+//		  		console.log(id);
+		  		if(file.value==id[p]){
+		  			kaiguan=1;
+		  			alert("图片你已添加过！");
+		  		}
+		  	}
+	  	};
+	  	if(kaiguan==1){
+	  		//回复原值继续添加
+		    kaiguan=0;
+	  	}else{
+				form_label_0 = document.getElementById('form-label_0');
+		    prevDiv = document.getElementById('preview');
+		    if (file.files && file.files[0]) {
+//		    	console.log($("#zong")[0]);
+		    	var img = file.files[0];
+		      var reader = new FileReader();
+		      reader.onload = function(evt) {
+//		      	console.log($(".preview_2").length);
+		      	if($(".preview_2").length>0){
+		      		var clones=$(file).attr({"class":"input_1 ttr"+i,"name":"imgs_"+i});
+		      		$("#zong").append($(clones).clone(true));
+		      	}
+//		      	console.log(file.value)
+		      	imgs='<div class="preview_2" style="cursor:pointer;position:relative;">'+
+					      	'<img src="' + evt.target.result + '" />'+
+					      	'<span class="cancel" index="'+i+'" style="">删除</span>' +
+					      	'</div>';
+	//	      	prevDiv.innerHTML = imgs;
+		      	$(prevDiv).append(imgs);
+//		      	console.log(img.type);
+				    if(!(img.type.indexOf('image')==0 && img.type && /\.(?:jpg|png|gif)$/.test(img.name)) ){  
+				        alert('图片只能是jpg,gif,png');  
+				        return ;
+				    } 
+		      	
+		      	
+		      	
+						$('.preview_2').on('mouseenter',function () {
+							$(this).children('.cancel').stop(true,false).animate({
+								"top":'0px'
+							},500)
+							$(this).children('.cancel').unbind("click");
+							$(this).children('.cancel').click(function(){
+								var t=$(this).attr("index")*1;
+								if(t==0){
+									t=0;
+									form_label_0.innerText="";
+									$(".input_1")[0].value="";
+									id.splice(t,1);
+									i-=1;
+								}else{
+									if(t==y){
+										$(".ttr"+t).remove();
+										$("#zong label").append(this_0)
+										$("#zong label input")[0].value="";
+										id.splice(t,1);
+									}else{
+										$(".ttr"+t).remove();
+										id.splice(t,1);
+									}
+									i-=1;
+								}
+								console.log(y)
+								i=id.length;
+								$(this).parent().remove();
+							})
+						})
+							
+						$('.preview_2').on('mouseleave',function () {
+							$(this).children('.cancel').stop(true,false).animate({
+								"top":'-40px'
+							},500)
+						});
+						i+=1;
+		      }
+		      reader.readAsDataURL(file.files[0]);
+		    }else{
+//		    	$(".this").remove();
+//		      prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+		    }
+	//	  var texts_1=$("#input_1");
+		    var texts=$(".input_1")[0].value;
+//		    console.log($(".input_1")[0].value);
+		    form_label_0.innerText=texts;
+		  }
+		}
+	  
+	  
+  	// ajax 上传图片 
+  	$(".form-label_2").click(function(){
+  		if($(".preview_2").length!==0){
+  			if(confirm("确定上传图片？")){
+	      	console.log($(".input_1")[0].value);
+					$(zong).ajaxSubmit({
+						type : "post",
+						url : url,
+						data : $(zong).serialize(),
+						dataType : "json",
+						success : function(result) {
+							$(businessLicenseImg).val(result.body.fileUrl);
+							alert("上传成功");
+						},
+						error : function() {
+							alert("上传失败！");
+						}
+					});
+				}
+			}else{
+				alert("请选择图片！");
+			}
+		});
+  </script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			html,body{
+				margin:0;padding:0;
+			}
+			.loadEffect{
+	            width: 400px;
+	            height: 300px;
+	            position: relative;
+	            margin: 0 auto;
+	            margin-top:150px;
+	            background: #fff;
+	            border:1px solid #999999;
+	        }
+	        .loadEffect .colrs{
+	            display: inline-block;
+	            /*text-align: center;*/
+	            color:#0C4C68;
+	            line-height: 100px;
+	            font-size: 26px;
+	            font-weight: bold;
+	            text-align: center;
+	            width: 300px;
+	            height: 100px;
+	            top:50px;
+	            left:50px;
+	            margin:auto;
+	            position: absolute;
+	        }
+	        .loadEffect .loadEffect_0{
+	        	position: absolute;
+	        	width: 150px;
+	            height: 200px;
+	            top:40px;
+	            right:20px;
+	        }
+	        .loadEffect_0 font{
+	        	display: inline-block;
+	        	width: 150px;
+	            height: 50px;
+	            text-align: center;
+	            color:#FF002F;
+	            font-size: 26px;
+	        }
+	        .loadEffect_0 span{
+	        	display: inline-block;
+	        	width: 150px;
+	            height: 160px;
+	        }
+	        .loadEffect .loadEffect_1{
+	        	display: inline-block;
+	        	position: absolute;
+	        	width: 50px;
+	            height: 26px;
+	            text-align: center;
+	            line-height: 26px;
+	            cursor: pointer;
+	            border-radius: 4px;
+	            bottom:20px;
+	            right:70px;
+	            background: #00B7EE;
+	        }
+		</style>
+		<script type="text/javascript" src="jquery.js"></script>
+	</head>
+	<body>
+		<!--提示信息-->
+	    <div class="loding" style="position: fixed;width:100%;height:100%;z-index: 999; top: 0;left: 0;background-color: ;display: none;">
+		    <div class="loadEffect">
+		        <span class="colrs">输入你的内容</span>
+		        <!--<div class="loadEffect_0">
+		        	<font>对不起！</font>
+		        	<span>你无权访问此页面！</span>
+		        </div>-->
+		        <!--<font class="loadEffect_1">返回</font>-->
+			</div>
+		</div>
+	</body>
+	<script>
+		//公共弹框提示；
+		$(function (){
+			$(".loding").css({"display":"block"}).delay(3000).hide("fast",function(){
+//				window.location.href = '';		//返回规定的页面
+//				window.history.go(-1);			//返回上一页
+			});
+			$(".loding").click(function(){
+				$(".loding").css({"display":"none"});
+//				window.location.href = '';		//返回规定的页面
+//				window.history.go(-1);			//返回上一页
+			});
+		});
+	</script>
+</html>

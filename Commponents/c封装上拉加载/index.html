@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>mint-ui</title>
+    <link rel="stylesheet" type="text/css" href="static/css/reset.css"/>
+    <script type="text/javascript">			
+			(function (doc, win) {
+		        var docEl = doc.documentElement,
+	            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+	            recalc = function () {
+	                var clientWidth = docEl.clientWidth;
+	                if (!clientWidth) return;
+	                if(clientWidth>=375){
+	                    docEl.style.fontSize = '100px';
+	                }else{
+	                    docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+	                }
+	            };
+		        if (!doc.addEventListener) return;
+		        win.addEventListener(resizeEvt, recalc, false);
+		        doc.addEventListener('DOMContentLoaded', recalc, false);
+		    })(document, window);
+		</script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="./dist/build.js"></script>
+  </body>
+</html>

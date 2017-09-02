@@ -1,0 +1,8 @@
+{
+	"index.html": {
+		"resources": [
+			"static/css/reset.css",
+			"dist/build.js"
+		]
+	}
+}

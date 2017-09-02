@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/JavaScript">
+        window.onload=function(){
+            //document.getElementById("test").style.height="200px";
+            //document.getElementsByTagName('div')[0].offsetHeight='600px';
+            document.getElementsByTagName('div')[0].style.height=document.body.clientHeight+'px';
+            //alert(document.getElementsByTagName('div')[0].offsetHeight=document.body.clientHeight);
+            //alert(document.body.clientHeight);
+        };
+    </script>
+
+    <script>
+        function a(){
+            document.write(
+                "屏幕分辨率为："+screen.width+"*"+screen.height,
+
+            "屏幕可用大小："+screen.availWidth+"*"+screen.availHeight,
+
+            "网页可见区域宽："+document.body.clientWidth,
+
+            "网页可见区域高："+document.body.clientHeight,
+
+            "网页可见区域宽(包括边线的宽)："+document.body.offsetWidth,
+
+            "网页可见区域高(包括边线的宽)："+document.body.offsetHeight,
+
+            "网页正文全文宽："+document.body.scrollWidth,
+
+            "网页正文全文高："+document.body.scrollHeight,
+
+            "网页被卷去的高："+document.body.scrollTop,
+
+            "网页被卷去的左："+document.body.scrollLeft,
+
+            "网页正文部分上："+window.screenTop,
+
+            "网页正文部分左："+window.screenLeft,
+
+            "屏幕分辨率的高："+window.screen.height,
+
+            "屏幕分辨率的宽："+window.screen.width,
+
+            "屏幕可用工作区高度："+window.screen.availHeight,
+
+            "屏幕可用工作区宽度："+window.screen.availWidth
+        );
+        }
+    </script>
+</head>
+<body onload="a()">
+
+</body>
+</html>

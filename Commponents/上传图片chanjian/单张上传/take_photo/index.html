@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <style>
+    	#addCommodityIndex{
+    		width:80%;
+    		margin:0 auto;
+    	}
+    	#preview{
+    		float:left;
+    	}
+    	.col-sm-3{
+    		float:right;
+    		margin-right:20px;
+    		width:200px;
+    		height:94px;
+    		position:relative;
+    	}
+    	.col-sm-3 span{
+    		display:block;
+    		width:92px;
+    		height:32px;
+    		position:absolute;
+    		margin:auto;
+    		top:0;
+    		bottom:0;
+    		right:0;
+    		line-height: 32px;
+    		text-align: center;
+    		background: #00B7EE;
+    		color:#fff;
+    		border-radius: 4px;
+    		cursor: pointer;
+    	}
+    </style>
+    <!--<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+    <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jquery.form.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="addCommodityIndex">
+             <!--input-group start-->
+            <div class="input-group row">
+                <div class="col-sm-9 big-photo">
+                	<div id="preview">
+                    	<img id="imghead" border="0" src="img/photo_icon.png" width="90" height="90" onclick="$('#previewImg').click();">
+                    </div>
+                    <form id="zong" action="javascript" method= "post" enctype ="multipart/form-data">
+                    	<input type="file" onchange="previewImage(this)" style="display: none;" id="previewImg">
+                    </form>	
+                	<!--<input id="uploaderInput" class="uploader__input" style="display: none;" type="file" accept="" multiple="">-->
+                	<div class="col-sm-3">
+	                    <span>开始上传</span>
+	                </div>
+                </div>
+            </div>
+            <!--input-group end-->
+		</div>
+		<script>
+			var url ="http://192.168.3.29:8082/web/third/platform/farm/audit";
+	      	//图片上传预览    IE是用了滤镜。
+	        function previewImage(file)
+	        {
+	          var MAXWIDTH  = 90; 
+	          var MAXHEIGHT = 90;
+	          var div = document.getElementById('preview');
+	          if (file.files && file.files[0])
+	          {
+	              div.innerHTML ='<img id=imghead onclick=$("#previewImg").click()>';
+	              var img = document.getElementById('imghead');
+	              img.onload = function(){
+	                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+	                img.width  =  rect.width;
+	                img.height =  rect.height;
+	//                 img.style.marginLeft = rect.left+'px';
+	                img.style.marginTop = rect.top+'px';
+	              }
+	              var reader = new FileReader();
+	              reader.onload = function(evt){img.src = evt.target.result;}
+	              reader.readAsDataURL(file.files[0]);
+	          }
+	          else //兼容IE
+	          {
+	            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+	            file.select();
+	            var src = document.selection.createRange().text;
+	            div.innerHTML = '<img id=imghead>';
+	            var img = document.getElementById('imghead');
+	            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+	            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+	            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+	            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+	          }
+	          
+	          
+	          
+	          
+	        }
+	        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+	            var param = {top:0, left:0, width:width, height:height};
+	            if( width>maxWidth || height>maxHeight ){
+	                rateWidth = width / maxWidth;
+	                rateHeight = height / maxHeight;
+	                
+	                if( rateWidth > rateHeight ){
+	                    param.width =  maxWidth;
+	                    param.height = Math.round(height / rateWidth);
+	                }else{
+	                    param.width = Math.round(width / rateHeight);
+	                    param.height = maxHeight;
+	                }
+	            }
+	            param.left = Math.round((maxWidth - param.width) / 2);
+	            param.top = Math.round((maxHeight - param.height) / 2);
+	            return param;
+	        }
+	        // ajax 上传图片 
+		  	$(".col-sm-3 span").click(function(){
+		  		if($("#imghead").attr("src")!=="img/photo_icon.png"){
+		  			$(this).text("上传中...")
+			      	console.log($("#previewImg")[0].value);
+					$("#zong").ajaxSubmit({
+						type : "post",
+						url : url,
+						data : $("#zong").serialize(),
+						dataType : "json",
+						success : function(result) {
+							$(businessLicenseImg).val(result.body.fileUrl);
+							$(".col-sm-3 span").text("上传成功")
+						},
+						error : function() {
+							$(".col-sm-3 span").text("重新上传！")
+							alert("上传失败！");
+						}
+					});
+				}else{
+					alert("请选择图片！");
+				}  
+		  	});
+	    </script>
+	</body>
+</html>

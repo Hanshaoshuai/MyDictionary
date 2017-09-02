@@ -1,0 +1,131 @@
+@charset "utf-8";
+/* 你自己的样式 */
+/*订单管理  ----------start----------------------*/
+.btn_a{
+    color: #fff;
+    border-radius: 5px;
+}
+.btn_a_1{
+    background-color: #00B83F;
+}
+.btn_a_2{
+    background-color: #6cf;
+}
+.btn_a_3{
+    background-color: sandybrown;
+}
+.btn_a:visited{
+    color: red !important;
+}
+.btn_a:hover{
+    color: red !important;
+}
+.btn_a:active{
+    color: red !important;
+}
+.btn_a_1:hover{
+    background-color: #00B83F !important;
+}
+.btn_a_2:hover{
+    background-color: #6cf !important;
+}
+.btn_a_3:hover{
+    background-color: sandybrown !important;
+}
+.mobel{
+    display: none;
+}
+.hide{
+    display: none;
+}
+#uls{
+    position: absolute;
+}
+#hui-ulli{
+    position: absolute;
+    left: -88px;
+}
+#seach{
+    border-radius: 5px !important;
+}
+.hui_aaa{
+    color: #c11920;
+}
+.hui_aaa:hover{
+    color: #c11920;
+}
+.menu_dropdown dt a:hover {
+    text-decoration: none;
+}
+/*横向手机 竖向平板*/
+@media (max-width: 767px) {
+    .text-c{
+        margin-top:40px;
+    }
+    .yc{
+        display: none !important;
+    }
+    .hide{
+        display: none;
+    }
+    .btn-success{
+        position: relative;
+        top: 5px;
+    }
+    .input-text{
+        margin-top: 10px;
+    }
+    .text-c span{
+        position: relative;
+        top: 6px;
+    }
+    .spans{
+        position: relative;
+        top: 8px;
+    }
+    .yc_widch{
+        /*width: 80px !important;*/
+    }
+    .td-manage a{
+        width: 40px;
+        font-size: 12px !important;
+        display: block;
+        margin: 0 auto;
+    }
+    .mobel_a{
+        margin-bottom: 2px !important;
+    }
+    .td-manage a{
+        text-decoration: none;
+    }
+    .table-sort {
+        font-size: 12px !important;
+    }
+    .mobel{
+        display: block !important;
+    }
+    .error{
+        top: 16px !important;
+    }
+    #logmin{
+        width: 100px !important;
+    }
+    #logmax{
+        width: 100px !important;
+    }
+    #buttons{
+        width: 150px !important;
+    }
+    .label_a{
+        position: relative;
+        top: 15px;
+    }
+    .form_laber_a{
+        position: relative;
+        top: 12px;
+    }
+    #seach{
+        height: 30px !important;
+    }
+}
+/*订单管理  ----------end----------------------*/

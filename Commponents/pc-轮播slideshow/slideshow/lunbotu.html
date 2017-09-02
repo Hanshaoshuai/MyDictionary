@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		* {
+			padding: 0; margin: 0;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		.scrollImg{
+			width: 810px;
+			height: 320px;
+			margin: auto;
+			overflow: hidden;
+			position: relative;
+		}
+		.scrollImg .imgs {
+			width: 4860px;
+			list-style: none;
+			position: absolute;
+			left:-810px;
+			top: 0;
+		}
+		.scrollImg .imgs li {
+			width: 810px; 
+			height: 320px;
+			float: left;
+			font-size: 50px;
+		}
+		.scrollImg .imgnav {
+			position: absolute;
+			right : 30px; 
+			bottom: 30px;
+			width : 100px; 
+			height: 15px;
+			list-style: none;
+		}
+		.scrollImg .imgnav li {
+			float: left;
+			width: 20px; 
+			height: 20px;
+			border-radius: 50%;
+			background: rgba(241,200,180, 0.6);
+			margin-right: 5px;
+		}
+		.scrollImg .imgnav li.on{
+			background: #ac0;
+		}
+		.scrollImg .toLeft {
+			width: 60px;
+			height: 60px;
+			background: url(img/btn.gif);
+			position: absolute;
+			left: 30px; top: 120px;
+			opacity: 0;
+		}
+		.scrollImg .toRight {
+			width: 60px;
+			height: 60px;
+			background: url(img/btn.gif) 0px 60px;
+			position: absolute;
+			right: 30px; top: 120px;
+			opacity: 0;
+		}
+	</style>
+	
+	
+	<body>
+		<div class="scrollImg">
+			<ul class="imgs">
+				<li style="background: gray;"><img src="img/004.jpg"/></li>
+				<li style="background: red;"><img src="img/001.jpg"/></li>
+				<li style="background: blue;"><img src="img/002.jpg"/></li>
+				<li style="background: yellow;"><img src="img/003.jpg"/></li>
+				<li style="background: gray;"><img src="img/004.jpg"/></li>
+				<li style="background: red;"><img src="img/001.jpg"/></li>
+			</ul>
+			<ul class="imgnav">
+				<li class="on"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<div class="toLeft"></div>
+			<div class="toRight"></div>
+		</div>
+		
+	</body>
+</html>
+<script src="sport5.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">	
+	window.onload =function(){
+		var c = document.getElementsByClassName("scrollImg")[0];
+		var a = document.getElementsByTagName("ul")[0];
+		var b = document.getElementsByClassName("imgnav")[0].children;
+		var d=document.getElementsByClassName("toLeft")[0];
+		var e=document.getElementsByClassName("toRight")[0];
+		autoplay(a,b,d,e,c);
+		//我的ie不能用，别的都是好的。 每个参数代表什么意思外部的js文件里注释
+		//注：源代码的布局外部的js文件里也有注释
+	}
+	
+
+</script>	

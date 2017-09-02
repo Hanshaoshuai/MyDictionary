@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			#box {
+				width: 300px;
+				height: 300px;
+				border: 1px solid #ac0;
+				margin: 0 auto;
+				text-align: center;
+				overflow: auto;
+				font-size: 20px;
+				line-height: 34px;
+			}
+			#maxBox {
+				width: 300%;
+				height: 100%;
+				display: flex;
+			}
+			.minBox {
+				flex: 1;
+				min-height: 100%;
+			}
+			.minBox:nth-child(1) {
+				background: #ccc;
+			}
+			.minBox:nth-child(2) {
+				background: #aaa;
+			}
+			.minBox:nth-child(3) {
+				background: #ff0;
+			}
+			.minBoxWeek {
+				width: 100%;
+				font-weight: 900;
+				display: flex;
+			}
+			.minBoxWeekDate {
+				flex: 1;	
+			}
+			.minBoxMouth {
+				width: 100%;
+			}
+			.minBoxDate {
+				float: left;
+				width: 14.28%;
+			}
+			.minBoxDateColor {
+				background: #ddd;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="maxBox">
+				<!--<div class="minBox">
+					<h3 class="minBoxTitle">2017年7月</h3>
+					<ul class="minBoxWeek">
+						<li class="minBoxWeekDate">日</li>
+						<li class="minBoxWeekDate">一</li>
+						<li class="minBoxWeekDate">二</li>
+						<li class="minBoxWeekDate">三</li>
+						<li class="minBoxWeekDate">四</li>
+						<li class="minBoxWeekDate">五</li>
+						<li class="minBoxWeekDate">六</li>
+					</ul>
+					<ul class="minBoxMouth">
+						<li class="minBoxDate">1</li>
+					</ul>
+				</div>
+				<div class="minBox"></div>
+				<div class="minBox"></div>-->
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	//功能：当前三个月的日历
+	//注意：当到了12月份的时候需要考虑到下一年一月份
+	var maxBox = document.getElementById("maxBox");
+	var currentD = new Date();
+	var currentDate = currentD.getDate();
+	var currentMouth = currentD.getMonth()+1;
+	var currentYear = currentD.getFullYear();
+	var currentMouthFirst = new Date(currentYear+"-"+currentMouth+"-1");
+	var calendarArray=[], numberOfDaysArray=[];
+	//1.获取当地的时间，把需要的数据存到一个calendarArray数组当中
+	for(var i=0; i<3; i++) {
+		calendarArray[i] = {};
+		if(currentMouth+i >= 12) {//判断到第二年时候的一个容错
+			currentYear += 1;
+			currentMouth = 1-i;
+		}
+		var currentMouthGetTime = new Date( currentYear+"-"+(currentMouth+i+1)+"-1" ).getTime();
+		var currentGetTime = new Date( currentYear+"-"+(currentMouth+i)+"-1" ).getTime();
+		numberOfDaysArray.push( (currentMouthGetTime - currentGetTime) / (24*60*60*1000) );
+		calendarArray[i].minBoxTitle = currentYear+"月"+(currentMouth+i)+"日";
+		calendarArray[i].mouthlyDate = new Date(currentYear+"-"+(currentMouth+i)+"-1").getDay();
+		calendarArray[i].minBoxWeek = ["日", "一", "二", "三", "四", "五", "六"];
+		calendarArray[i].minBoxMouth = [];
+		for(var j=1; j<=numberOfDaysArray[i]; j++) {
+			calendarArray[i].minBoxMouth.push(j);
+		}
+	}
+	//遍历数组 通过dom渲染页面
+	for(var i=0; i<calendarArray.length; i++) {
+		var minBoxWeekDate="", minBoxDate="";
+		for(var j=0; j<calendarArray[i].minBoxWeek.length; j++) {
+			minBoxWeekDate += `<li class="minBoxWeekDate">${calendarArray[i].minBoxWeek[j]}</li>`;
+		}
+		for(var j=0; j<calendarArray[i].minBoxMouth.length; j++) {
+			minBoxDate += `<li class="minBoxDate">${calendarArray[i].minBoxMouth[j]}</li>`;
+		}
+		maxBox.innerHTML += `<div class="minBox">
+			<h3 class="minBoxTitle">${calendarArray[i].minBoxTitle}</h3>
+			<ul class="minBoxWeek">${minBoxWeekDate}</ul>
+			<ul class="minBoxMouth">${minBoxDate}</ul>
+		</div>`;
+	}
+	var minBox=document.getElementsByClassName("minBox");
+	for(var i=0;i<minBox.length;i++) {
+		var minBoxDateFirst = minBox[i].getElementsByClassName("minBoxDate")[0];
+		minBoxDateFirst.style.marginLeft = calendarArray[i].mouthlyDate*(300/7).toFixed(4) + "px";
+	}
+	var currentDateBg = minBox[0].getElementsByClassName("minBoxDate")[currentDate-1];
+	currentDateBg.className="minBoxDate minBoxDateColor";
+	currentDateBg.innerHTML="今天";
+
+	//作业：改成面相对象，避免全局变量的污染
+	//注意：书写规范
+
+</script>

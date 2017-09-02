@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			html,body{
+				margin:0;padding:0;
+			}
+			.loadEffect{
+				position:fixed;
+	            width: 470px;
+	            height: 406px;
+	            margin:auto;
+	            top:0;
+	            bottom:0;left:0;right:0;
+	            /*margin-top:150px;*/
+	            padding:10px 0 0 10px;
+	            background-color: rgba(0,0,0,0.3);
+	        }
+	        .loadcild{
+	        	width: 460px;
+	            height: 396px;
+	            position: relative;
+	            background: #fff;
+	        }
+	        .loadEffect .colrs{
+	        	position:relative;
+	            display: inline-block;
+	            text-align: center;
+	            color:#333;
+	            line-height: 40px;
+	            font-size: 18px;
+	            font-weight: normal;
+	            border-bottom:2px #c9c9c9 solid;
+	            width: 100%;
+	            height: 40px;
+	        }
+	        .loadEffect .colrs img{
+	        	position:absolute;
+	        	right:12px;top:7px;
+	        	width:26px;height:26px;
+	        }
+	        /*.loadEffect .colrs font{
+	            color:#b51927;
+	        }*/
+	        .loadEffect .loadEffect_0{
+	        	overflow:hidden;
+	        	position:relative;
+	        	width: 420px;
+	        	height: 336px;
+	        	margin:0 auto;
+	            /*padding-top:26px;*/
+	        }
+	        /*.loadEffect_0 font{
+	        	display: block;
+	        	background: #eeeeee;
+	        	margin:0 auto;
+	        	line-height: 26px;
+	        	width: 428px;
+	        	padding-left:12px;
+	            height: 26px;
+	            font-size: 14px;
+	        }*/
+	        .loadEffect_0 .xiaoxi span{
+	        	margin:0 auto;
+	        	display: block;
+	        	width: 440px;
+	            height: 20px;
+	            margin-top:12px;
+	            font-size: 14px;
+	        }
+	        .loadEffect_0 .xiaoxi span a{
+	        	color:#c01920;
+	        }
+	        .loadEffect_0 .tishi{
+	        	width: 440px;
+	        	color:#c01920;
+	        	font-size: 13px;
+	        	background: #ffffff;
+	        	padding-left:0px;
+	        }
+	        .loadEffect .loadEffect_1{
+	        	color:#FFF;
+	        	display: inline-block;
+	        	position: absolute;
+	        	width: 118px;
+	            height: 36px;
+	            text-align: center;
+	            line-height: 36px;
+	            cursor: pointer;
+	            border-radius: 4px;
+	            right:0;
+	            left:0;
+	            margin:0 auto;
+	            bottom:15px;
+	            font-size:18px;
+	            background: #c01920;
+	        }
+	        .textarea{
+	        	width: 435px;
+	            height: 110px;
+	            margin-left:10px;
+	        }
+	        #previewImg{
+	        	margin:6px 0 0 10px;
+	        	font-size:13px;
+	        }
+	        .xiaoxi{
+	        	margin:0 auto;
+	        	width: 100%;
+	            height: 39px;
+	            border-bottom:1px #eeeeee solid;
+	        }
+	        .loadEffect_0 .xiaoxi span{
+	        	position:relative;
+	        	float:left;
+	        	line-height: 38px;
+	        	margin-top: 0px;
+	        	cursor: pointer;
+	        	display:inline-block;
+	        	text-align: center;
+	        	width: 97px;
+	            height: 38px;
+	            /*border-bottom:2px #ffffff solid;*/
+	        }
+	        .loadEffect_0 .xiaoxi span .img_90{
+	        	position:absolute;
+	        	margin:0 auto;
+	        	left:0;
+	        	right:0;
+	        	bottom:0px;
+	        	/*display:block;*/
+	        }
+	        .loadEffect_0 .xiaoxi .tianjiao{
+	        	color:#c21920;
+	        	border-bottom:2px #c21920 solid;
+	        }
+	        .loadEffect_0 .xiaoxi_xianshi{
+	        	position: relative;
+	        	width: 334px;
+	            height: 220px;
+	            margin:0 auto;
+	        }
+	        .loadEffect_0 .xiaoxi_xianshi .tu_333{
+	        	width: 174px;
+	            height: 117px;
+	            margin:0 auto;
+	            margin-top:76px;
+	        }
+	        .loadEffect_0 .box{
+	        	position: absolute;
+	        	overflow-y:auto;
+	        	width: 100%;
+	            height: 294px;
+	            top:41px;
+	            background: #fff;
+	        }
+	        ul,li{
+	        	list-style: none;
+	        	width:100%;
+	        	margin:0;
+	        	padding:0;
+				border:none;
+	        }
+	        .loadEffect_0 .box ul li{
+	        	font-size: 14px;
+	        	padding:20px 0 20px 0;
+	        	border-bottom:1px #eeeeee solid;
+	        }
+	        .loadEffect_0 .box ul li span img{
+	        	float:left;margin-right:10px;
+	        }
+	        .loadEffect_0 .box ul li span{
+	        	display: inline-block;
+	        	line-height: 16px;
+	        	color:#363636;
+	        }
+	        .loadEffect_0 .box .xiaoxi_6{
+	        	padding-bottom:14px;
+	        }
+	        .loadEffect_0 .box ul li font{
+	        	display: inline-block;
+	        	line-height: 16px;
+	        }
+	        .loadEffect_0 .box ul li .xiaoxi_6 font{
+	        	float:right;
+	        	color:#363636;
+	        }
+	        .loadEffect_0 .box ul li .xiaoxi_7 span{
+	        	color:#7f7f7f;
+	        }
+	        .loadEffect_0 .box ul li .xiaoxi_7 font{
+	        	color:#7f7f7f;
+	        }
+		</style>
+		<script type="text/javascript" src="jquery.js"></script>
+    	<script src="jquery.form.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--提示信息-->
+	    <div class="loding" style="position: fixed;width:100%;height:100%;z-index: 999; top: 0;left: 0;background-color: rgba(0,0,0,0.5);display: none;">
+		    <div class="loadEffect">
+		    	<div class="loadcild">
+			        <span class="colrs">
+			        	我的消息
+			        	<img class="guanbi" src="dp_bottombar_close@3x.png" alt="" />
+			        </span>
+			        <div class="loadEffect_0">
+			        	<div class="xiaoxi">
+			        		<span class="weidu tianjiao" index="0">
+			        			未读消息
+			        			<img class="img_90" src="165906271501164880.png" alt="" />
+			        		</span>
+			        		<span class="yidu" index="1">
+			        			已读消息
+			        			<img class="img_90" style="display:none;" src="165906271501164880.png" alt="" />
+			        		</span>
+			        	</div>
+			        	<div class="xiaoxi_xianshi">
+			        		<div class="tu_333">
+			        			<img src="20170615162713_03.png" alt="" />
+			        		</div>
+			        	</div>
+			        	<div class="box xiaoxi_1">
+			        		<ul>
+			        			<li>
+			        				<div class="xiaoxi_6">
+			        					<span><img src="591102109007384064.png" alt="" />订单已付款通知</span>
+			        					<font>2017/6/16</font>
+			        				</div>
+			        				<div class="xiaoxi_7">
+			        					<span>您好，您购买的订单号：</span>
+			        					<font>D556214552152</font>
+			        					<span>已付款</span>
+			        				</div>
+			        			</li>
+			        			<li>
+			        				<div class="xiaoxi_6">
+			        					<span><img src="591102109007384064.png" alt="" />工单修改通知</span>
+			        					<font>2017/6/16</font>
+			        				</div>
+			        				<div class="xiaoxi_7">
+			        					<span>您好，您购买的订单号：</span>
+			        					<font>D556214552152</font>
+			        					<span>已付款</span>
+			        				</div>
+			        			</li>
+			        			<li>
+			        				<div class="xiaoxi_6">
+			        					<span><img src="366409688459500960.png" alt="" />平台消息</span>
+			        					<font>2017/6/16</font>
+			        				</div>
+			        				<div class="xiaoxi_7">
+			        					<span>您好，您购买的订单号：</span>
+			        					<font>D556214552152</font>
+			        					<span>已付款</span>
+			        				</div>
+			        			</li>
+			        			<li>
+			        				<div class="xiaoxi_6">
+			        					<span><img src="366409688459500960.png" alt="" />平台消息</span>
+			        					<font>2017/6/16</font>
+			        				</div>
+			        				<div class="xiaoxi_7">
+			        					<span>您好，您购买的订单号：</span>
+			        					<font>D556214552152</font>
+			        					<span>已付款</span>
+			        				</div>
+			        			</li>
+			        		</ul>
+			        	</div>
+			        	<div class="box xiaoxi_2" style="display:none;">
+			        		fdfjdkfjxvdsjfijs<br />
+			        		fdfjdkfxvxjdsjfijs<br />
+			        		fdfjdkfvjxvvcdsjfijs<br />
+			        		fdfjdkfvxcjdsjfijs<br />
+			        		fdfjdkfxjcvdsjfijs<br />
+			        		fdfjdkfjvcvcvdsjfijs<br />
+			        		fdfjdkfxvjdsjfijs<br />
+			        		fdfjdkfvxcvcjdsjfijs<br />
+			        		fdfjdkfjdsxjfijs<br />
+			        		fdfjdkfxvjdsjfijs<br />
+			        		fdfjdkfjdxvsjfxvijs<br />
+			        		fdfjdkfjvvxvdxvxsjfijs<br />
+			        		fdfjdkfxjdsxjfijs<br />
+			        		fdfjdkfjd sjfijs<br />
+			        		fdfjdkfjdxsvxvjfijs<br />
+			        		fdfjdkfjdxsjxfijs<br />
+			        		fdfjdkfjxvvdsjfijs<br />
+			        		fdfjdkfjvvxvxxdsjfijs<br />
+			        		fdfjdkfjvxdsjfijs<br />
+			        		fdfjdkfjvdsjfijs<br />
+			        		fdfjdkfjvvxdsjfijs<br />
+			        	</div>
+			        </div>
+		        </div>
+			</div>
+		</div>
+	</body>
+	<script>
+		//公共弹框提示；
+		$(function (){
+			$(".loding").css({"display":"block"});
+			$(".xiaoxi span").click(function(){
+				console.log($(this).attr("index"))
+				var index=$(this).attr("index");
+				$(this).attr({"class":"tianjiao"});
+				var s=$(".xiaoxi span").length;
+				for(var i=0; i<s; i++){
+					$(".xiaoxi span")[i].setAttribute("class"," tian");
+				}
+				$(this).addClass("tianjiao"); 
+				$('.box').css({"display":"none"})
+				$(".box")[index].style.display="block";
+//				$('.box')[index].siblings()
+				$('.xiaoxi span img').css({"display":"none"})
+				$(".xiaoxi span img")[index].style.display="block";
+			});
+			$(".guanbi").on("click",function(){
+				$(".loding").css({"display":"none"});
+			});
+		});
+	</script>
+</html>
