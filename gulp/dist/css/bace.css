@@ -1,0 +1,21 @@
+*{-webkit-box-sizing: border-box;box-sizing: border-box;}
+body{font-family:"微软雅黑";
+	/*color: "|"灰  #c8c8c8; 边框 #ededed; 字体灰 #8c8c8c; 枣红色 #ca151e; 字体浅灰 #bbbbbb*/
+	margin:0;
+	padding:0;
+	border:none;
+}
+html,div,p,span,form,legend,fieldset,h1,h2,h3,h4,h5,h6,hr,ul,li,ol,dl,dd,dt,nr{
+	margin:0;padding:0;
+	border:none;
+}
+button,img,a,input,textarea,th,td,table,lable{
+	margin:0;padding:0;
+}
+a{text-decoration:none;color:#666666}
+ul,li,ol,dl,dd,dt{list-style:none}
+img{border:none}
+/*.clear{height:0;overflow:hidden;font-size:0;clear:both}*/
+span,font{display:inline-block;}
+a{display:inline-block;}
+html,body{width:100%;height:100%;background:#f5f5f5;}
