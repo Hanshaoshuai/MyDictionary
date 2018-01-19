@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			a{width:98%;display:inline-block;line-height:24px;float:right;}
+			span{float:left;margin-right:2%;color:red;display:inline-block;width:100%;font-size:18px;font-weight:bol;}
+		</style>
+	</head>
+	<body>
+		<span>1. 阻止事件冒泡: </span>
+		<a>
+			/script type="text/javascript"><br/>
+				window.onload=function(){<br/>
+					var _demo=document.getElementById("demo");<br/>
+					var _inner=document.getElementById("inner");<br/>
+					var _small=document.getElementById("small");<br/>
+					<br/>
+					_demo.onclick=function(){<br/><br/>
+						alert(this.id);<br/>
+					}<br/>
+					_inner.onclick=function(e){<br/>
+		//				if(e.target.id=="inner"){<br/>
+		//					console.log(e.target.id);<br/>
+							alert(this.id);<br/>
+		//				}<br/>
+					}<br/>
+					_small.onclick=function(e){<br/>
+		//				alert(this.id);<br/>
+						e=e||window.event;<br/>
+						if(e.stopPropagation){<br/>
+							e.stopPropagation();<br/>
+						}else{<br/>
+							e.cancelBubble=true;<br/>
+						}<br/>
+						alert(this.id);<br/>
+					}<br/>
+				}<br/>
+			/script><br/>
+			/head><br/>
+			body><br/>
+				div id="demo"><br/>
+					div id="inner"><br/>
+						div id="small"><br/>
+							
+						/div><br/>
+					/div><br/>
+				/div><br/>
+				p>small做了阻止冒泡事件；inner没有做阻止冒泡；两个div点击事件的效果/p><br/>
+			/body><br/><br/>
+		</a>
+		<span>2. 阻止默认事件: </span>
+		<a>
+			script type="text/javascript"><br/>
+				window.onload=function(){<br/>
+					var _zuzhi=document.getElementById("zuzhi");<br/>
+					_zuzhi.onclick=function(e){<br/>
+						e=e||window.event;<br/>
+						if(e.preventDefault){<br/>
+							e.preventDefault();<br/>
+						}else{<br/>
+							e.returnValue=false;<br/>
+							//return false;<br/>
+						}<br/>
+						
+					}<br/>
+				}<br/>
+			/script><br/>
+			/head><br/>
+			body><br/>
+				a href="https://www.baidu.com/">未阻止/a><br/>
+				a href="https://www.baidu.com/" id="zuzhi">阻止/a><br/>
+			/body><br/>
+			<a target="blank" href="http://www.3lian.com/edu/2014/01-18/125185.html">
+			点击：http://www.3lian.com/edu/2014/01-18/125185.html<br/><br/>
+			</a>
+			<a target="blank" href="http://caibaojian.com/javascript-stoppropagation-preventdefault.html#t1">
+			点击：JavaScript停止冒泡和阻止浏览器默认行为-前端开发博客<br/><br/>
+			</a>
+			<a target="blank" href="http://www.jb51.net/article/32792.htm">
+			点击：jquery 事件冒泡的介绍以及如何阻止事件冒泡<br/><br/>
+			</a>
+		</a>
+		<br/>
+		<span>3. 键盘事件: </span>
+		<a target="blank" href="http://www.cnblogs.com/huzi007/p/3866272.html">
+			点击：http://www.cnblogs.com/huzi007/p/3866272.html<br/><br/>
+		</a>		
+		<span>4. 事件委托: </span>
+		<a>
+			!DOCTYPE html><br />
+			html><br />
+				head><br />
+					meta charset="UTF-8"><br />
+					title>/title><br />
+					style type="text/css"><br />
+						#demo{<br />
+							width:300px; height:300px; background-color:red;<br />
+						}<br />
+						#center{<br />
+							width:200px; height:200px; background-color:yellow;<br />
+						}<br />
+						#inner{<br />
+							width:100px; height:100px; background-color:green;<br />
+						}<br />
+						.demo{ width:100px; height:100px; background-color:#000; margin:10px;}<br />
+						span{ display:block; width:60px; height:60px; background-color:yellow; margin:10px;}<br />
+					/style><br />
+					script type="text/javascript"><br />
+						window.onload=function(){<br />
+							//demo1<br />
+							function delegate(_obj,_type,_fn){<br />
+								_obj[_type]=function(e){<br />
+									var _list=_obj.getElementsByTagName("*");<br />
+									for(var i=0;i<_list.length;i++){<br />
+										if(_list[i]===e.target){<br />
+											_fn();<br />
+											/*_list[i].onclick=_fn;<br />
+											_list[i].onclick();*/<br />
+											break;<br />
+										}<br />
+									}<br />
+								}<br />
+							}<br />
+							var _body=document.getElementById("demo");<br />
+							delegate(_body,"onclick",function(){<br />
+								alert("ok");<br />
+								/*console.log(this);*/<br />
+							});<br />
+			<br />
+			<br />
+							//demo2<br />
+							//e.target||e.srcElement<br />
+			//				function delegate(_obj,_filter,_type,_fn){<br />
+			//					_obj[_type]=function(e){<br />
+			//						var _tmp=_obj.getElementsByTagName(_filter);<br />
+			//						e=e||window.event;<br />
+			//						var _list=_obj.getElementsByTagName("*");<br />
+			//						for(var i=0;i<_list.length;i++){<br />
+			//							for(var n=0;n<_tmp.length;n++){<br />
+			//								if(_list[i]===_tmp[n] && _list[i]===(e.target||e.srcElement)){<br />
+			//									_list[i].dianji=function(e){<br />
+			//										e=e||window.event;<br />
+			//										if(e.stopPropagation){<br />
+			//											e.stopPropagation();<br />
+			//										}else{<br />
+			//											e.cancelBubble=true;<br />
+			//										}<br />
+			//										this.fn=_fn;<br />
+			//										this.fn();<br />
+			//									}<br />
+			//									_list[i].dianji(e);<br />
+			//									<br />
+			//									break;<br />
+			//								}<br />
+			//							}<br />
+			//						}<br />
+			//					}<br />
+			//				}<br />
+			//				<br />
+			//				function main(){<br />
+			//					var _body;<br />
+			//					//var _div;<br />
+			//					<br />
+			//					_body=document.getElementsByTagName("body")[0];<br />
+			//					delegate(_body,"div","onclick",function(){<br />
+			//						alert(this.id);<br />
+			//					});<br />
+			//					<br />
+			//					/*_div=document.createElement("div");<br />
+			//					_div.id="append";<br />
+			//					_div.className="demo";<br />
+			//					_body.appendChild(_div);*/<br />
+			//				}<br />
+			//				main();<br />
+						}<br />
+					/script><br />
+				/head><br />
+				body><br />
+					div id="demo"><br />
+						div id="center"><br />
+							div id="inner"><br />
+								span>/span><br />
+							/div><br />
+						/div><br />
+					/div><br />
+					div class="demo">/div><br />
+					div class="demo">/div><br />
+					div class="demo">/div><br />
+					div class="demo">/div><br />
+					div class="demo">/div><br />
+					span>/span><br />
+				/body><br />
+			/html><br /><br/>
+		</a>
+		<a target="blank" href="http://www.webhek.com/post/event-delegate.html">
+			点击：JavaScript事件委托的技术原理<br/><br/>
+		</a>
+		<a target="blank" href="http://www.jianshu.com/p/847568e6149e">
+			点击：jQuery 事件委托<br/><br/>
+		</a>
+		<a target="blank" href="https://zhidao.baidu.com/question/1543413267150450467.html">
+			js中event的target和currentTarget的区别<br/><br/>
+		</a>
+		<br/>
+		<span>5. : </span>
+		<a>
+			
+		</a>
+		
+	</body>
+</html>

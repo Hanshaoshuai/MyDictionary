@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			a{width:98%;display:inline-block;line-height:24px;float:right;}
+			span{float:left;margin-right:2%;color:red;display:inline-block;width:100%;font-size:18px;font-weight:bol;}
+		</style>
+	</head>
+	<body>
+		<span>1. ajax实例: </span><a target="blank" href="http://www.runoob.com/ajax/ajax-examples.html">http://www.runoob.com/ajax/ajax-examples.html</a>
+		<span>
+			function dataAjax(url,success,error,data){
+				$.ajax({
+					type:"post",
+					url:url,
+					async:true,
+					data:data ? data : {},
+					dataType:"json",
+					success:function(res){
+						success(res);
+					},
+					error:function(){
+						error();
+					}
+				});
+			}
+			dataAjax("url",function(res){
+				//执行成功后的代码块
+			},function(res){
+				//执行失败后的代码块
+			},{
+				//向后端传递的参数，也可以省略不写
+			})
+
+		</span><a target="blank" href=""></a>
+	</body>
+</html>

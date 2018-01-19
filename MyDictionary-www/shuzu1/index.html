@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		//1.遍历数组法
+		//思路：新建一新数组，遍历传入数组，值不在新数组就加入该新数组中；
+		var arr = [1,2,3,6,2,3,4,5,3,6,2,2,8];
+		//console.time("test1");
+		function way1(){
+			var list=[];//一个新的临时数组
+			var len=arr.length;//数组的长度
+			//遍历当前数组 
+			for(var i=0;i<len;i++){
+				if(list.indexOf(arr[i]) == -1){//如果当前数组的第i已经保存进了临时数组，那么跳过， 
+					list.push(arr[i]);//否则把当前项push到临时数组里面 
+				}
+			}
+			console.log(list);
+		}
+		//way1();
+		//console.timeEnd("test1");
+        //2.对象键值对法
+		
+		//性能最优占空间最多，耗费时间相对较少
+		//思路：判断键是否存在如果不存在把键值赋值为一当再再次判断一样的键时如果已经有值则忽略，如果没有值则加入新数组
+		//console.time("test2");
+		function arrayUnik(arrs){
+            var newArray = [];
+            var hash={};//创建一个hash对象
+            var len=arrs.length;
+            for(var i=0;i<len;i++){
+                if(!hash[arrs[i]]){//判断键的值是否存在如果存在则表示有重复
+                    hash[arrs[i]]=1;//如果不存在表示不是重复的就加入新数组
+                    newArray.push(arrs[i]);
+                         
+                }else{
+                    console.log(hash[arrs[i]]);
+                }
+            }
+            
+            return newArray;
+        }
+        var arrs = [4,5,2,2,6,2,8,6];
+       // arrayUnik(arrs);
+       // console.log(arrayUnik(arrs));
+       // console.timeEnd("test2");
+
+		//3.数组下标判断法
+		//实现思路：如果当前数组的第i项在当前数组
+		//中第一次出现的位置不是i，那么表示第i项是重复的，忽略掉。否则存入结果数组。
+		var arra = [12,12,43,43,432,112,33,12,321,3];
+		function way3(){
+			var list=[];//结果数组 
+			var len=arra.length;
+			for(var i=0;i<len;i++){
+				if(arra.indexOf(arra[i]) == i){//判断当前数组的第i项第一次出现的位置是不是i
+					list.push(arra[i]);//不是i表示是重复的，否则就存入
+				}
+			}
+			console.log(list);
+		}
+		//way3();
+		//4.实现思路：给传入数组排序，排序后相同值相邻，然后遍历时新数组只加入不与前一值重复的值。
+		function way4(){
+			arr.sort();//对arr进行排序
+			var list=[arr[0]];
+			var len=arr.length;
+			for(var i=1;i<len;i++){
+				if(arr[i] !==list[list.length-1]){//如果后一项和前一项相等则表示重复就去掉
+					list.push(arr[i]);//如果不相等就加入新数组
+				}
+			}
+			console.log(list)
+		}
+		//way4();
+
+		//5.实现思路：用两层循环通过splice()方法删除重复项
+		// splice：删除，插入，替换任意位置的任意个元素
+//		        ***直接修改原数组 
+//			删除：splice(starti,n);
+//		       插入：splice(starti,0,新值1,新值2,...)
+//		       替换：splice(starti,n,新值1,新值2,...)
+
+		function deleteRepeat(){
+		    var _arr=[1,1,1,3,5,8,8,1,9,10];
+		
+		    for(var i=0;i<_arr.length;i++){
+		        for(var n=i+1;n<_arr.length;){
+		            if(_arr[i]==_arr[n]){
+		                _arr.splice(n,1);//n表示规定删除的位置的索引，1表示删除的项目数量，如果设置为0则不会删除
+		                console.log(_arr);
+		            }else{
+		                n++       //如果不相等则n++
+		            }
+		        }
+		    }
+		    console.log(_arr);
+		}
+		//deleteRepeat();
+		//splice() 方法与 slice() 方法的作用是不同的，splice() 方法会直接对数组进行修改，slice()并不会修改数组，而是返回一个子数组。。
+		
+
+		//排序：选择排序
+			//1.第一个数依次与后面的数进行比较得到最小，第二次不在比较第一个
+			function sortArray(data){
+				var _tmp=0;//
+				var len=data.length;
+				for(var i=0;i<len;i++){
+					for(var n=i+1;n<len;n++){
+						if(data[i]>data[n]){
+							_tmp=data[i];
+							data[i]=data[n];
+							data[n]=_tmp;
+						}
+					}
+				}
+				console.log(data);
+			}
+
+			
+			//2.冒泡排序
+			// 由于在排序过程中总是小数往前放，大数往后放，相当于气泡往上升，所以称作冒泡排序
+			//依次比较相邻的两个数，将小数放在前面，大数放在后面。每一次循环得到一个最大的数放到后面，第二次最后的数不参与比较，
+			// 用二重循环实现，外循环变量设为i，内循环变量设为n。外循环重复len次，内循环依次重复len-1.len-2.len-3次。
+			function sortBubble(data){
+				var _tmp=0;
+				var len=data.length;
+				for(var i=0;i<len;i++){
+					for(var n=0;n<len-i-1;n++){//为了防止溢出要在后面减一
+						if(data[n]>data[n+1]){
+							_tmp=data[n];
+							data[n]=data[n+1];
+							data[n+1]=_tmp;
+						}
+					}
+				}
+				console.log(data);
+			}
+			//动态初始化数组
+			function initArray(list){
+				for(var i=0;i<10;i++){
+					list[i] = Math.ceil(Math.random()*1000);
+				}
+			}
+			function main(){
+				var _arr=[];
+				initArray(_arr);
+				//sortArray(_arr);
+				sortBubble(_arr);
+			}
+			main();
+	</script>
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			a{width:98%;display:inline-block;line-height:24px;float:right;}
+			span{float:left;margin-right:2%;color:red;display:inline-block;width:100%;font-size:18px;font-weight:bol;}
+		</style>
+	</head>
+	<body>
+		<span>1. sessionStorage 在浏览器关闭时储存数据将消失--临时储存；</span>
+		<a class="aa">			
+			（1）、	script type="text/javascript"	<br/>	
+				$("input[type='button']").click(function(e){<br/>
+					console.log(e.target.id)<br/>
+					switch (e.target.id){<br/>
+						case "ssaveBtn":<br/>
+							var val = $("#stxt").val();<br/>
+							//储存-----key值的有则修改，无则添加<br/>
+		//					sessionStorage.setItem("sessionVal",val);<br/>
+		//					sessionStorage.sessionVal = val;<br/>
+							sessionStorage["sessionVal"] = val;<br/>
+							break;<br/>
+						case "sgetBtn":<br/>
+							if(sessionStorage.getItem("sessionVal")){<br/>
+		//						var val = sessionStorage.getItem("sessionVal");<br/>
+		//						var val = sessionStorage.sessionVal;<br/>
+								var val = sessionStorage["sessionVal"];<br/>
+								$("#stxt").val(val);<br/>
+							}					<br/>
+							break;<br/>
+						case "lsaveBtn":<br/>
+							break;<br/>
+						case "lgetBtn":<br/>
+							break;<br/>
+						default:<br/>
+							break;<br/>
+					}<br/>
+				})<br/>
+			/script<br/>
+		</a>
+		<span>2. localStorage 可以一直储存--永久性；</span>
+		<a class="aa1">
+			（1）script type="text/javascript"<br/>
+				$("input[type=button]").click(function(e){<br/>
+					switch (e.target.id){<br/>
+						case "addNote":<br/>
+							//时间作为key<br/>
+							var date = new Date();<br/>
+							var val = $("#txt").val();<br/>
+		//					localStorage[date] = val;<br/>
+							localStorage.setItem(date,val);<br/>
+							 queryNote();<br/>
+							break;<br/>
+						case "queryNote":<br/>
+							 queryNote();<br/>
+							break;<br/>
+						case "clearNote":<br/>
+							localStorage.clear();<br/>
+							queryNote();<br/>
+							break;<br/>
+						case "deleteNote":<br/>
+							if(localStorage.length > 0){<br/>
+								localStorage.removeItem(localStorage.key(0));<br/>
+								queryNote();<br/>
+							}<br/>
+							break;<br/>
+						default:<br/>
+							break;<br/>
+					}<br/>
+				});		<br/>
+				function queryNote(){<br/>
+					var len = localStorage.length;<br/>
+					$("#table").html("");<br/>
+					for(var i = 0; i < len; i++){<br/>
+						var key = localStorage.key(i);<br/>
+						var val = localStorage.getItem(key);<br/>
+		//						$("#table").append('<tr><td>'+val+'</td><td>'+key+'</td></tr>')<br/>
+						var date = new Date(key);<br/>
+						$("#table").append(function(index,html){<br/>
+							return  '<tr><td>'+val+'</td><td>'+date.toLocaleDateString()+" "+date.toLocaleTimeString()+'</td></tr>';<br/>
+						})<br/>
+					}<br/>
+				}<br/>
+			/script<br/>
+			(2)... <br/>script type="text/javascript"<br/>
+				$("#save").click(function(){<br/>
+					var username = $("#username").val();<br/>
+					var tel = $("#tel").val();<br/>
+					
+					var user = {<br/>
+						username:username,<br/>
+						tel:tel<br/>
+					}			<br/>
+					var str = JSON.stringify(user);			<br/>
+					localStorage.setItem(username,str);<br/>
+				})		<br/>
+				$("#query").click(function(){<br/>
+					var queryname = $("#queryname").val();<br/>
+					$("#msg").html("");<br/>
+					if(localStorage.getItem(queryname)){<br/>
+						var str = localStorage.getItem(queryname);<br/>
+						var user = JSON.parse(str);<br/>
+						$("#msg").append("姓名："+user.username + "\n电话号码："+user.tel);<br/>
+					}<br/>
+				})<br/>
+			/script<br/>
+		</a>
+	</body>
+	<!--<script type="text/javascript">
+		var a=document.getElementsByClassName("aa1")[0];
+		
+		document.write(a.innerText)
+	</script>-->
+</html>

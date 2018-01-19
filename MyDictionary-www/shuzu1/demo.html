@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+		var arr=[1,1,1,1,2,4,2,3,1,6,7,3,4]
+			//1遍历数组值不在新数组就添加进去
+			function way1(){
+				var list=[];
+				var len=arr.length;
+				for(var i=0;i<len;i++){
+					if(list.indexOf(arr[i]) == -1){
+						list.push(arr[i]);
+					}
+				}
+				console.log(list);
+			}
+			//way1();
+			//2
+			function way2(){
+				var list=[];
+				var obj={};
+				var len=arr.length;
+				for(var i=0;i<len;i++){
+					if(!obj[arr[i]]){
+						obj[arr[i]]=1;
+						list.push(arr[i]);
+					}
+				}
+				console.log(list);
+			}
+			//way2();
+			//3
+			function way3(){
+				var list=[];
+				var len=arr.length;
+				for(var i=0;i<len;i++){
+					if(arr.indexOf(arr[i]) == i){
+						list.push(arr[i]);
+					}
+				}
+				console.log(list)
+			}
+			//way3();
+			function way4(){
+				arr.sort();
+				var list=[arr[0]];
+				var len=arr.length;
+				for(var i=1;i<len;i++){
+					if(arr[i] !== list[list.length-1]){
+						list.push(arr[i]);
+					}
+				}
+				console.log(list);
+			}
+			//way4();
+			function way5(){
+				var len=arr.length;
+				for(var i=0;i<len;i++){
+					for(var n=i+1;n<len;){
+						if(arr[i]==arr[n]){
+							arr.splice(n,1);
+						}else{
+							n++
+						}
+					}
+				}
+				console.log(arr);
+			}
+			//way5();
+			
+			
+			function initArray(data){
+				for(var i=0;i<10;i++){
+					data[i]=Math.ceil(Math.random()*100);
+				}
+				//return data;
+			}
+			function sortArray(data){
+				var _tep=0;
+				for(var i=0;i<data.length;i++){
+					for(var n=i+1;n<data.length;n++){
+						if(data[i]>data[n]){
+							_tep=data[i];
+							data[i]=data[n];
+							data[n]=_tep;
+						}
+					}
+				}
+				console.log(data);
+			}
+			function sortBubble(data){
+				var _tep=0;
+				for(var i=0;i<data.length;i++){
+					for(var n=0;n<data.length-i-1;n++){
+						if(data[n]>data[n+1]){
+							_tmp=data[n];
+							data[n]=data[n+1];
+							data[n+1]=_tmp;
+						}
+					}
+				}
+				console.log(data);
+			}
+			
+
+			function main(){
+				var arr=[];
+				initArray(arr);
+				//sortArray(arr);
+				sortBubble(arr);
+			}
+			main();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
