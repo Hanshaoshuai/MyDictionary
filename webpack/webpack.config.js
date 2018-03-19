@@ -20,7 +20,7 @@ var config = {
 	devServer: {
 		contentBase: './dist',
 		host: 'localhost',
-		port:8080,
+		port:8090,
 		historyApiFallback: false,
 		proxy:{
 			'/api1': {
@@ -86,7 +86,7 @@ var config = {
 				include: path.resolve(__dirname, 'src'),
 			},
 			{
-				test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+				test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,		//image背景时用
 				loader: [{
 						loader: 'url-loader',
 						query: {
@@ -117,13 +117,13 @@ var config = {
 				},
 //				include: path.resolve(__dirname, 'src')
 			},
-//			{
+//			{									//image在HTML中时用
 //		        test: /\.(png|jpg|gif|svg)$/,
 //		        loader: 'file-loader',
 //		        options: {
 //		          	name: '[name].[ext]?[hash]'
 //		        },
-//		        include: path.resolve(__dirname, 'src')
+////		        include: path.resolve(__dirname, 'src')
 //		    }
 		]
 	},
@@ -150,9 +150,9 @@ var config = {
 	      	$: "jquery",
 	      	jQuery: "jquery"
 		}),
-		new CleanWebpackPlugin(['dist']),
+//		new CleanWebpackPlugin(['dist']),
 		new OpenBrowserPlugin({
-			url: 'http://localhost:8080'
+			url: 'http://localhost:8090'
 		}),
 		new ImageminPlugin({
 			disable: process.env.NODE_ENV !== 'production',
