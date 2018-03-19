@@ -5,3 +5,6 @@
 //require("./main.css");
 require('./style.css')
 document.write("哈哈，我是bundle.js的前身!");
+$('.box').css({
+	"color":"red"
+})

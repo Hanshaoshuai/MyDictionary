@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require('path');
 const autoprefixer=require("autoprefixer")
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 const HtmlWebpackPlugin = require ('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OpenBrowserPlugin = require ('open-browser-webpack-plugin');
@@ -19,7 +20,7 @@ var config = {
 	devServer: {
 		contentBase: './dist',
 		host: 'localhost',
-		port:9000,
+		port:8080,
 		historyApiFallback: false,
 		proxy:{
 			'/api1': {
@@ -85,17 +86,17 @@ var config = {
 				include: path.resolve(__dirname, 'src'),
 			},
 			{
-				test: /\.(png|jpg|gif|svg)$/i,
+				test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
 				loader: [{
 						loader: 'url-loader',
 						query: {
-							limit: 8192,
+							limit: 100000,
 							name: 'img/[name].[ext]'
 						}
 					},
 					'image-webpack-loader'
 				],
-				include: path.resolve(__dirname, 'src')
+//				include: path.resolve(__dirname, 'src')
 			},
 			{
 				test: /\.json$/,
@@ -114,13 +115,24 @@ var config = {
 					limit: 10000,
 					name: 'fonts/[name]-[hash:7].[ext]'
 				},
-				include: path.resolve(__dirname, 'src')
-			}
+//				include: path.resolve(__dirname, 'src')
+			},
+//			{
+//		        test: /\.(png|jpg|gif|svg)$/,
+//		        loader: 'file-loader',
+//		        options: {
+//		          	name: '[name].[ext]?[hash]'
+//		        },
+//		        include: path.resolve(__dirname, 'src')
+//		    }
 		]
 	},
-	//plugins: {
-	//  autoprefixer
-	//},
+	resolve: {
+//	  	extensions: ['.js', '.vue', '.jsx'], //后缀名自动补全
+	    alias: {
+	    	'jquery': 'jquery'
+	    }
+	},
 	plugins: [
 	    new webpack.BannerPlugin('这个就是我们调用了webpack自带的插件，我们給bundle.js的头部添加了注释信息'),
 	    new HtmlWebpackPlugin({
@@ -134,10 +146,20 @@ var config = {
 			allChunks: true,
 			ignoreOrder: true
 		}),
+		new webpack.ProvidePlugin({
+	      	$: "jquery",
+	      	jQuery: "jquery"
+		}),
 		new CleanWebpackPlugin(['dist']),
 		new OpenBrowserPlugin({
-			url: 'http://localhost:9000'
-		})
+			url: 'http://localhost:8080'
+		}),
+		new ImageminPlugin({
+			disable: process.env.NODE_ENV !== 'production',
+			pngquant: {
+				quality: '90-100'
+			}
+		}),
 //	    new GenerateAssetPlugin({
 //			filename: 'static/test.json', //输出到根目录下的test.json文件
 //			template: './src/static/ajax.json',
@@ -151,12 +173,6 @@ var config = {
 			to: './js/jquery.js'
 		}].concat(new Mpc().mpcJson)),*/
 //		autoprefixer
-//		new ImageminPlugin({
-//			//			disable: process.env.NODE_ENV !== 'production',
-//			pngquant: {
-//				quality: '90-100'
-//			}
-//		}),
 //		new webpack.optimize.UglifyJsPlugin(),
 //		new UglifyJSPlugin(),
 	]
