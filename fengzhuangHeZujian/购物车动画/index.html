@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style type="text/css">
+  	.post-demo-content {
+	    background-color: #f4f4f6;
+	    padding: 2em 2em 2em 4em;
+	    margin-bottom: 2em;
+	    border-top: 1px solid #eee;
+	    border-bottom: 1px solid #eee;
+	}
+	.mnc-demo-container-inline {
+	    display: inline-block;
+	    position: relative;
+	    margin-right: 60px;
+	    margin-bottom: 30px;
+	    margin-top: 15px;
+	}
+	.mnc-demo-container {
+	    height: 100px;
+	    width: 100px;
+	}
+	.mnc-demo-label {
+	    position: absolute;
+	    width:50px;
+	    top: -10px;
+	    left:500px;
+	    color: #ffffff;
+	    font-size: 16px;
+	    border:1px solid red;
+	    background:#0062CC;
+	    z-index:100;
+	}
+	.mnc-demo-grid {
+	    overflow: hidden;
+	    border: 2px solid rgba(0,0,0,0.2);
+	    height: 100%;
+	    width: 100%;
+	}
+	.mnc-demo-line {
+	    width: 100%;
+	    height: 2px;
+	    background-color: rgba(0,0,0,0.2);
+	    position: absolute;
+	}
+	.mnc-demo-line-vertical {
+	    width: 2px;
+	    height: 100%;
+	    background-color: rgba(0,0,0,0.2);
+	    position: absolute;
+	}
+	.mnc-demo-dot {
+		 	position: absolute;
+	    bottom: 100px;
+	    left: 500px;
+	    will-change: transform;		/*CSS页面渲染优化属性will-change告诉CPU进行动画预处理*/
+	    -webkit-animation: xAxis 0.5s 1 cubic-bezier(0, 0, 0.6, 1);
+	    animation: xAxis 0.5s 1 cubic-bezier(0, 0, 0.6, 1);
+	    /*-webkit-animation: xAxis 2.5s infinite cubic-bezier(0, 0.01, 0.21, 1);
+	    animation: xAxis 2.5s infinite cubic-bezier(0, 0.01, 0.21, 1);*/
+	   /*animation-timing-function:linear;
+	   -webkit-animation-timing-function:linear;/*规定动画的速度曲线。默认是 "ease"。*/
+	  }
+	
+	  .mnc-demo-dot:after {
+	    content: '';
+	    display: block;
+	    width: 10px;
+	    height: 10px;
+	    border-radius: 10px;
+	    background-color: #333;
+	    will-change: transform;		/*CSS页面渲染优化属性will-change告诉CPU进行动画预处理*/
+	    -webkit-animation: yAxis 0.5s cubic-bezier(0.49, -0.29, 0.75, 0.41);
+	    animation: yAxis 0.5s cubic-bezier(0.49, -0.29, 0.75, 0.41);
+	    /*-webkit-animation: yAxis 2.5s infinite cubic-bezier(0, 0.27, 0.07, 1);
+	    animation: yAxis 2.5s infinite cubic-bezier(0, 0.27, 0.07, 1);*/
+	   /*animation-timing-function:linear;
+	   -webkit-animation-timing-function:linear;*/
+	  }
+	
+	  @keyframes yAxis {
+	    100% {
+	      -webkit-transform: translateY(200px);
+	      transform: translateY(200px);
+	    }
+	  }
+	
+	  @-webkit-keyframes yAxis {
+	    100% {
+	      -webkit-transform: translateY(200px);
+	      transform: translateY(200px);
+	    }
+	  }
+	
+	  @keyframes xAxis {
+	    100% {
+	      -webkit-transform: translateX(-160px);
+	      transform: translateX(-160px);
+	    }
+	  }
+	
+	  @-webkit-keyframes xAxis {
+	    100% {
+	      -webkit-transform: translateX(-160px);
+	      transform: translateX(-160px);
+	    }
+	}
+  </style>
+</head>
+<body>
+<div class="post-demo-content">
+  <div class="mnc-demo-container mnc-demo-container-inline" id="box" >
+  	<div class="mnc-demo-label" onclick="myAlert()">点击我</div>
+    <!--<div id='demo' class="mnc-demo-dot"></div>-->
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+	function myAlert(){
+		var div = document.createElement("div");
+		div.setAttribute('class','mnc-demo-dot')
+		var box=document.getElementById('box');
+		box.appendChild(div);
+		var demo=box.children;
+		if(demo.length>5){
+			var child=box.getElementsByTagName('div');
+			box.removeChild(child[1]);
+			console.log(child[1]);
+		}
+	}
+</script>
+</html>
