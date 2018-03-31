@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>HTML5+Canvas指针大转盘抽奖代码 - 【科e互联】</title>
+		<meta name="keywords" content="HTML5,Canvas,HTML5特效,转盘抽奖,抽检代码" />
+		<meta name="description" content="一款HTML5+Canvas指针大转盘抽奖代码下载，该HTML5特效是一款基于canvas实现的转盘及指针，各奖项和分区颜色可随意设置。" />
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="js/main.js">
+		</script>
+	</head>
+
+	<body class="keBody">
+		<h1 class="keTitle">HTML5+Canvas指针大转盘抽奖代码</h1>
+		<div class="kePublic">
+			<!--效果html开始-->
+			<div class="turnplate_box">
+				<canvas id="myCanvas" width="300px" height="300px">抱歉！浏览器不支持。</canvas>
+				<canvas id="myCanvas01" width="200px" height="200px">抱歉！浏览器不支持。</canvas>
+				<canvas id="myCanvas03" width="200px" height="200px">抱歉！浏览器不支持。</canvas>
+				<canvas id="myCanvas02" width="150px" height="150px">抱歉！浏览器不支持。</canvas>
+				<button id="tupBtn" class="turnplatw_btn"></button>
+			</div>
+			<!-- 更改系统默认弹窗 -->
+			<script type="text/javascript">
+				window.alert = function(str) {
+					var shield = document.createElement("DIV");
+					shield.id = "shield";
+					shield.style.position = "absolute";
+					shield.style.left = "50%";
+					shield.style.top = "50%";
+					shield.style.width = "280px";
+					shield.style.height = "150px";
+					shield.style.marginLeft = "-140px";
+					shield.style.marginTop = "-110px";
+					shield.style.zIndex = "25";
+					var alertFram = document.createElement("DIV");
+					alertFram.id = "alertFram";
+					alertFram.style.position = "absolute";
+					alertFram.style.width = "280px";
+					alertFram.style.height = "150px";
+					alertFram.style.left = "50%";
+					alertFram.style.top = "50%";
+					alertFram.style.marginLeft = "-140px";
+					alertFram.style.marginTop = "-110px";
+					alertFram.style.textAlign = "center";
+					alertFram.style.lineHeight = "150px";
+					alertFram.style.zIndex = "300";
+					strHtml = "<ul style=\"list-style:none;margin:0px;padding:0px;width:100%\">\n";
+					strHtml += " <li style=\"background:#626262;text-align:left;padding-left:20px;font-size:14px;font-weight:bold;height:25px;line-height:25px;border:1px solid #F9CADE;color:white\">[中奖提醒]</li>\n";
+					strHtml += " <li style=\"background:#787878;text-align:center;font-size:12px;height:95px;line-height:95px;border-left:1px solid #F9CADE;border-right:1px solid #F9CADE;color:#DCC722\">" + str + "</li>\n";
+					strHtml += " <li style=\"background:#626262;text-align:center;font-weight:bold;height:30px;line-height:25px; border:1px solid #F9CADE;\"><input type=\"button\" value=\"确 定\" onclick=\"doOk()\" style=\"width:80px;height:20px;background:#626262;color:white;border:1px solid white;font-size:14px;line-height:20px;outline:none;margin-top: 4px\"/></li>\n";
+					strHtml += "</ul>\n";
+					alertFram.innerHTML = strHtml;
+					document.body.appendChild(alertFram);
+					document.body.appendChild(shield);
+					this.doOk = function() {
+						alertFram.style.display = "none";
+						shield.style.display = "none";
+					}
+					alertFram.focus();
+					document.body.onselectstart = function() {
+						return false;
+					};
+				}
+			</script>
+			<!--效果html结束-->
+			<div class="clear"></div>
+		</div>
+		<div class="mKeBanner">
+			<script src='/plus/ad_js.php?aid=22' language='javascript'></script>
+		</div>
+	</body>
+
+</html>
