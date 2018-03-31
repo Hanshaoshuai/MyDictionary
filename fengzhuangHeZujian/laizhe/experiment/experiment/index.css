@@ -1,0 +1,34 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.clear:after {
+	clear: both;
+	height: 0;
+	content: ".";
+	overflow: hidden;
+	display: block;
+	zoom: 1;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.box {
+	width: 200px;
+	height: 200px;
+	box-sizing: border-box;
+	border:1px solid #ac0;
+	background: #ddd;
+	position: absolute;
+	display: none;
+}
+.iconTotal {
+	float: right;
+} 
+.left {
+	float: left;
+	width: 20px;
+	line-height: 20px;
+}
