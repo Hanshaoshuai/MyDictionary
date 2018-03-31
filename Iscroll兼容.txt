@@ -1,0 +1,43 @@
+关于使用Iscroll.js异步加载数据后不能滑动到最底端的问题解决方案
+来源：it-home 2017-04-16
+关于使用Iscroll.js异步加载数据后不能滑动到最底端，拉到最下边又弹回去的问题困扰了我老半天，相信很多朋友都遇到了。我刚好不小心解决了，和大家分享一下。由于各种忙，下边就直接上代码吧。
+（前提是你定义的iscroll.js正常情况下已经能使页面滑动，这个我就不管了）
+html关键代码：
+　　
+　　　　^^^^^^^^^^这里是你的要加载的数据内容，自己完成（异步加载）。
+　　
+JS代码：
+var myscroll;
+function loaded() {
+myScroll = new iScroll('wrapper', {
+fixedScrollbar: true, hideScrollbar: true, fadeScrollbar: true, mouseWheel: true, snap: true,
+onBeforeScrollStart: function (e) {
+var target = e.target;
+while (target.nodeType != 1) target = target.parentNode;
+if (target.tagName != 'SELECT' && target.tagName != 'INPUT' && target.tagName != 'TEXTAREA') {
+e.preventDefault();
+}
+},
+onBeforeScrollMove: function (e) {
+e.preventDefault();
+},
+onScrollEnd: function (e) {
+var resultH = $("#wrapper").height();
+$("#wrapper").css("height", resultH);
+setTimeout(function () {
+myScroll.refresh();
+myScroll.options.snap = true;
+}, 100);
+}
+},120);
+}
+window.addEventListener("load", loaded, true);
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, true);
+document.addEventListener('DOMContentLoaded', allowFormsInIscroll, false);
+function allowFormsInIscroll() {
+[].slice.call(document.querySelectorAll('input, select, button')).forEach(function (el) {
+el.addEventListener(('ontouchstart' in window) ? 'touchstart' : 'mousedown', function (e) {
+e.stopPropagation();
+})
+})
+}

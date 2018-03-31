@@ -1,0 +1,11 @@
+1.下载凤蝶开发者工具的网址：http://www.911app.cn/article/articleinfo?articleId=21
+2.每个文件的应用网址：http://www.911app.cn/article/articleinfo?articleId=22
+3.开发配置和应用申请上线的网址：https://docs.open.alipay.com/320/106311/
+4.添加新页面的时候须在package.json文件的entry里先做配置
+5.凤蝶h5是有dom操作的，当需要用到第三方插件的时候可以通过npm安装模块或下载第三方文件到本地（注意路径问题）
+6.凤蝶是组件化开发可以避免代码的重复利用，也可以通过在页面配置globalData="{{globalData}}"
+	（globalData是随便命名的变量），在组件中axml中通过变量名（globalData）可以直接访问，
+	在js中可以通过this.data.变量名（globalData）可以直接访问，
+	但不可以通过触发某个时间修改这个变量。
+缺点
+1.凤蝶开发者工具扫码进行真机测试经常不成功不知道为什么。
