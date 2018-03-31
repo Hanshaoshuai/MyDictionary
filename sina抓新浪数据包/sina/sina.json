@@ -1,0 +1,279 @@
+{
+  "ret": true,
+  "data": {
+    "list": [
+      {
+        "items": "新闻",
+        "href": "http://news.sina.com.cn/"
+      },
+      {
+        "items": "军事",
+        "href": "http://mil.news.sina.com.cn/"
+      },
+      {
+        "items": "社会",
+        "href": "http://news.sina.com.cn/society/"
+      },
+      {
+        "items": "国际",
+        "href": "http://news.sina.com.cn/world/"
+      },
+      {
+        "items": "财经",
+        "href": "http://finance.sina.com.cn/"
+      },
+      {
+        "items": "股票",
+        "href": "http://finance.sina.com.cn/stock/"
+      },
+      {
+        "items": "基金",
+        "href": "http://finance.sina.com.cn/fund/"
+      },
+      {
+        "items": "外汇",
+        "href": "http://finance.sina.com.cn/forex/"
+      },
+      {
+        "items": "科技",
+        "href": "http://tech.sina.com.cn/"
+      },
+      {
+        "items": "手机",
+        "href": "http://mobile.sina.com.cn/"
+      },
+      {
+        "items": "探索",
+        "href": "http://tech.sina.com.cn/discovery/"
+      },
+      {
+        "items": "众测",
+        "href": "http://zhongce.sina.com.cn/"
+      },
+      {
+        "items": "体育",
+        "href": "http://sports.sina.com.cn/"
+      },
+      {
+        "items": "NBA",
+        "href": "http://sports.sina.com.cn/nba/"
+      },
+      {
+        "items": "英超",
+        "href": "http://sports.sina.com.cn/g/premierleague/"
+      },
+      {
+        "items": "中超",
+        "href": "http://sports.sina.com.cn/csl/"
+      },
+      {
+        "items": "娱乐",
+        "href": "http://ent.sina.com.cn/"
+      },
+      {
+        "items": "明星",
+        "href": "http://ent.sina.com.cn/star/"
+      },
+      {
+        "items": "电影",
+        "href": "http://ent.sina.com.cn/film/"
+      },
+      {
+        "items": "星座",
+        "href": "http://astro.sina.com.cn/"
+      },
+      {
+        "items": "汽车",
+        "href": "http://auto.sina.com.cn/"
+      },
+      {
+        "items": "报价",
+        "href": "http://dealer.auto.sina.com.cn/price/"
+      },
+      {
+        "items": "买车",
+        "href": "http://db.auto.sina.com.cn/"
+      },
+      {
+        "items": "新车",
+        "href": "http://auto.sina.com.cn/newcar/index.d.html"
+      },
+      {
+        "items": "博客",
+        "href": "http://blog.sina.com.cn/"
+      },
+      {
+        "items": "专栏",
+        "href": "http://zhuanlan.sina.com.cn/"
+      },
+      {
+        "items": "文史",
+        "href": "http://blog.sina.com.cn/lm/history"
+      },
+      {
+        "items": "天气",
+        "href": "http://weather.sina.com.cn/"
+      },
+      {
+        "items": "视频",
+        "href": "http://video.sina.com.cn/"
+      },
+      {
+        "items": "综艺",
+        "href": "http://ent.sina.com.cn/zongyi/"
+      },
+      {
+        "items": "VR",
+        "href": "http://vr.sina.com.cn/"
+      },
+      {
+        "items": "直播",
+        "href": "http://video.sina.com.cn/l/pub"
+      },
+      {
+        "items": "房产",
+        "href": "http://www.leju.com/#source=pc_sina_tydh1&source_ext=pc_sina"
+      },
+      {
+        "items": "二手房",
+        "href": "http://esf.leju.com/?bi=tg&type=sina-pc&pos=index-dh"
+      },
+      {
+        "items": "家居",
+        "href": "http://jiaju.sina.com.cn/"
+      },
+      {
+        "items": "收藏",
+        "href": "http://collection.sina.com.cn/"
+      },
+      {
+        "items": "时尚",
+        "href": "http://fashion.sina.com.cn/"
+      },
+      {
+        "items": "女性",
+        "href": "http://eladies.sina.com.cn/"
+      },
+      {
+        "items": "健康",
+        "href": "http://health.sina.com.cn/"
+      },
+      {
+        "items": "育儿",
+        "href": "http://baby.sina.com.cn/"
+      },
+      {
+        "items": "教育",
+        "href": "http://edu.sina.com.cn/"
+      },
+      {
+        "items": "高考",
+        "href": "http://edu.sina.com.cn/gaokao/"
+      },
+      {
+        "items": "公益",
+        "href": "http://gongyi.sina.com.cn/"
+      },
+      {
+        "items": "佛学",
+        "href": "http://fo.sina.com.cn/"
+      },
+      {
+        "items": "图片",
+        "href": "http://photo.sina.com.cn/"
+      },
+      {
+        "items": "读书",
+        "href": "http://book.sina.com.cn/"
+      },
+      {
+        "items": "情感",
+        "href": "http://eladies.sina.com.cn/feel"
+      },
+      {
+        "items": "司法",
+        "href": "http://sifa.sina.com.cn/"
+      },
+      {
+        "items": "城市",
+        "href": "http://city.sina.com.cn/"
+      },
+      {
+        "items": "鲜城",
+        "href": "http://www.51xiancheng.com/"
+      },
+      {
+        "items": "上海",
+        "href": "http://sh.sina.com.cn/"
+      },
+      {
+        "items": "English",
+        "href": "http://english.sina.com/"
+      },
+      {
+        "items": "旅游",
+        "href": "http://travel.sina.com.cn/"
+      },
+      {
+        "items": "航空",
+        "href": "http://sky.news.sina.com.cn/"
+      },
+      {
+        "items": "彩票",
+        "href": "http://lottery.sina.com.cn/"
+      },
+      {
+        "items": "高尔夫",
+        "href": "http://golf.sina.com.cn/"
+      },
+      {
+        "items": "游戏",
+        "href": "http://games.sina.com.cn/"
+      },
+      {
+        "items": "页游",
+        "href": "http://game.weibo.com/"
+      },
+      {
+        "items": "手游",
+        "href": "http://www.97973.com"
+      },
+      {
+        "items": "SHOW",
+        "href": "http://show.sina.com.cn/"
+      },
+      {
+        "items": "微博",
+        "href": "http://weibo.com/"
+      },
+      {
+        "items": "邮箱",
+        "href": "http://mail.sina.com.cn/"
+      },
+      {
+        "items": "更多政务车险搜索客服导航",
+        "href": "javascript:;"
+      },
+      {
+        "items": "政务",
+        "href": "http://gov.sina.com.cn/"
+      },
+      {
+        "items": "车险",
+        "href": "http://chexian.sina.com/"
+      },
+      {
+        "items": "搜索",
+        "href": "http://search.sina.com.cn/?c=more"
+      },
+      {
+        "items": "客服",
+        "href": "http://help.sina.com.cn/"
+      },
+      {
+        "items": "导航",
+        "href": "http://news.sina.com.cn/guide/"
+      }
+    ]
+  }
+}
