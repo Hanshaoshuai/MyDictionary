@@ -1,4 +1,6 @@
-﻿好1技术访谈：
+﻿
+
+好1技术访谈：
 npm install vue-cli -g    安装vue命令环境
 
 第一种simple
