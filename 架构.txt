@@ -1,4 +1,4 @@
-好1技术访谈：
+﻿好1技术访谈：
 npm install vue-cli -g    安装vue命令环境
 
 第一种simple
@@ -265,3 +265,4 @@ https://fengdie.alipay.com/space/147987006248648606045431815799/approval			凤�
 http://web.npm.alibaba-inc.com/package/@alipay/bkspm				网商银行应用程序安装工具
 https://lark.alipay.com/mybank-mobile/loan/zmf2q1					IOS  hpm（模拟器）工具使用介绍
 https://lark.alipay.com/tracert/doc/adxgfa							spm埋点指南
+
