@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+* {margin:0; padding:0;}
+#div1 {position:relative; border:1px solid black; width:680px; height:132px; margin:10px auto; overflow:hidden;}
+#div1 ul {position:absolute; left:0;}
+#div1 ul li {list-style:none; float:left; width:150px; height:112px; padding:10px;}
+#div1 ul li img {width:150px;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oUl=oDiv.getElementsByTagName('ul')[0];
+	var aLi=oUl.getElementsByTagName('li');
+	var aA=document.getElementsByTagName('a');
+	var timer=null;
+	var iSpeed=10;
+	
+	oUl.innerHTML+=oUl.innerHTML;
+	oUl.style.width=aLi.length*aLi[0].offsetWidth+'px';
+	
+	timer=setInterval(function (){
+		if(oUl.offsetLeft<-oUl.offsetWidth/2)
+		{
+			oUl.style.left=0;
+		}
+		else if(oUl.offsetLeft>0)
+		{
+			oUl.style.left=-oUl.offsetWidth/2;
+		}
+		oUl.style.left=oUl.offsetLeft+iSpeed+'px';
+	}, 30);
+	
+	aA[0].onclick=function ()
+	{
+		iSpeed=-10;
+	};
+	aA[1].onclick=function ()
+	{
+		iSpeed=10;
+	};
+};
+</script>
+</head>
+
+<body>
+<a href="javascript:;">←</a>
+<a href="javascript:;">→</a>
+<div id="div1">
+	<ul>
+    	<li><img src="img/1.jpg" /></li>
+    	<li><img src="img/2.jpg" /></li>
+    	<li><img src="img/3.jpg" /></li>
+    	<li><img src="img/4.jpg" /></li>
+    </ul>
+</div>
+</body>
+</html>

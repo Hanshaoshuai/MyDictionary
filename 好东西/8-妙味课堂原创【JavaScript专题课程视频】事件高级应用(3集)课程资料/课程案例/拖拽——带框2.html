@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+.box {position:absolute; border:1px dashed black;}
+#div1 {width:100px; height:100px; background:yellow; position:absolute;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	oDiv.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		var disY=oEvent.clientY-oDiv.offsetTop;
+		
+		var oNewDiv=document.createElement('div');
+		
+		oNewDiv.className='box';
+		oNewDiv.style.width=oDiv.offsetWidth-2+'px';
+		oNewDiv.style.height=oDiv.offsetHeight-2+'px';
+		oNewDiv.style.left=oDiv.offsetLeft+'px';
+		oNewDiv.style.top=oDiv.offsetTop+'px';
+		
+		document.body.appendChild(oNewDiv);
+		
+		document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+			
+			oNewDiv.style.left=oEvent.clientX-disX+'px';
+			oNewDiv.style.top=oEvent.clientY-disY+'px';
+		};
+		
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+			
+			oDiv.style.left=oNewDiv.style.left;
+			oDiv.style.top=oNewDiv.style.top;
+			
+			document.body.removeChild(oNewDiv);
+		};
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+</div>
+</body>
+</html>

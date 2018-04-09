@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片滑动效果 - 妙味课堂 - www.miaov.com</title>
+<style type="text/css">
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+body { background: url(images/bg.gif); }
+
+h2 { font-size: 16px; width: 450px; height: 334px; position: absolute; top: 50%; left: 50%; margin: -195px 0 0 -225px; text-align:center; }
+h3 a { font-family: arial; font-size: 14px; text-decoration: none; color:#033; border-bottom: 1px dotted #333; font-weight: normal;  width: 450px; height: 20px; position: absolute; top: 50%; left: 50%; margin: 180px 0 0 -225px; text-align:center; }
+h3 a:hover { border-bottom: 1px solid #033; }
+
+#images_slide { width: 450px; height: 334px; position: absolute; top: 50%; left: 50%; margin: -167px 0 0 -225px; overflow:hidden; }
+#images_slide img { position: absolute; top: 0; left: 0; alpha(opacity:100); opacity:1; }
+
+</style>
+<script type="text/javascript">
+window.onload=function ()
+{
+	var oDiv=document.getElementById('images_slide');
+	var aImg_=oDiv.getElementsByTagName('img');
+	var aImg=[];
+	var oMark=oDiv.getElementsByTagName('a')[0];
+	var aEffect=null;
+	(aEffect=[(function (obj){for(var f=1;f<=2;f++)css(document.getElementById(miaovStartMove.toString().split(' ')[1].split('(')[0].split('S')[0]+'_'+'title'+f), 'display', 'block');})(), function (obj){gotoCreator(obj, -1, 0);},function (obj){gotoCreator(obj, 1, 0);},function (obj){gotoCreator(obj, 0, -1);},function (obj){gotoCreator(obj, 0, 1);}]).shift();
+	
+	for(var i=0;i<aImg_.length;i++)
+	{
+		aImg.push(aImg_[i]);
+		aImg[i].initLeft=aImg[i].offsetLeft;
+		aImg[i].initTop=aImg[i].offsetTop;
+	}
+	
+	oMark.onmousedown=oMark.onmouseover=function ()
+	{
+		this.blur();
+		for(i=0;i<aImg.length;i++)
+			css(aImg[i], 'zIndex', i+2);
+		var oImg=aImg.pop();
+		aImg.unshift(oImg);
+		aEffect[parseInt(Math.random()*99999)%aEffect.length](oImg);
+	};
+};
+
+function css(obj, attr, value)
+{
+	if(arguments.length==2)
+		return parseFloat(obj.currentStyle?obj.currentStyle[attr]:document.defaultView.getComputedStyle(obj, false)[attr]);
+	else if(arguments.length==3)
+		switch(attr)
+		{
+			case 'left':
+			case 'top':
+				obj.style[attr]=value+'px';
+				break;
+			case 'opacity':
+				obj.style.filter="alpha(opacity:"+value*100+")";
+				obj.style.opacity=value;
+				break;
+			default:
+				obj.style[attr]=value;
+		}
+	
+	return css;
+}
+
+function miaovStartMove(obj, oTarget, iTime, fnCallBack)
+{
+	var iInterval=30;
+	var iTimes=Math.ceil(iTime/iInterval);
+	var oSpeed={};
+	var attr='';
+	var iEnd=(new Date()).getTime()+iTime;
+	
+	for(attr in oTarget)
+		oSpeed[attr]=(oTarget[attr]-css(obj, attr))/iTimes;
+	
+	if(obj.timer)
+		clearInterval(obj.timer);
+	
+	obj.timer=setInterval(function(){
+		doMove(obj, oTarget, oSpeed, iEnd, fnCallBack);
+	}, 30);
+}
+
+function doMove(obj, oTarget, oSpeed, iEnd, fnCallBack)
+{
+	var iNow=(new Date()).getTime();
+	var attr='';
+	
+	if(iNow>=iEnd)
+	{
+		clearInterval(obj.timer);
+		obj.timer=null;
+		
+		for(attr in oTarget)
+			css(obj, attr, oTarget[attr]);
+		
+		if(fnCallBack)fnCallBack(obj, oTarget);
+	}
+	else
+		for(attr in oTarget)
+			if(oSpeed[attr])
+				css(obj, attr, css(obj, attr)+oSpeed[attr]);
+}
+
+function gotoCreator(obj, iLeft, iTop)
+{
+	miaovStartMove(obj, {left: obj.offsetLeft+iLeft*obj.offsetWidth, top: obj.offsetTop+iTop*obj.offsetHeight, opacity: 0}, 400, function (){
+		css(obj, 'left', obj.initLeft)(obj, 'top', obj.initTop)(obj, 'opacity', 1)(obj, 'zIndex', 1);
+	});
+}
+</script>
+</head>
+
+<body>
+
+<h2 id="miaov_title1">图片滑动展示效果</h2>
+<h3 id="miaov_title2"><a href="http://www.miaov.com" title="妙味课堂 - www.miaov.com">妙味课堂 - www.miaov.com</a></h3>
+
+<div id="images_slide">
+	<a href="javascript:;" style="display:block; width:450px; height:334px; position:absolute; top:0px; left:0px; background:red; filter: alpha(opacity:0); opacity:0; z-index:10;"></a>
+    <img src="images/1.jpg" alt="妙味课堂 - www.miaov.com" style="z-index:1;" />
+    <img src="images/2.jpg" alt="妙味课堂 - www.miaov.com" style="z-index:2;" />
+    <img src="images/3.jpg" alt="妙味课堂 - www.miaov.com" style="z-index:3;" />
+    
+</div>
+
+</body>
+</html>

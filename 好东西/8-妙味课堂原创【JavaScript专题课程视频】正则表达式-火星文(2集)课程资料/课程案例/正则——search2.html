@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#div1 input{background:#ccc}
+	#div1 div{width:200px;height:200px;background:#ccc;
+	display:none}
+	#div1 active{background:yellow}
+</style>
+<script>
+	window.onload=function(){
+		var odiv=document.getElementById("div1");
+		var abtn=odiv.getElementsByTagName("input");
+		var adiv=odiv.getElementsByTagName("div");
+		for(var i=0;i<abtn.length;i++){
+			abtn[i].index=i;
+			abtn[i].onclick=function(){
+				for(i=0;i<abtn.length;i++){
+					abtn[i].className="";
+					adiv[i].style.display="none"
+				}
+				this.className="active";
+				adiv[this.index].style.display="block";
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+	<div id="div1">
+	<input class="active" type="button" value="教育" />
+	<input type="button" value="财经" />
+	<input type="button" value="aaa" />
+	<div style="display:block;">1asdfasdfds</div>
+	<div>2xzcvxzcv</div>
+	<div>5332342345</div>
+</div>
+</body>
+</html>

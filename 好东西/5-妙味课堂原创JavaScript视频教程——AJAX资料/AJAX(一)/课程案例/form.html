@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>练习题</title>
+<script>
+	//计算1-100的阶乘;
+	/*function jiecheng(){
+		var num=3;
+		var sum=1;
+		for(var i=1;i<=num;i++){
+			sum*=i
+		}
+		return sum
+	}
+	alert(jiecheng())*/
+	//编写一个函数，计算两个数字的和 差 积 商；
+	function cal(number1,number2,step){
+		if(typeof number1=="number"&&typeof number2=="number"){
+			switch(step){
+				case "+":return number1+number2;
+				case "-":return number1-number2;
+				case "*":return number1*number2;
+				case "/":return number1/number2;
+			}
+			}
+			else{
+				alert("输入有误")
+			}
+		
+
+	}
+	alert(cal(aa,100,"*"));
+	
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

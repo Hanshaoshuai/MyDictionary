@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#parent {width:400px; height:20px; background:#CCC; position:relative; margin:20px auto;}
+#div1 {width:20px; height:20px; background:red; cursor:pointer; position:absolute;}
+#div2 {width:300px; height:300px; filter:alpha(opacity:0); opacity:0; background:yellow;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oParent=document.getElementById('parent');
+	var oDiv2=document.getElementById('div2');
+	
+	oDiv.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		
+		document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+			var l=oEvent.clientX-disX;
+			
+			if(l<0)
+			{
+				l=0;
+			}
+			else if(l>oParent.offsetWidth-oDiv.offsetWidth)
+			{
+				l=oParent.offsetWidth-oDiv.offsetWidth;
+			}
+			
+			oDiv.style.left=l+'px';
+			var scale=l/(oParent.offsetWidth-oDiv.offsetWidth);
+			
+			oDiv2.style.filter='alpha(opacity:'+100*scale+')';
+			oDiv2.style.opacity=scale;
+			
+			document.title=scale;
+		};
+		
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="parent">
+	<div id="div1">
+    </div>
+</div>
+<div id="div2">
+</div>
+</body>
+</html>

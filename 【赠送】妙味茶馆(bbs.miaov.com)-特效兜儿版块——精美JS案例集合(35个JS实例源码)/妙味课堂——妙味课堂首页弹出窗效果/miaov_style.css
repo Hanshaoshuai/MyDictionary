@@ -1,0 +1,21 @@
+body , ul , ol , h2 , h3 , h4 , p , dl , dt , dd , form { padding: 0; margin: 0; }
+body {background: #7d0029 url(images/index.jpg) no-repeat center 0; height: 1090px;}
+
+#messageBoardContainer { width: 354px; height: 0px; position:absolute; top: 300px; left: 450px; overflow: hidden; z-index: 5;}
+#messageBoard { width: 354px; height: 294px; position: absolute; }
+#messageBoard .wrap { width: 344px; height: 284px; background: #ededed; border: 1px solid #f2f2f2; position: absolute; top: 4px; left: 4px; z-index: 2; }
+#messageBoard .bg { width: 354px; height: 294px; background: #000000; position: absolute; top: 0; left: 0; filter: alpha(opacity=30); opacity: 0.3; z-index: 1; }
+#messageBoard h2 { height: 24px; background: url(images/messageBoard.gif) repeat-x 0 -24px; font-size: 12px; font-weight: normal; color: #666; padding-left: 10px; cursor: move; }
+#messageBoard h2 span { line-height: 22px; }
+#messageBoard h2 a { position: absolute; top: 5px; right: 6px; width: 11px; height: 11px; overflow:hidden; background: url(images/messageBoard.gif) no-repeat; }
+#messageBoard h2 a:hover { background: url(images/messageBoard.gif) no-repeat 0 -12px; }
+#messageBoard .content { padding: 10px 20px; }
+#messageBoard .content p { line-height: 30px; font-size: 12px; color: #666666; }
+#messageBoard .content p a { font-family: arial; font-weight: bold; color: #cc3333; border-bottom: 1px dotted #cc3333; }
+#messageBoard .content p a:hover { position: relative; top: 1px; color: #cc0000; }
+#messageBoard .red { color: #cc3333; }
+#messageBoard .indent { text-indent: 24px; }
+#messageBoard .date { text-align: right; }
+
+#quirkyPopupShowBtn { position: absolute; top: 0; right: 0; width: 35px; height: 64px; background: url(images/quirkyPopupShowBtn.gif) no-repeat; }
+#quirkyPopupShowBtn:hover { background: url(images/quirkyPopupShowBtn.gif) no-repeat 0 -70px; }

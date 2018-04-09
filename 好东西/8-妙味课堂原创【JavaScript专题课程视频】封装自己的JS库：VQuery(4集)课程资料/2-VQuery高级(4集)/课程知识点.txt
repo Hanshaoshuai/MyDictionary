@@ -1,0 +1,20 @@
+
+vQuery高级	58:39
+
+1. jQuery 链式操作
+2. css() 函数的改进：支持多属性操作与链式操作
+3. css() 函数多属性操作的实质：传递 json
+4. 在 css() 函数内添加判断与循环 json
+5. 使用 css() 函数对 div 进行操作
+6. 函数链式操作：返回函数自身
+7. 给 css() 函数加上：return this;
+8. vQuery 的链式操作实例
+9. jQuery 里阻止默认事件、阻止冒泡
+10. 添加 bind() 方法
+11. 添加 vQuery 阻止默认事件与阻止冒泡的功能
+12. jQuery 里的 animate()
+13. vQuery 的插件机制：extend()
+14. 运用插件机制为 vQuery 添加 size() 方法
+15. vQuery  里 animate() 方法实现过程
+16. 运用 vQuery 制作淘宝幻灯片实例
+17. 运用插件机制为 vQuery 添加 drag() 方法

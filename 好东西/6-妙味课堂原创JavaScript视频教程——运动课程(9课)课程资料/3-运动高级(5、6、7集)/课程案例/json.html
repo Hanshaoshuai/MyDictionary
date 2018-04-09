@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+var obj={a: 15, b: 4, c: 8};
+var arr=[15,4,8];
+
+/*alert(obj['a']);
+alert(arr[0]);*/
+
+var i=0;
+
+//数组：for	for...in
+//json：for...in
+
+//for(i=0;i<arr.length;i++)
+for(i in arr)
+{
+	alert(i+'='+arr[i]);
+}
+
+for(i in obj)
+{
+	alert(i+'='+obj[i]);
+}
+
+//数组：普通for
+//json：for...in
+</script>
+</head>
+
+<body>
+</body>
+</html>

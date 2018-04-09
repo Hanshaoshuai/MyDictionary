@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+var a=12;
+
+alert(typeof a);	//number
+
+a='abc';
+//alert(typeof a);	//string
+
+a=true;
+//alert(typeof a);	//boolean	布尔
+
+/*window.onload=function ()
+{
+	a=document.getElementById('div1');
+	
+	alert(typeof a);	//object
+};*/
+
+a=function ()
+{
+	alert('abc');
+};
+
+//alert(typeof a);	//function
+
+var b;
+alert(typeof b);	//undefined
+/*
+undefined	1.你真的就没定义	2.虽然定义了，但是没给值
+*/
+
+</script>
+</head>
+
+<body>
+<div id="div1">
+	dfasdf
+</div>
+</body>
+</html>

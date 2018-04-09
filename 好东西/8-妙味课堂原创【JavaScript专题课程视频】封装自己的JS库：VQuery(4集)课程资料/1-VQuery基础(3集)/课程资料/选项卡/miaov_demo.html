@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//h2D XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/h2D/xhtml1-transitional.h2d">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选项卡效果 - 妙味课堂 - www.miaov.com</title>
+<link href="miaov_style.css" rel="stylesheet" type="text/css" />
+<script src="../VQuery.js"></script>
+<script>
+$(function (){
+	var aBtn=$('#tab').find('ul').find('li');
+	var aDiv=$('#tab').find('.box').find('.content');
+	
+	aBtn.click(function (){
+		aBtn.attr('className', 'link');
+		$(this).attr('className', 'hover');
+		aDiv.hide();
+		aDiv.eq($(this).index()).show();
+	});
+});
+</script>
+</head>
+
+<body>
+
+<div id="tab" class="tab_box">
+
+    <ul>
+        <li class="hover"><span class="btn1"><span class="btn2">DIV+CSS 课程</span></span></li>
+        <li class="link"><span class="btn1"><span class="btn2">JavaScript+JQuery 课程</span></span></li>
+        <li class="link"><span class="btn1"><span class="btn2">联系妙味课堂</span></span></li>
+    </ul>
+
+    <div class="box">
+
+        <div class="content" style="display: block;">
+            <h2>DIV+CSS 课程可以让你：</h2>
+            <p>&raquo; 精通 W3C 网页标准和 CSS2.0 规范下的页面制作；</p>
+            <p>&raquo; 熟悉浏览器兼容性调试，包括但不限于 IE6，IE7，IE8，Firefox2.0；</p>
+            <p>&raquo; 熟悉网站建设流程及 PhotoShop 精确切图；</p>
+            <p>&raquo; 运用 DIV+CSS 技术熟练制作出网易、魔兽等门户级网站；</p>
+            <p>&raquo; 掌握网页常见的码 JavaScript 效果；</p>
+        </div>
+
+        <div class="content">
+            <h2>JavaScript+JQuery 课程可以让你：</h2>
+            <p>&raquo; 轻松实现复杂的网页交互特效，不再辛苦的找寻、套用他人代码；</p>
+            <p>&raquo; 熟悉 AJAX 运作机制，与后台默契配合程度达至天衣无缝；</p>
+            <p>&raquo; 将页面内容以最佳用户体验方式呈现，真正站到用户角度进行前端开发；</p>
+            <p>&raquo; 熟练使用 jquery 框架编写跨浏览器程序，提高工作效率；</p>
+            <p>&raquo; 轻松应聘各大公司 <b>网站前端开发工程师</b> 职位</p>
+        </div>
+
+        <div class="content">
+            <h2>妙味的联系方式：</h2>
+            <p>&raquo; 妙味联系人：刘伟</p>
+            <p>&raquo; 我的手机：131 41414 820</p>
+            <p>&raquo; 我的QQ：20907961</p>
+            <p>&raquo; 还有MSN：lw-2004@hotmail.com</p>
+            <p>&raquo; 这是妙味课程的网址：<a href="http://www.miaov.com">http://www.miaov.com</a></p>
+        </div>
+
+        <div class="adorn1"></div>
+        <div class="adorn2"></div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

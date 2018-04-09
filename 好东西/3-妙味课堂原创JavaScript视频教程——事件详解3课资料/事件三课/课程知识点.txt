@@ -1,0 +1,10 @@
+﻿
+事件中级	45:35
+1. 什么是事件的默认行为
+2. 上下文菜单：oncontextmenu
+3. 文本框内禁止输入内容实例
+4. 自定义右键菜单实例
+5. 只能输入数字的输入框实例：onkeydown、onkeyup
+6. 拖拽实例：拖拽原理、三个事件、document范围、解决FF的bug
+7. 限制拖拽范围的条件：document.documentElement.clientWidth
+

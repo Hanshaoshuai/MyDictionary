@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新浪微博首页效果 - 妙味课堂 - www.miaov.com</title>
+<style type="text/css">
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+body { background: #eee; }
+#t_sina { width: 390px; padding: 10px; background: #fff; margin: 50px auto 0; font-size: 12px; border: 1px solid #ccc; }
+#t_sina h2 { padding: 10px 0 10px 10px; border-bottom: 1px solid #ebebeb; color: #333; font-size: 14px; }
+#content { width: 390px; height: 345px; overflow: hidden; }
+#content ul { width: 390px; }
+#content li { width: 390px; padding: 10px 0; overflow: hidden; border-bottom: 1px dotted #9f9f9f; }
+#content .pic { float: left; width: 50px; height: 50px; }
+#content .pic a { display: block; width: 50px; height: 50px; background: #eee; }
+#content .pic a:hover { background: #00FFFF; }
+#content p { float: right; width: 315px; margin-right: 10px; display: inline; line-height: 16px; color: #666; }
+#content p a { color: #6eafd5; font-family: arial; text-decoration: none; }
+#content p a:hover { text-decoration: underline; }
+#content p span { color: #999; }
+#t_sina dt { font-size: 14px; height: 40px; line-height: 40px; }
+#t_sina dd { padding-bottom: 5px; color: #666; }
+#t_sina .text { width: 320px; height: 20px; line-height: 20px; font-size: 12px; font-family: arial; color: #666; position: relative; left: 20px; }
+#t_sina textarea { width: 320px; height: 80px; line-height: 20px; overflow: auto; font-size: 12px; font-family: arial; color: #666; position: relative; left: 20px; }
+#t_sina .btn { position: relative; left: 55px; width: 120px; height: 30px; }
+</style>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript" src="t_sina.js"></script>
+</head>
+
+<body>
+
+<div id="t_sina">
+
+    <h2>大家正在说</h2>
+    
+    <div id="content">
+        <ul>
+            <li>
+                <div class="pic"><a href="###"></a></div>
+                <p><a href="#">夜话燕子</a>：今晚,我是一个超级大的电灯泡,探照灯级别的。现在我终于消失了，一个人在江边走走也不错诶。<br /><span>3分钟前</span></p>
+            </li>
+            <li>
+                <div class="pic"><a href="###"></a></div>
+                <p><a href="#">xinshangzeyu_2xr</a>：我来自甚地？去甚地？是甚？原形是甚？是你甚？出生为甚？－－十岁。。。<br /><span>3分钟前</span></p>
+            </li>
+            <li>
+                <div class="pic"><a href="###"></a></div>
+                <p><a href="#">左手单刀</a>：哎，我这算幸运么？值个破班吧居然能遇见这么罕见的状况！所以电话都断了！全都告警！还查不出故障！好吧，就这么一直没电话吧，真安静啊。。。<br /><span>3分钟前</span></p>
+            </li>
+            <li>
+                <div class="pic"><a href="###"></a></div>
+                <p><a href="#">斜风细雨时思念蔓延</a>：原单位领导因为在我临行时不经然冒出了三个类母亲字句，为此付出了些许代价。我始终认为该同学智商很高，希望他可以把原单位带好~他应该也会带好，只是希望随着时间的推移他会重用所应重用的人，莫被弄臣迷了双眼~3分钟前<br /><span>3分钟前</span></p>
+            </li>
+            <li>
+                <div class="pic"><a href="###"></a></div>
+                <p><a href="#">粘得不得了</a>：奖学金还不够塞牙缝。。我的和众人的<br /><span>3分钟前</span></p>
+            </li>
+        </ul>
+    </div>
+    
+    <dl>
+    	<dt>-发布微博-</dt>
+        <dd>姓名：<input id='btn_name' class="text" type="text" /></dd>
+        <dd>内容：<textarea id='btn_msg'></textarea></dd>
+        <dd><input class="btn" id="btn_submit" type="button" value="提交" /></dd>
+    </dl>
+
+</div>
+
+<ul id="tmp_container" style="height:0px; overflow:hidden;"></ul>
+
+</body>
+</html>

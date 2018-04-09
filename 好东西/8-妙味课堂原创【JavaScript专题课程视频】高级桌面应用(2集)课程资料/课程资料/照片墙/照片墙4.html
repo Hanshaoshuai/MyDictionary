@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+* {margin:0; padding:0;}
+
+#ul1 {width:660px; position:relative; margin:10px auto;}
+#ul1 li {width:200px; height:150px; float:left; list-style:none; margin:10px; z-index:1;}
+#ul1 .active {border:1px dashed red;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.getElementsByTagName('li');
+	var aPos=[];
+	var iMinZindex=2;
+	var i=0;
+	
+	//布局转换
+	for(i=0;i<aLi.length;i++)
+	{
+		aPos[i]={left: aLi[i].offsetLeft, top: aLi[i].offsetTop};
+	}
+	
+	for(i=0;i<aLi.length;i++)
+	{
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';
+		
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin='0';
+	}
+	
+	//拖拽
+	for(i=0;i<aLi.length;i++)
+	{
+		setDrag(aLi[i]);
+	}
+	
+	function setDrag(obj)
+	{
+		obj.onmousedown=function (ev)
+		{
+			var oEvent=ev||event;
+			
+			obj.style.zIndex=iMinZindex++;
+			
+			var disX=oEvent.clientX-obj.offsetLeft;
+			var disY=oEvent.clientY-obj.offsetTop;
+			
+			document.onmousemove=function (ev)
+			{
+				var oEvent=ev||event;
+				
+				obj.style.left=oEvent.clientX-disX+'px';
+				obj.style.top=oEvent.clientY-disY+'px';
+				
+				for(i=0;i<aLi.length;i++)
+				{
+					aLi[i].className='';
+					if(obj==aLi[i])continue;
+					
+					if(cdTest(obj, aLi[i]))
+					{
+						aLi[i].className='active';
+					}
+				}
+			};
+			
+			document.onmouseup=function ()
+			{
+				document.onmousemove=null;
+				document.onmouseup=null;
+			};
+			
+			return false;
+		};
+	}
+	
+	//碰撞检测
+	function cdTest(obj1, obj2)
+	{
+		var l1=obj1.offsetLeft;
+		var r1=obj1.offsetLeft+obj1.offsetWidth;
+		var t1=obj1.offsetTop;
+		var b1=obj1.offsetTop+obj1.offsetHeight;
+		
+		var l2=obj2.offsetLeft;
+		var r2=obj2.offsetLeft+obj2.offsetWidth;
+		var t2=obj2.offsetTop;
+		var b2=obj2.offsetTop+obj2.offsetHeight;
+		
+		if(r1<l2 || l1>r2 || b1<t2 || t1>b2)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li><img src="images/1.jpg" /></li>
+	<li><img src="images/2.jpg" /></li>
+	<li><img src="images/3.jpg" /></li>
+	<li><img src="images/4.jpg" /></li>
+	<li><img src="images/5.jpg" /></li>
+	<li><img src="images/1.jpg" /></li>
+	<li><img src="images/2.jpg" /></li>
+	<li><img src="images/3.jpg" /></li>
+	<li><img src="images/4.jpg" /></li>
+	<li><img src="images/5.jpg" /></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+function aaa()
+{
+	alert('a');
+}
+
+function bbb()
+{
+	alert('b');
+}
+window.onload=function ()
+{
+	var oBtn=document.getElementById('btn1');
+	
+	/*oBtn.onclick=aaa;
+	oBtn.onclick=bbb;*/
+	
+	//对象.attachEvent(事件名, 函数)
+	//对象.addEventListener(事件名, 函数, 是否捕获)
+	
+	//IE
+	/*oBtn.attachEvent('onclick', aaa);
+	oBtn.attachEvent('onclick', bbb);*/
+	
+	//FF
+	/*oBtn.addEventListener('click', aaa, false);
+	oBtn.addEventListener('click', bbb, false);*/
+	
+	if(oBtn.attachEvent)
+	{
+		oBtn.attachEvent('onclick', aaa);
+		oBtn.attachEvent('onclick', bbb);
+	}
+	else
+	{
+		oBtn.addEventListener('click', aaa, false);
+		oBtn.addEventListener('click', bbb, false);
+	}
+};
+</script>
+</head>
+
+<body>
+<input id="btn1" type="button" value="aaa" />
+</body>
+</html>

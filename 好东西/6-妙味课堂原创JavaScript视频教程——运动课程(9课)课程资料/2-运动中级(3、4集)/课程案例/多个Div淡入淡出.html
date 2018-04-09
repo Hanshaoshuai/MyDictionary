@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+div {width:100px; height:100px; background:red; margin:10px; filter:alpha(opacity:30); opacity:0.3;}
+
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+window.onload=function ()
+{
+	var aDiv=document.getElementsByTagName('div');
+	var i=0;
+	
+	for(i=0;i<aDiv.length;i++)
+	{
+		aDiv[i].alpha=30;
+		aDiv[i].onmouseover=function ()
+		{
+			startMove(this, 100);
+		}
+		
+		aDiv[i].onmouseout=function ()
+		{
+			startMove(this, 30);
+		}
+	}
+}
+//var alpha=30;
+
+function startMove(obj, iTarget)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function (){
+		var iSpeed=(iTarget-obj.alpha)/8;
+		iSpeed=iSpeed>0?Math.ceil(iSpeed):Math.floor(iSpeed);
+		
+		if(obj.alpha==iTarget)
+		{
+			clearInterval(obj.timer);
+		}
+		else
+		{
+			obj.alpha+=iSpeed;
+			
+			obj.style.filter='alpha(opacity:'+obj.alpha+')';
+			obj.style.opacity=obj.alpha/100;
+		}
+	}, 30);
+}
+
+</script>
+</head>
+
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

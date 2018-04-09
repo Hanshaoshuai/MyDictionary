@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#parent {width:400px; height:20px; background:#CCC; position:relative; margin:20px auto;}
+#div1 {width:20px; height:20px; background:red; cursor:pointer; position:absolute;}
+#div2 {width:200px; height:300px; border:1px solid black; position:relative; overflow:hidden;}
+#div3 {position:absolute;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	var oParent=document.getElementById('parent');
+	var oDiv2=document.getElementById('div2');
+	var oDiv3=document.getElementById('div3');
+	
+	oDiv.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		
+		document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+			var l=oEvent.clientX-disX;
+			
+			if(l<0)
+			{
+				l=0;
+			}
+			else if(l>oParent.offsetWidth-oDiv.offsetWidth)
+			{
+				l=oParent.offsetWidth-oDiv.offsetWidth;
+			}
+			
+			oDiv.style.left=l+'px';
+			var scale=l/(oParent.offsetWidth-oDiv.offsetWidth);
+			
+			oDiv3.style.top=-(oDiv3.offsetHeight-oDiv2.offsetHeight)*scale+'px';
+			
+			document.title=scale;
+		};
+		
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="parent">
+	<div id="div1">
+    </div>
+</div>
+<div id="div2">
+	<div id="div3">
+    	关于妙味
+妙味课堂是北京妙味趣学信息技术有限公司旗下的IT前端培训品牌，
+妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一种全新的快乐学习方法！
+目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。
+妙味讲师：
+妙味课堂的讲师来自中国最具吸引力的IT企业，如淘宝、ShopEx等。
+前端开发讲师：刘伟（Leo）
+WEB 前端开发工程师(5年)、CSS 精品课程讲师(3年)，妙味课堂创始人；
+曾任北京科尔威视、ShopEx 北京营销中心 ECMall 项目前端架构师；
+精通 XHTML+CSS 架构，深刻理解 W3C 标准，熟练掌握系统的浏览器兼容性解决方案，
+擅长大型网站前端架构及调试各类页面错位等诸多兼容性问题的疑难杂症；
+专注于网站用户体验性研究，并在视频、电子商城、教育平台、企业级应用站点拥有数量庞大的案例和多年实战经验；
+    </div>
+</div>
+</body>
+</html>

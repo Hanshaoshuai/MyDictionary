@@ -1,0 +1,33 @@
+
+vQuery基础一	46:32
+
+1. vQuery 简介
+2. jQuery 操作简介
+3. "$" 功能介绍
+4. vQuery 选择器实现过程：ID\class\tagName
+5. click() 方法实现过程
+6. 把 new vQuery() 改成 $()
+7. show() 和 hide() 方法实现过程
+8. hover() 方法实现过程
+9. css() 方法实现过程
+10. this 在 IE 下使用绑定事件的指向问题
+
+
+
+vQuery基础二	45:05
+
+1. show() 与 show.call() 的区别，apply() 与 call() 的区别
+2. 用 call() 解决 this 在 IE 下使用绑定事件的指向问题
+3. toggle() 方法简介
+4. 闭包特性及其几种怪异的闭包写法
+5. 累加计数的实现
+6. toggle() 方法实现过程
+7. attr() 方法实现过程
+8. eq() 方法实现过程
+9. find() 方法实现过程（上半部分）
+
+vQuery基础三	32:08
+
+1. find() 方法实现过程
+2. index() 方法实现过程
+3. 运用 vQuery 制作选项卡实例

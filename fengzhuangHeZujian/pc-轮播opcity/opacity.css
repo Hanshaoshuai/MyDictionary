@@ -8,9 +8,12 @@ body,html{
 ul, li {
     list-style: none;
 }
-.carouselBox, .carouselBox .carousel, .carouselBox .carousel li, .carouselBox .carousel img {
+.carouselBox, .carouselBox .carousel, .carouselBox .carousel li {
+	background:#000000;
     width: 1000px;
     height: 600px;
+    overflow:hidden;
+    position:relative;
 }
 #box {
     position: absolute;
@@ -29,7 +32,15 @@ ul, li {
     top: 0;
 }
 .carouselBox .carousel img {
+	width: 600px;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
     display: none;
+    z-index: 600;
 }
 .carouselBox .btn {
     position: absolute;
@@ -37,6 +48,7 @@ ul, li {
     bottom: 50px;
     width: 490px;
     height: 50px;
+    z-index: 800;
 }
 .carouselBox .btn li {
     width: 50px;
@@ -64,6 +76,7 @@ ul, li {
     font-size: 30px;
     line-height: 50px;
     text-align: center;
+    z-index: 800;
 }
 .carouselBox .prev{
     left: 0;

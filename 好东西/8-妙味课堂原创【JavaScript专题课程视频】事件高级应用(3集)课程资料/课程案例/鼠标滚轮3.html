@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {width:200px; height:200px; background:red;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+//普通事件：onclick、onmousedown
+//DOM事件：DOMMouseScroll
+
+//DOM事件只能通过绑定来添加
+
+function myAddEvent(obj, sEvent, fn)
+{
+	if(obj.attachEvent)
+	{
+		obj.attachEvent('on'+sEvent, fn);
+	}
+	else
+	{
+		obj.addEventListener(sEvent, fn, false);
+	}
+}
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	function onMouseWheel(ev)
+	{
+		var oEvent=ev||event;
+		var bDown=true;
+		
+		bDown=oEvent.wheelDelta?oEvent.wheelDelta<0:oEvent.detail>0;
+		
+		alert(bDown);
+	}
+	
+	myAddEvent(oDiv, 'mousewheel', onMouseWheel);
+	myAddEvent(oDiv, 'DOMMouseScroll', onMouseWheel);
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

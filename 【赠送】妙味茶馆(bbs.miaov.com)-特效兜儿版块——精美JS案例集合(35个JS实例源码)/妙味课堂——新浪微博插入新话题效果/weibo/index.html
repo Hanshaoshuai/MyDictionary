@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+//插入话题
+function inTopic(id, str){
+	var str = str || "请在这里输入自定义话题";
+	str = "#" + str + "#";
+	var reg = new RegExp(str),
+	oTextarea = document.getElementById(id),
+	oValue = oTextarea.value,
+	val_index = 0,
+	val_match,
+    val_pos;
+	if(reg.test(oValue)){
+		val_match = oValue.match(reg);
+        val_index = val_match.index;
+	}
+	else{
+		val_pos = getTextPos(oTextarea);
+        val_index = val_pos.start;
+        rangeText(oTextarea, str);
+	}
+	selectText(oTextarea, val_index + 1, val_index + str.length - 1);
+}
+//光标的当前位置
+function getTextPos(obj){
+	if(!obj || obj.offsetWidth == 0){ return false; }
+	var t = obj, start = 0, end = 0, value = '', range, range_all;
+	value = t.value;
+	if(typeof(t.selectionStart) == "number"){
+		start = t.selectionStart;
+		end = t.selectionEnd;
+	} 
+	else if(document.selection && t.offsetWidth>0){
+		t.focus();
+		range = document.selection.createRange();
+		if(range.parentElement() == t){
+			range_all = document.body.createTextRange();
+			range_all.moveToElementText(t);
+			for(start = 0; range_all.compareEndPoints("StartToStart", range) < 0; start++){
+				range_all.moveStart('character', 1);
+			}
+			for(var i = 0; i <= start; i++){
+				if(t.value.charAt(i) == '\n'){
+					start++;
+				}
+			}
+			range_all.moveToElementText(t);
+			for(end = 0; range_all.compareEndPoints('StartToEnd', range) < 0; end++){
+				range_all.moveStart('character', 1);
+			}
+			for(var i = 0; i <= end; i++){
+				if(t.value.charAt(i) == '\n'){
+					end++;
+				}
+			}
+		}
+	} 
+	else{
+		start = value.length;
+		end = value.length;
+	}
+	return{
+		start: start,
+		end: end
+	}
+}
+//光标处替换的文本
+function rangeText(obj, val, num){
+	if(!obj || obj.offsetWidth == 0){ return false; }
+	var t = obj, start = 0, end = 0, value = '', val_start = '', val_end = '', pos;
+	var userAgent = navigator.userAgent.toLowerCase(), ie = /msie/.test(userAgent) && !/opera/.test(userAgent);
+	if(ie && t.nodeName.toLocaleLowerCase() != 'textarea'){
+		t.value = val;
+		t.focus;
+		return;
+	}
+	value = t.value;
+	pos = getTextPos(t);
+	start = pos.start;
+	end = pos.end;
+	if (typeof num=='number'){
+		start = start - num;
+	}
+	val_start = value.substring(0, start);
+	val_end = value.substring(end);
+	t.value = val_start + val + val_end;
+	if (typeof num=='number'){
+		end = end - num;
+	}
+	selectText(t,end+val.length,end+val.length);
+}
+//光标定位到指定文本
+function selectText(obj, start, stop){
+	if(!obj || obj.offsetWidth == 0){ return false; }
+	var range;
+	if(obj.setSelectionRange){
+		obj.setSelectionRange(start,stop);
+	}
+	else{
+		range = obj.createTextRange();
+		range.collapse(true);
+		range.moveStart("character",start);
+		range.moveEnd("character",stop-start);
+		range.select();
+	}
+	obj.focus();
+}
+</script>
+<style type="text/css">
+body{margin:0;background-image:url(miaov.jpg);}
+.box{width:600px;height:200px;background:url(weibo.png) no-repeat;margin:60px auto;position:relative;}
+#textarea{ border: medium none;font-size: 14px;height: 70px;line-height: 124%;padding: 0;width: 475px;overflow:hidden;resize: none;position:absolute;left:62px; top:55px;outline: none;}
+.button{width:100px;height:30px;background:url(button.gif) 0 0 no-repeat;position:absolute;left:442px;top:135px;}
+.button:hover{background-position:0 -30px;}
+.button:active{background-position:0 -60px;}
+.topic{position:absolute;left:72px;top:136px;height:26px;line-height:26px;text-decoration:none;color:#fff;font-size:12px;background:url(topic.gif) no-repeat 0 7px;padding-left:14px;}
+</style>
+</head>
+
+<body>
+<div class="box">
+	<textarea id="textarea" accesskey="1" tabindex="1" style="font-family: Tahoma,宋体;"></textarea>
+	<a href="http://www.miaov.com" class="button"></a>
+	<a href="###" class="topic" onclick="inTopic('textarea','妙味课堂')">话题</a>
+</div>
+</body>
+</html>

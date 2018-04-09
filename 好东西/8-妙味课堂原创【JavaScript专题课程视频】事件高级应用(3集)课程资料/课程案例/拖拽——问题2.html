@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {width:100px; height:100px; background:red; position:absolute;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	oDiv.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		var disY=oEvent.clientY-oDiv.offsetTop;
+		
+		oDiv.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+			
+			oDiv.style.left=oEvent.clientX-disX+'px';
+			oDiv.style.top=oEvent.clientY-disY+'px';
+		};
+		
+		oDiv.onmouseup=function ()
+		{
+			oDiv.onmousemove=null;
+			oDiv.onmouseup=null;
+			
+			oDiv.releaseCapture();
+		};
+		
+		oDiv.setCapture();
+		
+		/*document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+			
+			oDiv.style.left=oEvent.clientX-disX+'px';
+			oDiv.style.top=oEvent.clientY-disY+'px';
+		};
+		
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};*/
+		
+		return false;
+	};
+};
+</script>
+</head>
+
+<body>
+asdfas
+<div id="div1">
+asdfs
+</div>
+zcvx
+</body>
+</html>

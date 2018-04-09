@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {width:100px; height:100px; background:red; position:absolute;}
+#div2 {width:100px; height:100px; background:yellow; position:absolute;}
+#div3 {width:100px; height:100px; background:green; position:absolute;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function ()
+{
+	drag('div1');
+	drag('div2');
+	drag('div3');
+};
+
+function drag(id)
+{
+	var oDiv=document.getElementById(id);
+	
+	oDiv.onmousedown=function (ev)
+	{
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oDiv.offsetLeft;
+		var disY=oEvent.clientY-oDiv.offsetTop;
+		
+		document.onmousemove=function (ev)
+		{
+			var oEvent=ev||event;
+			
+			oDiv.style.left=oEvent.clientX-disX+'px';
+			oDiv.style.top=oEvent.clientY-disY+'px';
+		};
+		
+		document.onmouseup=function ()
+		{
+			document.onmousemove=null;
+			document.onmouseup=null;
+		};
+	};
+}
+</script>
+</head>
+
+<body>
+<div id="div1">
+</div>
+
+<div id="div2">
+</div>
+
+<div id="div3">
+</div>
+</body>
+</html>

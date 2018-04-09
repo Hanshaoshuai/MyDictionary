@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {width:100px; height:100px; background:red;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+//哪个元素
+//哪个样式
+
+function getStyle(obj, attr)
+{
+	if(obj.currentStyle)
+	{
+		return obj.currentStyle[attr];
+	}
+	else
+	{
+		return getComputedStyle(obj, false)[attr];
+	}
+}
+
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	alert(getStyle(oDiv, 'backgroundColor'));
+}
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

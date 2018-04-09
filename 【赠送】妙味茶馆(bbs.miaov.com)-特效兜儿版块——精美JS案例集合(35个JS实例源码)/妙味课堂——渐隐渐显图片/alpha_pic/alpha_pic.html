@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>渐隐渐现图片 - 妙味课堂 - www.miaov.com</title>
+<style type="text/css">
+body { background: #eee; }
+a { display: block; width: 223px; height: 118px; margin-bottom: 3px; border: 5px solid #fff; filter: alpha(opacity=30); opacity: 0.3; }
+img { border:none; }
+</style>
+<script type="text/javascript">
+var aA = null;
+var aTimer = [];
+var aAlpha = [];
+window.onload=function()
+{
+	var i=0;
+	aA = document.getElementsByTagName("a");
+	
+	for(i=0;i<aA.length;i++)
+	{
+		aA[i].miaovIndex=i;
+		aA[i].onmouseover = function (){startTimer(true, this.miaovIndex);};
+		aA[i].onmouseout = function (){startTimer(false, this.miaovIndex);};
+		
+		aTimer[i]=null;
+		aAlpha[i]=30;
+	}
+};
+function startTimer(bShow, index)
+{
+	if(aTimer[index])
+	{
+		clearInterval(aTimer[index]);
+		aTimer[index]=null;
+	}
+	aTimer[index] = setInterval("show("+bShow+", "+index+")", 35);
+}
+function show(bShow, index)
+{
+	var iTarget=0;
+	var iNum=0;
+	
+	if(bShow)
+	{
+		iTarget=100;
+		iNum=10;
+	}
+	else
+	{
+		iTarget=30;
+		iNum=-10;
+	}
+	
+	if(aAlpha[index]!=iTarget)
+	{
+		aAlpha[index]+=iNum;
+		aA[index].style.filter = "alpha(opacity="+aAlpha[index]+")";
+		aA[index].style.opacity = aAlpha[index]/100;
+	}
+	else
+	{
+		clearInterval(aTimer[index]);
+		aTimer[index]=null;
+	}
+}
+</script>
+</head>
+
+<body>
+
+<a href="http://www.miaov.com"><img src="http://www.web-designers.cn/UploadFile/News/2010/6/27/News_20106272343306095.jpg" alt="miaov" longdesc="http://www.miaov.com" /></a>
+<a href="http://www.miaov.com"><img src="http://www.web-designers.cn/UploadFile/News/2010/7/30/News_2010730017388906.jpg" alt="miaov" longdesc="http://www.miaov.com" /></a>
+<a href="http://www.miaov.com"><img src="http://www.web-designers.cn/UploadFile/News/2010/9/16/News_20109161633533971.jpg" alt="miaov" longdesc="http://www.miaov.com" /></a>
+</body>
+</html>

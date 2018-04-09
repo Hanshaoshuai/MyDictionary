@@ -1,0 +1,18 @@
+/*
+ * http://www.miaov.com - Time: 2009-11-7 - QQ: 20907961 - Mobile: 13141414820 - Email: lw-2004@126.com - Name: leo(LiuWei)
+ */
+
+body, ul, ol, dl, dt, dd, h1, h2, h3, h4, h5, p, form { padding: 0; margin: 0; }
+li { list-style: none; }
+img { border: 0; }
+
+body { font-family: Arial; background: #fff url(images/bg.gif) repeat-x; }
+#header { width: 960px; height: 107px; margin: 0 auto 12px; position: relative; }
+#header h1 { padding-top: 15px; float: left; }
+#header ul { height: 44px; position: absolute; right: 0; bottom: 0; }
+#header .normal, #header .active { float: left; width: 88px; height: 44px; position: relative; z-index: 1; }
+#header .normal a, #header .active a { float: left; width: 88px; height: 44px; line-height: 44px; text-align: center; text-decoration: none; font-size: 14px; font-weight: bold; }
+#header .active a { color: #fff; }
+#header .normal a { color: #999; }
+#btn_bg { width: 88px; height: 44px; background: #fb2347 url(images/btn_bg.gif); position: absolute; overflow:hidden; left: 608px; bottom: 0; z-index: 2; }
+#btn_bg ul { width: 528px; left:-176px; position:absolute; }

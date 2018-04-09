@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+
+body { font: 12px Arial, Helvetica, sans-serif; background: #d5d5d5; color: #fff; }
+
+.tab_box { width: 500px; margin: 50px auto 0; }
+.tab_box ul { height: 38px; }
+
+.link {float: left; background: url(images/btn.gif) 0 0; height: 38px; font-size: 14px; line-height: 38px; cursor: pointer; top: 2px;}
+.link .btn1 {background: url(images/btn1.gif) no-repeat left 0; display: block; height: 38px; float: left;}
+.link .btn2 {background: url(images/btn2.gif) no-repeat right 0; display: block; height: 38px; float: left; padding: 0 20px;}
+
+.hover {float: left; background: url(images/btn.gif) 0 -78px; height: 38px; font-size: 14px; line-height: 38px; cursor: pointer; font-weight: bold;}
+.hover .btn1 {background: url(images/btn1.gif) no-repeat left -78px; display: block; height: 38px; float: left;}
+.hover .btn2 {background: url(images/btn2.gif) no-repeat right -78px; display: block; height: 38px; float: left; padding: 0 20px;}
+
+.active {float: left; background: url(images/btn.gif) 0 -39px; height: 38px; font-size: 14px; line-height: 38px; cursor: pointer; top: 2px;}
+.active .btn1 {background: url(images/btn1.gif) no-repeat left -39px; display: block; height: 38px; float: left;}
+.active .btn2 {background: url(images/btn2.gif) no-repeat right -39px; display: block; height: 38px; float: left; padding: 0 20px;}
+
+.box {width: 500px; height: 180px; position: relative; background: url(images/box.gif); overflow: hidden;}
+.adorn1 {width: 7px; height: 180px; position: absolute; top: 0; left: 0; background: url(images/box1.gif);}
+.adorn2 {width: 7px; height: 180px; position: absolute; top: 0; right: 0; background: url(images/box2.gif);}
+
+.content {padding: 15px 0 0 20px; line-height: 24px; display: none;}
+.content h2 {font-weight: bold; font-size: 16px; margin-bottom: 5px;}
+a {color: #fff;}
+a:hover {font-weight: bold;}

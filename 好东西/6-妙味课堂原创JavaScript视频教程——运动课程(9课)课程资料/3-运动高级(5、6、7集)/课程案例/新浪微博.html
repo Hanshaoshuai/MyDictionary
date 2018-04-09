@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+* {margin:0; padding:0;}
+#ul1 {width:300px; height:300px; border:1px solid black; margin:10px auto;}
+#ul1 li {list-style:none; border-bottom:1px dashed #999; padding:2px; overflow:hidden; filter:alpha(opacity:0); opacity:0;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="move2.js"></script>
+<script>
+window.onload=function ()
+{
+	var oTxt=document.getElementById('txt1');
+	var oBtn=document.getElementById('btn1');
+	var oUl=document.getElementById('ul1');
+	
+	oBtn.onclick=function ()
+	{
+		var oLi=document.createElement('li');
+		var aLi=oUl.getElementsByTagName('li');
+		
+		oLi.innerHTML=oTxt.value;
+		oTxt.value='';
+		
+		if(aLi.length)
+		{
+			oUl.insertBefore(oLi, aLi[0]);
+		}
+		else
+		{
+			oUl.appendChild(oLi);
+		}
+		
+		var iHeight=oLi.offsetHeight;
+		oLi.style.height=0;
+		
+		startMove(oLi, {height: iHeight}, function (){
+			startMove(oLi, {opacity: 100});
+		});
+		//oUl.appendChild(oLi);
+	};
+};
+</script>
+</head>
+
+<body>
+<textarea id="txt1" rows="10" cols="40"></textarea><br />
+<input id="btn1" type="button" value="发布" />
+<ul id="ul1">
+</ul>
+</body>
+</html>

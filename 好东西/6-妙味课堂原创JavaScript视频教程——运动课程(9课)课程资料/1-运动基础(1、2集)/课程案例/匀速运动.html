@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 {width:100px; height:100px; position:absolute; background:red; left:0; top:50px;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+var timer=null;
+
+function startMove(iTarget)
+{
+	var oDiv=document.getElementById('div1');
+	
+	clearInterval(timer);
+	timer=setInterval(function (){
+		var iSpeed=0;
+		
+		if(oDiv.offsetLeft<iTarget)
+		{
+			iSpeed=7;
+		}
+		else
+		{
+			iSpeed=-7;
+		}
+		
+		if(Math.abs(oDiv.offsetLeft-iTarget)<7)	//是否到达终点
+		{
+			clearInterval(timer);	//到达终点
+			
+			oDiv.style.left=iTarget+'px';
+		}
+		else
+		{
+			oDiv.style.left=oDiv.offsetLeft+iSpeed+'px';	//到达之前
+		}
+	}, 30);
+}
+
+</script>
+</head>
+
+<body>
+<input type="button" value="开始运动" onclick="startMove(300)" />
+<div id="div1"></div>
+<span style="width:1px; height:300px; background:black; position:absolute; left:300px; top:0;"></span>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+div {width:50px; height:50px; background:red; float:left; margin:10px;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="VQuery.js"></script>
+<script>
+$().extend('size', function (){
+	return this.elements.length;
+});
+
+$(function (){
+	alert($('div').find('span').size());
+});
+</script>
+</head>
+
+<body>
+<span>span</span>
+<div></div>
+<div>
+	<span></span>
+</div>
+<div>
+	<span></span>
+</div>
+<div></div>
+<div></div>
+</body>
+</html>
