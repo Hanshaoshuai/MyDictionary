@@ -1,5 +1,3 @@
-﻿
-
 好1技术访谈：
 npm install vue-cli -g    安装vue命令环境
 
@@ -196,7 +194,6 @@ http://www.html5plus.org/doc/zh_cn/webview.html#plus.webview.open	Webview模块�
 http://blog.csdn.net/x386277405/article/details/52702627	 js/jquery实现复制、粘贴、剪切触发事件
 
 
-https://mp.weixin.qq.com/s/hYjGyIdLK3UCEVF0lRYRCg      		Git常用命令大全，迅速提升你的Git水平
 
 
 18357018864
@@ -233,44 +230,40 @@ https://surmon-china.github.io/vue-video-player/				移动端视频播放
 https://segmentfault.com/a/1190000011346597
 
 http://blog.csdn.net/ssisse/article/details/52311713			来获取元素在页面的位置Javascript getBoundingClientRect()
+https://www.cnblogs.com/limeiky/p/6179964.html					来获取元素在页面的位置Javascript getBoundingClientRect()
+https://blog.csdn.net/prospertu/article/details/50635362		js监听页面的scroll事件
 
-
-dva-react  https://github.com/sorrycc/blog/issues/18
-dva-react  https://github.com/dvajs/dva
-
-https://docs.alipay.com/mini/api/ui-canvas						支付宝小程序(凤蝶h5)开发文档  支付宝小程序
-我:
-【资料内容如下】：
-精选9套JAVA入门到精通教程资源：
-
-链接: https://pan.baidu.com/s/1R217hx8ugKKHEOI_glkULw 密码: wj5w
-亲！好-评后，赠送24套Java实战项目教程+java面试宝
-
-如果链接失效，随时联系店主，将重新发送。 有问题随时联系店主！
-满意再来光临哈！
-~~~~~~~~~~~~~~~~~~~~~~~~~
-我:
-感谢您的支持，特别赠送您：
-精选24套JAVA企业实战项目教程资源（大小：149G）:
-链接：https://pan.baidu.com/s/1dGN2nux 密码：syig
-
-java面试宝典：
-链接：https://pan.baidu.com/s/1eT87dDo 密码：utfn
-希望笑纳^0^
 
 
 《蚂蚁金服》
 
-润和软件个人邮箱http://mail.hoperun.com		han_shaoshuai@hoperun.com	Han_shaoshuai123
+
+https://docs.antfin.com/basement/									解决方案	Basement 为 web 研发提供了多种解决方案，和研发支撑，帮助您开发优质应用。我们包揽了基础性工作，让你可以专注业务。
+http://atit.alipay.net/index.php?r=blog/detail&qid=5683				dav-ract学习起步
+https://github.com/dvajs/dva										dav-ract学习
+
+http://mobilegwcfg.sit.mayibank.net/serviceList.htm?action=list		所有网关查询	登陆名alibank_admin
+
+
+
+http://gitlab.alipay-inc.com/mybank/x/wikis/home								GitLab 学习所有连接	工作涉及到的技术文档、活动案例及权限申请等资料
+http://render-dev.site.alipay.net/p/s_dev/activity_collect-S6666538/index#		凤蝶营销活动页面案例总结
+
+https://mp.weixin.qq.com/s/hYjGyIdLK3UCEVF0lRYRCg      				Git常用命令大全，迅速提升你的Git水平
+$ git config --global user.name "请输入您的用户名"
+$ git config --global user.email "请输入您的邮箱"
+
+我的员工ID为：003000783； 润和软件个人邮箱http://mail.hoperun.com		han_shaoshuai@hoperun.com	Han_shaoshuai123
 阿里个人邮箱 https://webmail.alibaba-inc.com/alimail/
 https://asset.alibaba-inc.com/workflow/task/auditTask?procInsId=f58767f5-94ff-41c5-bc1f-fe139dd6da35&taskId=2316445855		资产管理平台
 
-https://lark.alipay.com/fengdie									凤蝶开发对外文档
+https://lark.alipay.com/fengdie										凤蝶开发对外文档
 
-http://gitlab.alipay-inc.com/									欢迎来到GitLab！自己托管的Git管理应用程序。
+http://gitlab.alipay-inc.com/										欢迎来到GitLab！自己托管的Git管理应用程序。
 http://gitlab.alipay-inc.com/mybank-activities/cundidai-activity	GitLab 存抵贷营销活动项目进行中
 http://gitlab.alipay-inc.com/mybank/x/issues/17						凤蝶开发 权益互通需求总结
-http://gitlab.alipay-inc.com/mybank/x/wikis/home					GitLab 学习所有连接
+
+http://gitlab.alipay-inc.com/mybank/x/issues/137					 凤蝶营销活动
 
 https://lark.alipay.com/zefeng.zzf/srwzrv/iw2q6a					存抵贷营销活动交互
 https://lark.alipay.com/bankprodtech/vcnq9g/wkylm2					存抵贷旺旺分测试活动系分
@@ -281,7 +274,46 @@ http://site.alipay.net/iat/open-nebula/jsapi/index.html				JSAPI是支付宝 H5�
 https://lark.alipay.com/alipay_promo/rb9gvl/usz1dq					promoprod RPC接口接入文档
 
 https://fengdie.alipay.com/space/147987006248648606045431815799/approval			凤蝶建站平台
+http://fengdie-dev.alipay.net/site/home												凤蝶建站平台
 http://web.npm.alibaba-inc.com/package/@alipay/bkspm				网商银行应用程序安装工具
-https://lark.alipay.com/mybank-mobile/loan/zmf2q1					IOS  hpm（模拟器）工具使用介绍
-https://lark.alipay.com/tracert/doc/adxgfa							spm埋点指南
+https://lark.alipay.com/mybank-mobile/loan/zmf2q1					sudo	IOS  hpm（iOS模拟器调试 及使用命令）工具使用介绍	首先安装Xcode
+https://lark.alipay.com/bkloantradeteam/iterativedoc/db7xgu			0927活动开发联调计划
+http://site.alipay.net/mybank-h5/mybank-nebuladoc/launch_params.html	网商银行容器文档
+http://dev.lab.alipay.net/DataCenter/index.php?r=user/customer			网商银行后台注册管理	用户操作-创建认证用户
+encodeURIComponent('showToolBar=YES&showTitleBar=NO')					控制台编译
 
+下载 iHosts		开发测试 使用localhost  
+127.0.0.1  localhost
+255.255.255.255  broadcasthost
+::1             localhost
+
+127.0.0.1 h5app.mybank.net
+127.0.0.1 local.alipay.net 
+127.0.0.1 local.mybank.net
+127.0.0.1 y.alipay.net
+127.0.0.1 y.mayibank.net
+127.0.0.1 local.alipay.net
+
+127.0.0.1 mybank.mayibank.net
+
+110.76.8.195 staticweb.alipay.com
+
+访问 => http://local.alipay.net:8001
+
+
+http://h5.alipay.net/tool/urlkit/index.html							支付宝Scheme生成器s
+
+15942280414	a111111	stable环境 支付宝测试使用账号
+
+
+https://lark.alipay.com/tracert/doc/adxgfa							spm埋点指南
+https://rmsportal.alipay.com/groups									蜻蜓-静态文件云平台
+https://tinypng.com/												智能PNG和JPEG压缩
+https://github.com/amfe/lib-flexible								一个移动端的适配方案(flexible方案)
+
+
+http://gitlab.alipay-inc.com/bkassetmore/bkassetmore-webview		钱多多项目gitlab
+
+
+
+用之前的调用方法获取本地mock数据获取不到 没法弄  这个方法之前他们没有mock过数据    用rpc都可以获取到的  本地浏览是获取本地数据在模拟器上只要是在支付宝或网商app上浏览都是获取线上的数据
