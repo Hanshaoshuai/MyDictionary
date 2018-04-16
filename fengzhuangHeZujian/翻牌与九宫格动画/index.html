@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="index.css"/>
+	</head>
+	<body>
+		<div style="font-size:0.26rem;">
+			<p>请把鼠标移动到单词上，可以看到鼠标指针发生变化：</p>
+			<span style="cursor:auto">
+			Auto</span><br />
+			<span style="cursor:crosshair">
+			Crosshair</span><br />
+			<span style="cursor:default">
+			Default</span><br />
+			<span style="cursor:pointer">
+			Pointer</span><br />
+			<span style="cursor:move">
+			Move</span><br />
+			<span style="cursor:e-resize">
+			e-resize</span><br />
+			<span style="cursor:ne-resize">
+			ne-resize</span><br />
+			<span style="cursor:nw-resize">
+			nw-resize</span><br />
+			<span style="cursor:n-resize">
+			n-resize</span><br />
+			<span style="cursor:se-resize">
+			se-resize</span><br />
+			<span style="cursor:sw-resize">
+			sw-resize</span><br />
+			<span style="cursor:s-resize">
+			s-resize</span><br />
+			<span style="cursor:w-resize">
+			w-resize</span><br />
+			<span style="cursor:text">
+			text</span><br />
+			<span style="cursor:wait">
+			wait</span><br />
+			<span style="cursor:help">
+			help</span>
+		</div>
+		<div class="boxs">
+			<div class="gift gift1">1</div>  
+			<div class="gift gift2">2</div>  
+			<div class="gift gift3">3</div>  
+			<div class="gift gift0">8</div>  
+			<div class="box_center"><button style="width:100%; height:100%;">ooo</button></div>  
+			<div class="gift gift4">4</div>  
+			<div class="gift gift7">7</div>  
+			<div class="gift gift6">6</div>  
+			<div class="gift gift5">5</div>  
+		</div>
+		<div class="too">
+			<div id='0' class="box box1 viewport-flip" title="点击翻面">
+			    <a href="javascript:void(0)" class="list flip out 1"><img src="https://gw.alicdn.com/tfs/TB1u5HyaNrI8KJjy0FpXXb5hVXa-141-144.png" alt="纸牌正面" /></a>
+			    <a href="javascript:void(0)" class="list flip"><img src="https://gw.alicdn.com/tfs/TB1.A6BaILJ8KJjy0FnXXcFDpXa-141-145.png" alt="纸牌背面" /></a>
+			</div>
+			<div id='1' class="box box2 viewport-flip" title="点击翻面">
+			    <a href="javascript:void(0)" class="list flip out 2"><img src="https://gw.alicdn.com/tfs/TB1u5HyaNrI8KJjy0FpXXb5hVXa-141-144.png" alt="纸牌正面" /></a>
+			    <a href="javascript:void(0)" class="list flip"><img src="https://gw.alicdn.com/tfs/TB1.A6BaILJ8KJjy0FnXXcFDpXa-141-145.png" alt="纸牌背面" /></a>
+			</div>
+			<div id='2' class="box box3 viewport-flip" title="点击翻面">
+			    <a href="javascript:void(0)" class="list flip out 3"><img src="https://gw.alicdn.com/tfs/TB1u5HyaNrI8KJjy0FpXXb5hVXa-141-144.png" alt="纸牌正面" /></a>
+			    <a href="javascript:void(0)" class="list flip"><img src="https://gw.alicdn.com/tfs/TB1.A6BaILJ8KJjy0FnXXcFDpXa-141-145.png" alt="纸牌背面" /></a>
+			</div>
+			<div id='3' class="box box4 viewport-flip" title="点击翻面">
+			    <a href="javascript:void(0)" class="list flip out 3"><img src="https://gw.alicdn.com/tfs/TB1u5HyaNrI8KJjy0FpXXb5hVXa-141-144.png" alt="纸牌正面" /></a>
+			    <a href="javascript:void(0)" class="list flip"><img src="https://gw.alicdn.com/tfs/TB1.A6BaILJ8KJjy0FnXXcFDpXa-141-145.png" alt="纸牌背面" /></a>
+			</div>
+			<div id='4' class="box box5 viewport-flip" title="点击翻面">
+			    <a href="javascript:void(0)" class="list flip out 3"><img src="https://gw.alicdn.com/tfs/TB1u5HyaNrI8KJjy0FpXXb5hVXa-141-144.png" alt="纸牌正面" /></a>
+			    <a href="javascript:void(0)" class="list flip"><img src="https://gw.alicdn.com/tfs/TB1.A6BaILJ8KJjy0FnXXcFDpXa-141-145.png" alt="纸牌背面" /></a>
+			</div>
+			<div id='5' class="box box6 viewport-flip" title="点击翻面">
+			    <a href="javascript:void(0)" class="list flip out 3"><img src="https://gw.alicdn.com/tfs/TB1u5HyaNrI8KJjy0FpXXb5hVXa-141-144.png" alt="纸牌正面" /></a>
+			    <a href="javascript:void(0)" class="list flip"><img src="https://gw.alicdn.com/tfs/TB1.A6BaILJ8KJjy0FnXXcFDpXa-141-145.png" alt="纸牌背面" /></a>
+			</div>
+		</div>
+		<div class="intext" style="width:400px;height:100px;background:#778899;font-size:18px;margin-top:20px;position:relative;">
+			<div style="width:20px;height:20px;position:absolute;top:0;left:0;background:#00C2C2;" onclick="run(this)"></div>
+		</div>
+		<div id="div1" style="width:20px;height:20px;position:absolute;top:0;left:0;background:#00C2C2;" onclick="run(this)"></div>
+		<input id="inputs" style="ime-mode:Disabled" oninput=""/><input type="button" onclick="chenges()"/>
+		<div class="aaa main-content">我是原生js</div>
+		<!--<input type="text" name="tt" oninput="check()"> 
+		<input onkeyup= "if(! /^\d*\.{0,1}\d{0,2}$/.test(this.value)){alert('只能保留两位小数');this.value='';}" style={{border: 'none',outline:'none'}} placeholder="0"  className="txt-input inputs" type="text"/>
+		<input onkeyup= "if(/^\d*\.{0,1}\d{0,2}$/.test(this.value)){alert('只能保留两位小数');this.value='';}" />-->
+	</body>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+	<script> 
+		var el = document.querySelector(".main-content");
+		var ls=document.querySelectorAll('.box6 a')
+		console.log(ls)
+		el.classList.add("someClass");
+		el.classList.remove("aaa")
+		window.onscroll=function (){
+			var oDiv=document.getElementById('div1');
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+			var x=scrollTop+(document.documentElement.clientHeight-oDiv.offsetHeight)/2;
+			runs(parseInt(x));
+		}
+		var time=null
+		function runs(x){
+			var oDiv=document.getElementById('div1');
+			clearInterval(time);
+			time=setInterval(function(){
+				var to=(x-oDiv.offsetTop)/6
+				to=to>0 ? Math.ceil(to):Math.floor(to)
+				if(oDiv.offsetTop==x){
+					clearInterval(time)
+				}else{
+					oDiv.style.top=oDiv.offsetTop+to+"px"
+				}
+				console.log(to)
+			},20)
+		}
+		function check(){ 
+			if (isNaN(this.value)){
+				this.value="";
+				alert("非法字符！"); 
+			} 
+		}
+		function run(thiss){
+			var x=400;
+			time=setInterval(function(){
+				var to=(x-thiss.offsetLeft)/6
+				to=to>0 ? Math.ceil(to):Math.floor(to)
+				if(thiss.offsetLeft==400){
+					clearInterval(time)
+				}else{
+					thiss.style.left=thiss.offsetLeft+to+"px"
+				}
+				console.log(to)
+			},20)
+		}
+//		var ddd="分风格豆腐干我发誓1 8 3.10是9分三个电话983郭德纲79"
+//		var ddd="85399997"
+//		var ddd="361062939"
+//		var ddd="85399997	分风格豆腐干我发誓1 8 3.10是9分三个电话983郭德纲79"
+		var str="http://123125$46587 plus12@3444 分风格豆腐干123 equal 123dg%dfg 123"
+		var ddd="较低的价格32#$%@#2d是德国133的非官方"
+		
+		
+		console.log(str.match(/1235+/g)) 
+		console.log(str.match(/1235*/g)) 
+		console.log(str.match(/1235?/g)) 
+		console.log(str.match(/124+5?/g)) 
+		console.log(str.match(/123{1}/g)) 
+		console.log(str.match(/123[0-9]{1,6}/g))
+		console.log(str.match(/123(\b){1,6}/g))
+		console.log(str.match(/(123[ ]?12){1,6}/g))
+		console.log(str.match(/\W/g))
+		console.log(str.match(/./g))
+		console.log(str.match(/^http[s]{0,1}:\/\/.+$/))
+		console.log(ddd.match(/[A-Za-z0-9]{1,10}[\u4E00-\u9FA5]{1,}[A-Za-z0-9]{1,12}|[A-Za-z0-9]{1,10}[\W][A-Za-z0-9]{1,12}/g))
+		console.log(ddd.match(/[0-9]/g));
+		console.log(ddd.match(/[^`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1}[^`~!@$%^&()+=|\\\][\]\{\}:;\'\,.<>?_——-]{0,19}/g));
+		console.log(ddd.match(/[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1}[`~!@$%^&()+=|\\\][\]\{\}:;\'\,.<>?_——-]{0,19}/g));
+		console.log(ddd.match(/[A-Za-z0-9]{1,20}|[A-Za-z0-9]{1,12}[\W]{1,}[A-Za-z0-9]{1,12}/g))
+		
+		
+//		var ziMu=ddd.match(/[a-zA-Z]/g);
+//		var newarr=ddd.match(/[0-9]/g);
+//		var chenge=ziMu+newarr;
+//		if(ziMu!=null){
+//			ziMu=ziMu.join('');
+//		}else{
+//			ziMu='';
+//		}
+		function chenges(){
+			var intext=document.querySelector(".intext")
+			var texts=document.querySelector("#inputs").value
+			var newarr=texts.match(/[A-Za-z0-9]{1,20}|[A-Za-z0-9]{1,12}[\W]{1,}[A-Za-z0-9]{1,12}/g);
+			var ziFu=texts.match(/[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1}[`~!@$%^&()+=|\\\][\]\{\}:;\'\,.<>?_——-]{0,19}|[·、，。！……（）【】？《》——-]{0,}/g);
+			if(newarr!=null){
+				newarr=newarr.join('');
+			}else{
+				newarr='';
+			}
+			if(ziFu!=null){
+				ziFu=ziFu.join('');
+			}else{
+				ziFu='';
+			}
+			console.log(newarr)
+			console.log(ziFu)
+			if(/\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+/.test(texts)){
+				alert("疑似你是邮箱号码")
+	//			texts=texts.replace(/\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+|([A-Za-z0-9]{0,12}[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1,}|[·、，。！……（）【】？《》——-]{1,}){1,12}[A-Za-z0-9]{1,20}/g,"【疑似你是邮箱号码】")
+				textGo("疑似你是邮箱号码");
+			}else if(/^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$/.test(newarr)){
+				alert("疑似你是手机号码")
+	//			texts=texts.replace(/(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}|([A-Za-z0-9]{0,12}[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1,}|[·、，。！……（）【】？《》——-]{1,}){1,12}[A-Za-z0-9]{1,20}/g,"【疑似你是手机号码】")
+				textGo("疑似你是手机号码");
+			}else if(/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,8}$/.test(newarr)){
+				alert("疑似你是电话号码")
+	//			texts=texts.replace(/(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,8}|([A-Za-z0-9]{0,12}[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1,}|[·、，。！……（）【】？《》——-]{1,}){1,12}[A-Za-z0-9]{1,20}/g,"【疑似你是电话号码】")
+				textGo("疑似你是电话号码");
+			}else if(/^[1-9][0-9]{7,12}$/.test(newarr)){
+				alert("疑似你是QQ号码")
+	//			texts=texts.replace(/[1-9][0-9]{7,12}|([A-Za-z0-9]{0,12}[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1,}|[·、，。！……（）【】？《》——-]{1,}){1,12}[A-Za-z0-9]{1,20}/g,"【疑似你是QQ号码】")
+				textGo("疑似你是QQ号码");
+			}else if(/^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}/.test(newarr)){
+				alert("疑似你是微号码")
+				textGo("疑似你是微号码");
+	//			texts=texts.replace(/[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}|([A-Za-z0-9]{0,12}[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1,}|[·、，。！……（）【】？《》——-]{1,}){1,12}[A-Za-z0-9]{1,20}/,"【疑似你是微号码】")
+			}else if(newarr.length>=7){
+				alert("疑似你是联系方式")
+	//			texts=texts.replace(/([A-Za-z0-9]{0,12}[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1,}|[·、，。！……（）【】？《》——-]{1,}){1,12}[A-Za-z0-9]{1,20}|[A-Za-z0-9]{1,20}/g,"【疑似疑似你是联系方式】")
+				textGo("疑似你是联系方式");
+			}else if(ziFu.length>=6){
+				alert("请不要书写无关要字符");
+	//			texts=texts.replace(/([A-Za-z0-9]{0,12}[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_——-]{1,}|[·、，。！……（）【】？《》——-]{1,}){1,12}[A-Za-z0-9]{1,20}/g,"【请不要书写无关要字符】")
+				textGo("请不要书写无关要字符");
+			}
+			function textGo (textChenge){
+				let obj=texts.split('');
+				let length=obj.length;
+				let reg = /[-_a-zA-Z0-9]/;
+				let content='';
+				let x=1;
+				for(var i=0; i<length; i++){
+					if(reg.test(obj[i]) || obj[i]==''){
+						if(x==1){
+							content+='<a style='+'"'+'color:#2abdfc'+'"'+'>['+textChenge+'，如需联系请投资方申请交换名片]</a>';
+							x=2;
+						}
+					}else{
+						if(/[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_]{1,}|[·、，。！……（）【】？《》——-]$/.test(obj[i])){
+							
+						}else{
+							content+=obj[i];
+						}
+					}
+				}
+				texts=content;
+				console.log(texts);
+			}
+			intext.innerHTML="你看怎么样啊《"+texts+"》应该可以的呀老海了";
+		}
+		function add(a,b){
+		  	return a+b;  
+		}
+		function sub(a,b){
+		  	return a-b;  
+		}
+		var a1 = add.apply(sub,[4,2]);　　//sub调用add的方法
+		var a2 = sub.apply(add,[4,2]);
+//		alert(a1);  //6     
+//		alert(a2);  //2
+		
+		var obj = {
+        	name:"wangwu",
+	        objInner:{
+	            name:"lisi",
+	            sayName:function(){
+	            	console.log(window.obj.name);//lisi
+	            	console.log(window.obj.name);//wangwu
+	            }
+	        }
+	    }
+     	obj.objInner.sayName();
+     	
+     	
+     	function Fn2(){
+            this.username = "lisi";
+            console.log(this)
+            return {"dd":123};
+        }
+        var obj = new Fn2;
+        console.log(obj);//Object{}
+        console.log(obj.username);//undefined
+        
+        
+        function fn()
+        {
+            this.username = '王五';
+            return 1;
+            // return undefined;
+        }
+        var a = new fn;
+        console.log(a);//fn {username: "王五"}
+        console.log(a.username); //王五
+        function f(x){
+        	if(x>=10){
+        		alert('我执行完了')
+        	}else{
+        		x+=1;
+//      		alert(x)
+        		f(x);
+        	}
+        }
+        f(0)
+        
+        var name = "The Window";
+	　　	var object = {
+	　　　　	name : "My Object",
+	　　　　	getNameFunc : function(){
+				alert(this.name)
+	　　　　　　	return function(){
+	　　　　　　　　		return this.name;
+	　　　　　　	};
+	
+	　　　　	}
+	
+	　　	};
+	　　	alert(object.getNameFunc()());
+		setTimeout(function(){
+			var wroxWind =window.open("http://www.baidu.com","blank","wroxWindow");
+			wroxWind.resizeTo(500,500)
+			wroxWind.moveTo(100,100)
+		},1000)
+	</script>
+	<!--跨域1-->
+	<script type="text/javascript">
+		console.log(document.domain)
+		document.domain='127.0.0.1'
+		function onLoad(){
+			var iframe=document.getElementById("iframe");
+			var win =iframe.contentWindow;
+			var doc=win.document;
+			var name=win.name;
+			console.log(win)
+		}
+	</script>
+	<iframe id="iframe" src="../MaimaiGou/maitaigou/home.html" onload="onLoad()" width="200px" height="200px"></iframe>
+</html>
