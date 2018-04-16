@@ -3,13 +3,24 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="record.css"/>
+		<link rel="stylesheet" type="text/css" href="css/record1.css"/>
 		<style type="text/css">
+			.wraps{
+				/*position:relative;*/
+				animation:myfirst 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+				-moz-animation:myfirst 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards; /* Firefox */
+				-webkit-animation:myfirst 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards; /* Safari and Chrome */
+				-o-animation:myfirst 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards; /* Opera */
+			}
+			@keyframes myfirst{
+				0%   {top:0px;}
+				100% {top:200px;}
+			}
 		</style>
 	</head>
 	<body>
-		<div class="wrap big" id="J_wrap">
-			<div class="shuaXin"><span>下拉刷新</span></div>
+		<div class="wrap" id="J_wrap" ontouchstart="start(event)" ontouchmove="huadong(event)" ontouchend="taiqi(event)">
+			<div style="height:600px;background:#00C2C2;">我是宝</div>
 			<div class="content">
 			    <div class="banner">
 			    		<p>狗年旺旺分获得记录</p>
@@ -21,19 +32,25 @@
 			        <div class="laste">备注</div>
 			    </div>
 			    <div class="list">
-				    	<ul>
-				    		<!--<li>
-				    			<p class="first">12月20日</p>
-				    			<p class="laste">10,124.00<span></span></p>
-				    			<p class="first">+1246.00</p>
-				    			<p class="laste">3255.00<span></span></p>
-				    		</li>-->
-				    	</ul>
-				    	<div style="height:600px;background:#00C2C2;" id="buttom">我是宝</div>
-		    		</div>
+			    	<ul>
+			    		<!--<li>
+			    			<p class="first">12月20日</p>
+			    			<p class="laste">10,124.00<span></span></p>
+			    			<p class="first">+1246.00</p>
+			    			<p class="laste">3255.00<span></span></p>
+			    		</li>
+			    		<li>
+			    			<p class="first">12月20日</p>
+			    			<p class="laste">10,124.00<span></span></p>
+			    			<p class="first">+1246.00</p>
+			    			<p class="laste">3255.00<span></span></p>
+			    		</li>-->
+			    	</ul>
+			    	<div style="height:600px;background:#00C2C2;" id="buttom">我是宝</div>
+	    		</div>
 		    </div>
 		</div>
-		<script src="index.js" type="text/javascript" charset="utf-8"></script>
+		
 		<script type="text/javascript">
 			List= [{			//查询积点消费发放记录接口
 					"bizDate":"2018年5月11号", 		// /** 业务日期 */
@@ -150,14 +167,30 @@
 					"pointCount":"20000.00", 			///** 积分个数 */
 					"memo":"兑换红包" 			//事件原因
 				}]
+			var run1= null;
 			let datelist= [],			//列表数据			
 			    pageNum= 1,				//请求列表页数
 			    dataLength=null,			//列表的总长度
 			    setTime=null,
-			    returns=false;
+			    OK=true,
+			    touch='',
+				startX="",
+				startY='',
+				endX='',
+				endY='',
+				distanceX="",
+				distanceY="",
+				drundX="",
+				drundY="",
+				tests="",
+				Boxs= document.getElementById('J_wrap'),
+				scrollTopY="",
+				clientHeight="",
+				scrollHeight="",
+				topH="";
 			function getObjXy(obj,documentBox){
-			    var xy = obj.getBoundingClientRect();
-			    var top = xy.top//-document.documentElement.clientTop+document.documentElement.scrollTop,//document.documentElement.clientTop 在IE67中始终为2，其他高级点的浏览器为0
+			    let xy = obj.getBoundingClientRect();
+			    let top = xy.top-document.documentElement.clientTop+document.documentElement.scrollTop,//document.documentElement.clientTop 在IE67中始终为2，其他高级点的浏览器为0
 			        bottom = xy.bottom,
 			        left = xy.left-document.documentElement.clientLeft+document.documentElement.scrollLeft,//document.documentElement.clientLeft 在IE67中始终为2，其他高级点的浏览器为0
 			        right = xy.right,
@@ -173,51 +206,150 @@
 			        height:height
 			    }
 			}
+			function start(event){
+				touch = event.targetTouches[0];
+			    //滑动起点的坐标
+			    startX = touch.pageX;
+			    startY = touch.pageY;
+			    console.log(touch)
+			}
+			function huadong(event){
+				tests = getObjXy(Boxs);
+				console.log("top:" + tests.top + ", right:" + tests.right + ", bottom:" + tests.bottom + ", left:" + tests.left);
+				clearInterval(run1);
+				var clientWidth =document.documentElement.clientWidth;
+				var clientHeightY =document.documentElement.clientHeight;
+				var touch1 = event.targetTouches[0];
+//				console.log(touch1)
+		      	//手势滑动时，手势坐标不断变化，取最后一点的坐标为最终的终点坐标
+		        endX = touch1.pageX;
+		        endY = touch1.pageY;
+				var startX1 = event.target.offsetLeft;
+				drundX=Math.floor(startX-endX)		//滑动的距离
+				drundY=Math.floor(startY-endY)		//滑动的距离
+				console.log(drundY)
+//				console.log(startX-endX)
+//				console.log(startY-endY)
+//				if(drundX>0){
+//					Boxs.style.left=-(startX-endX)+'px'
+//				}else{
+//					Boxs.style.left='0px'
+//				}
+				if(drundY<0){
+					console.log(drundY)
+					Boxs.style.top=-(startY-endY)+'px'
+				}else {
+//					Boxs.style.top=null;
+//					Boxs.style.bottom=(startY-endY)+'px'
+				}
+//				var startX = event.originalEvent.changedTouches[0].pageX;
+//				var startY = event.originalEvent.changedTouches[0].pageY;
+//				console.log(startX)
+//				console.log(startY)
+			}
+			Boxs.addEventListener('animationend', ()=> {
+//				alert("wagcheng")
+			}, false)
+			function taiqi(event){
+				if(drundY>0){
+					
+				}else{
+					var z1=-drundY;
+					run1=setInterval(function(){
+						var to=(Boxs.offsetTop)/10
+						to=to>0 ? Math.ceil(to):Math.floor(to)
+						if(Boxs.offsetTop<1){
+							clearInterval(run1)
+							drundY="";
+							Boxs.style.top='0px';
+						}else{
+							Boxs.style.top=Boxs.offsetTop-to+"px"
+						}
+						console.log(to)
+					},2)
+				}
+//				if(drundX>300){
+//					drundX=0;
+//					Boxs.style.left='0px';
+//				}else{
+//					var z=-(startX-endX);
+//					var run=setInterval(function(){
+//						if(z<0){
+//							z+=3
+//							Boxs.style.left=z+'px';
+//						}else{
+//							Boxs.style.left='0px';
+//							clearInterval(run);
+//						}
+//						
+//					},0.5)
+//				}
+				
+//				this.distanceX=this.endX-this.startX,
+//		        this.distanceY=this.endY - this.startY;
+//		        // console.log("distanceX:"+distanceX+","+"distanceY:"+distanceY);
+//		        //移动端设备的屏幕宽度
+//		        var clientHeight =document.documentElement.clientHeight;
+//		        // console.log(clientHeight;*0.2);
+//		        //判断是否滑动了，而不是屏幕上单击了
+//		        if(this.startY!=Math.abs(this.distanceY)){
+//		 //在滑动的距离超过屏幕高度的20%时，做某种操作
+//		          	if(Math.abs(this.distanceY)>clientHeight*0.2){
+//		 //向下滑实行函数someAction1，向上滑实行函数someAction2
+//		          	this.distanceY <0 ? this.someAction1():this.someAction2();
+//		        	}
+//		        }
+//		        this.startX = this.startY = this.endX =this.endY =0;
+			}
+			function someAction1(){
+				alert('someAction1')
+			}
+			function someAction2(){
+				alert('someAction2')
+			}
 			const page = {
 			    init() {
-			    		this.iscroll()
+			    	this.iscroll()
 					this.pushHtml();
 			    },
 			    iscroll(){
-			    		uitan(pageNum,this.pushHtml,'.big');
-			    		const box= document.getElementById('J_wrap');
-			    		window.addEventListener('scroll', ()=> {
-						let scrollTop = window.scrollY; 						// 当前滚动条位置    
-					    let clientHeight = window.innerHeight; 				// 设备窗口的高度（不会变）    
-					    let scrollHeight = document.body.scrollHeight; 		// 滚动条总高度 
-					    let test = getObjXy(document.getElementById('J_wrap'));
-//						console.log("top:" + test.top + ", right:" + test.right + ", bottom:" + test.bottom + ", left:" + test.left);
-//					    console.log(scrollTop + clientHeight+'=='+scrollHeight)
-			    			if(Math.floor(scrollTop + clientHeight)==scrollHeight || Math.ceil(scrollTop + clientHeight)==scrollHeight){
-//			    				console.log(scrollTop + clientHeight+'=='+scrollHeight)
-			    				setTime=setTimeout(()=> {
-			    					this.pushHtml();
-			    				},1000)
-			    			}
-			    		})
+		    		const box= document.getElementById('J_wrap');
+		    		window.addEventListener('scroll', ()=> {
+						scrollTopY = window.scrollY; 				// 当前滚动条位置
+					    clientHeight = window.innerHeight; 			// 设备窗口的高度（不会变）    
+					    scrollHeight = document.body.scrollHeight; 	// 滚动条总高度   
+		    			if(Math.floor(scrollTopY + clientHeight)==scrollHeight || Math.ceil(scrollTopY + clientHeight)==scrollHeight){
+		    				console.log(Math.round(scrollTopY + clientHeight)+'=='+scrollHeight)
+		    				let test = getObjXy(document.getElementById('buttom'));
+							console.log("top:" + test.top + ", right:" + test.right + ", bottom:" + test.bottom + ", left:" + test.left);
+		    				setTime=setTimeout(()=> {
+		    					this.pushHtml();
+		    				},1000)
+		    			}
+		    		}, false)
 			    },
 			    pushHtml(){
-			    		clearTimeout(setTime);
-			    		if(dataLength!=pageNum-1){
-					    	let thmlList='';
-					    	let p=List;
-				//	    	datelist.push(p);
-					    	datelist[pageNum-1]=p;
-//					    	console.log(datelist);
-//					    	console.log(pageNum);
-					    	for(var i=0; i<datelist.length; i++){
-//					    		console.log(datelist[i])
-					    		for(var key in datelist[i]){
-						    		thmlList+="<li>"+
-						    			"<p class='first'>"+datelist[i][key].bizDate+"<font></font></p>"+
-						    			"<p class='first'>"+datelist[i][key].pointCount+"<font></font></p>"+
-						    			"<p class='laste'>"+datelist[i][key].memo+"<font></font></p>"+
-						    		"</li>"
-						    	}
+		    		clearTimeout(setTime);
+		    		if(dataLength!=pageNum){
+				    	let thmlList='';
+				    	let p=List;
+			//	    	datelist.push(p);
+				    	datelist[pageNum-1]=p;
+				    	console.log(datelist);
+				    	console.log(pageNum);
+				    	for(var i=0; i<datelist.length; i++){
+				    		console.log(datelist[i])
+				    		for(var key in datelist[i]){
+					    		thmlList+="<li>"+
+					    			"<p class='first'>"+datelist[i][key].bizDate+"<font></font></p>"+
+					    			"<p class='first'>"+datelist[i][key].pointCount+"<font></font></p>"+
+					    			"<p class='laste'>"+datelist[i][key].memo+"<font></font></p>"+
+					    		"</li>"
 					    	}
-					    	document.querySelector('.list ul').innerHTML=thmlList;
-					    	pageNum+= 1;
-					    	dataLength=6;
+				    	}
+				    	document.querySelector('.list ul').innerHTML=thmlList;
+				    	pageNum+= 1;
+				    	dataLength=6;
 					}
 			    },
 			}
