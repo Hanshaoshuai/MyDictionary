@@ -6,6 +6,11 @@
 		<link rel="stylesheet" type="text/css" href="record.css"/>
 		<style type="text/css">
 		</style>
+		<script>
+	        !function(e){function t(n){if(i[n])return i[n].exports;var r=i[n]={exports:{},id:n,loaded:!1};return e[n].call(r.exports,r,r.exports,t),r.loaded=!0,r.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.vl=function(e,t){var n=e||100,r=t||750,a=i.document,d=navigator.userAgent,o=d.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=d.match(/U3\/((\d+|\.){5,})/i),s=l&&parseInt(l[1].split(".").join(""),10)>=80,u=a.documentElement,c=1;if(o&&o[1]>534||s){u.style.fontSize=n+"px";var p=a.createElement("div");p.setAttribute("style","width: 1rem;display:none"),u.appendChild(p);var m=i.getComputedStyle(p).width;if(u.removeChild(p),m!==u.style.fontSize){var v=parseInt(m,10);c=100/v}}var f=a.querySelector('meta[name="viewport"]');f||(f=a.createElement("meta"),f.setAttribute("name","viewport"),a.head.appendChild(f)),f.setAttribute("content","width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1");var h=function(){u.style.fontSize=n/r*u.clientWidth*c+"px"};h(),i.addEventListener("resize",h)},e.exports=t["default"]}]);
+	        // 设置基础字体大小及字体缩放比例
+	        vl(100, 750);
+	    </script>
 	</head>
 	<body>
 		<div class="wrap big" id="J_wrap">
@@ -29,9 +34,9 @@
 				    			<p class="laste">3255.00<span></span></p>
 				    		</li>-->
 				    	</ul>
-				    	<div style="height:600px;background:#00C2C2;" id="buttom">我是宝</div>
 		    		</div>
 		    </div>
+		    <div class="jiaZai"><span>上拉加载</span></div>
 		</div>
 		<script src="index.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
@@ -154,7 +159,11 @@
 			    pageNum= 1,				//请求列表页数
 			    dataLength=null,			//列表的总长度
 			    setTime=null,
-			    returns=false;
+			    returns=false,
+			    scrollTop=null,
+			    clientHeight=window.innerHeight, // 设备窗口的高度（不会变）,
+			    scrollHeight=null,
+			    jiLuScrollTop=null;
 			function getObjXy(obj,documentBox){
 			    var xy = obj.getBoundingClientRect();
 			    var top = xy.top//-document.documentElement.clientTop+document.documentElement.scrollTop,//document.documentElement.clientTop 在IE67中始终为2，其他高级点的浏览器为0
@@ -173,6 +182,18 @@
 			        height:height
 			    }
 			}
+			function imgeSrc(){
+				let imges= document.querySelectorAll('.imges');
+	    			let length= imges.length;
+	    			for(let i=0; i<length; i++){
+	    				let test = getObjXy(imges[i]).top;
+	    				console.log(clientHeight)
+	    				if(test<clientHeight){
+	    					imges[i].src='./slide4.png';
+	    				}
+	    			}
+//				console.log("top:" + test.top + ", right:" + test.right + ", bottom:" + test.bottom + ", left:" + test.left);
+			}
 			const page = {
 			    init() {
 			    		this.iscroll()
@@ -182,17 +203,19 @@
 			    		uitan(pageNum,this.pushHtml,'.big');
 			    		const box= document.getElementById('J_wrap');
 			    		window.addEventListener('scroll', ()=> {
-						let scrollTop = window.scrollY; 						// 当前滚动条位置    
-					    let clientHeight = window.innerHeight; 				// 设备窗口的高度（不会变）    
-					    let scrollHeight = document.body.scrollHeight; 		// 滚动条总高度 
-					    let test = getObjXy(document.getElementById('J_wrap'));
-//						console.log("top:" + test.top + ", right:" + test.right + ", bottom:" + test.bottom + ", left:" + test.left);
+						scrollTop = window.scrollY; 						// 当前滚动条位置    
+					    clientHeight = window.innerHeight; 				// 设备窗口的高度（不会变）    
+					    scrollHeight = document.body.scrollHeight; 		// 滚动条总高度 
 //					    console.log(scrollTop + clientHeight+'=='+scrollHeight)
 			    			if(Math.floor(scrollTop + clientHeight)==scrollHeight || Math.ceil(scrollTop + clientHeight)==scrollHeight){
-//			    				console.log(scrollTop + clientHeight+'=='+scrollHeight)
+			    				console.log(scrollTop + clientHeight+'=='+scrollHeight)
+			    				document.querySelector('.jiaZai').innerText='加载中';
 			    				setTime=setTimeout(()=> {
 			    					this.pushHtml();
 			    				},1000)
+			    			}
+			    			if(scrollTop>jiLuScrollTop){
+			    				imgeSrc();
 			    			}
 			    		})
 			    },
@@ -200,24 +223,25 @@
 			    		clearTimeout(setTime);
 			    		if(dataLength!=pageNum-1){
 					    	let thmlList='';
-					    	let p=List;
-				//	    	datelist.push(p);
-					    	datelist[pageNum-1]=p;
-//					    	console.log(datelist);
-//					    	console.log(pageNum);
-					    	for(var i=0; i<datelist.length; i++){
-//					    		console.log(datelist[i])
-					    		for(var key in datelist[i]){
-						    		thmlList+="<li>"+
-						    			"<p class='first'>"+datelist[i][key].bizDate+"<font></font></p>"+
-						    			"<p class='first'>"+datelist[i][key].pointCount+"<font></font></p>"+
-						    			"<p class='laste'>"+datelist[i][key].memo+"<font></font></p>"+
-						    		"</li>"
-						    	}
+					    	console.log(pageNum);
+				    		for(var key in List){
+					    		thmlList+="<li id='li"+key+"'>"+
+					    			"<p class='first'>"+List[key].bizDate+"<font></font></p>"+
+					    			"<p class='first'>"+List[key].pointCount+"<font></font></p>"+
+					    			"<p class='laste'>"+List[key].memo+"<font></font></p>"+
+					    			"<img style='width:100px;height:100px;background:#00C2C2;' class='imges'>"+
+					    		"</li>"
 					    	}
-					    	document.querySelector('.list ul').innerHTML=thmlList;
+					    let dom= document.querySelector('.list ul');
+					    let domDiv= document.createElement('div');
+					    	domDiv.innerHTML=thmlList;
+					    	dom.appendChild(domDiv);
+					    	imgeSrc();
 					    	pageNum+= 1;
 					    	dataLength=6;
+					    	jiLuScrollTop=window.scrollY;
+					}else{
+						document.querySelector('.jiaZai').innerText='没有更多数据';
 					}
 			    },
 			}

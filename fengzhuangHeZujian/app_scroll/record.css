@@ -71,6 +71,16 @@ html{
 	background:#00C2C2;
 	font-size:.40rem;
 }
+.jiaZai{
+	width:100%;
+	height:1rem;
+	line-height:1rem;
+	text-align: center;
+	background:#00C2C2;
+	font-size:.40rem;
+	position:relative;
+	z-index: 1000;
+}
 .Return{
   position:fixed;
   top:0;
