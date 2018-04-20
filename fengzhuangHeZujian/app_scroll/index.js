@@ -1,8 +1,8 @@
 
 
-function uitan(pageNums,pushHtml,dom) {
+function uitan(dataLength,pageNums,scrollTop,pushHtml,dom) {
     var ht = {},
-    		length=1;
+    	length=1;
     ht.init = function(d) {
         if(!support_touch_event()) return;
             var startX, startY, endX, endY,
@@ -26,8 +26,8 @@ function uitan(pageNums,pushHtml,dom) {
                 var abs = Math.abs(y - startY)
                 if (abs > 0 && abs < 388) {
                     container.style.cssText +=
-                    "transition:1s cubic-bezier(.1, .57, .1, 1);"+
-                    "-webkit-transition: 1s cubic-bezier(.1, .57, .1, 1);"+
+                    "transition:600ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-webkit-transition: 600ms cubic-bezier(.1, .57, .1, 1);"+
                     "-webkit-transform: translate(0px, " + (y - startY) + "px) translateZ(0);"+
                     "transform: translate(0px, " + (y - startY) + "px) translateZ(0);"+
                     "-webkit-backface-visibility: hidden;"+
@@ -41,16 +41,16 @@ function uitan(pageNums,pushHtml,dom) {
 				   	"-o-perspective: 1000;"+
 				   	"perspective: 1000;";
                 }
-                if((endY - startY) >100){//下拉刷新
-                		document.querySelector('.shuaXin').innerText='放手刷新'
+                if((endY - startY) >150){//下拉刷新
+            		document.querySelector('.shuaXin').innerText='放手刷新'
                 }
             });
             container.addEventListener('touchend', function(e) {
 //              e.preventDefault();
                 if (Math.abs(endY - startY) > 0) {
                     container.style.cssText +=
-                    "transition:300ms cubic-bezier(.1, .57, .1, 1);"+
-                    "-webkit-transition: 300ms cubic-bezier(.1, .57, .1, 1);"+
+                    "transition:600ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-webkit-transition: 600ms cubic-bezier(.1, .57, .1, 1);"+
                     "-webkit-transform: translate(0px,0px) translateZ(0);"+
                     "transform: translate(0px,0px) translateZ(0);"+
                     "-webkit-backface-visibility: hidden;"+
@@ -64,16 +64,16 @@ function uitan(pageNums,pushHtml,dom) {
 				   	"-o-perspective: 1000;"+
 				   	"perspective: 1000;";
                 }
-                if((endY - startY) >100){//下拉刷新
-                		document.querySelector('.shuaXin').innerText='下拉刷新';
-//              		document.querySelector('.jiaZai').innerText='加载中'
-	                	if(length==1){
-	                		datelist=[];
-	                		pageNum=1;
-	                		document.querySelector('.list ul').innerHTML='';
-	                		pushHtml();
-	                	}
-	                	length+=1;
+                if((endY - startY) >150){//下拉刷新
+            		document.querySelector('.shuaXin').innerText='下拉刷新';
+//          		document.querySelector('.jiaZai').innerText='加载中'
+                	if(length==1 && scrollTop==0){
+                		datelist=[];
+                		pageNum=1;
+                		document.querySelector('.list ul').innerHTML='';
+                		pushHtml();
+                	}
+                	length+=1;
                 }
                 length=1;
             });
