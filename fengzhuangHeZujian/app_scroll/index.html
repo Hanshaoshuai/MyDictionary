@@ -189,7 +189,7 @@
 	    				let test = getObjXy(imges[i]).top;
 	    				console.log(clientHeight)
 	    				if(test<clientHeight){
-	    					imges[i].src='./slide4.png';
+	    					imges[i].src=imges[i].getAttribute('url');
 	    				}
 	    			}
 //				console.log("top:" + test.top + ", right:" + test.right + ", bottom:" + test.bottom + ", left:" + test.left);
@@ -229,7 +229,7 @@
 					    			"<p class='first'>"+List[key].bizDate+"<font></font></p>"+
 					    			"<p class='first'>"+List[key].pointCount+"<font></font></p>"+
 					    			"<p class='laste'>"+List[key].memo+"<font></font></p>"+
-					    			"<img style='width:100px;height:100px;background:#00C2C2;' class='imges'>"+
+					    			"<img style='width:100px;height:100px;background:#00C2C2;' class='imges' url='./slide4.png'>"+
 					    		"</li>"
 					    	}
 					    let dom= document.querySelector('.list ul');
@@ -238,7 +238,7 @@
 					    	dom.appendChild(domDiv);
 					    	imgeSrc();
 					    	pageNum+= 1;
-					    	dataLength=6;
+					    	dataLength=66;
 					    	jiLuScrollTop=window.scrollY;
 					}else{
 						document.querySelector('.jiaZai').innerText='没有更多数据';

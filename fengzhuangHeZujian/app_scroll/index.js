@@ -66,7 +66,7 @@ function uitan(pageNums,pushHtml,dom) {
                 }
                 if((endY - startY) >100){//下拉刷新
                 		document.querySelector('.shuaXin').innerText='下拉刷新';
-                		document.querySelector('.jiaZai').innerText='加载中'
+//              		document.querySelector('.jiaZai').innerText='加载中'
 	                	if(length==1){
 	                		datelist=[];
 	                		pageNum=1;
