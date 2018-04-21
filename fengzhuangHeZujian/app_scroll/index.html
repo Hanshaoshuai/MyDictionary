@@ -173,7 +173,8 @@
 			    scrollTop=0,
 			    clientHeight=window.innerHeight, // 设备窗口的高度（不会变）,
 			    scrollHeight=null,
-			    jiLuScrollTop=null;
+			    jiLuScrollTop=null,
+			    x=0;
 			function getObjXy(obj,documentBox){
 			    var xy = obj.getBoundingClientRect();
 			    var top = xy.top//-document.documentElement.clientTop+document.documentElement.scrollTop,//document.documentElement.clientTop 在IE67中始终为2，其他高级点的浏览器为0
@@ -204,25 +205,31 @@
 	    			}
 //				console.log("top:" + test.top + ", right:" + test.right + ", bottom:" + test.bottom + ", left:" + test.left);
 			}
+			function domalert(rpc){
+				alert(rpc)
+			}
 			const page = {
 			    init() {
 			    	this.iscroll()
 					this.pushHtml();
 			    },
 			    iscroll(){
-		    		uitan(dataLength,pageNum,scrollTop,this.pushHtml,'.big');
+		    		uitan(dataLength,pageNum,this.pushHtml,'.big');
 		    		const box= document.getElementById('J_wrap');
 		    		window.addEventListener('scroll', ()=> {
-					scrollTop = window.scrollY; 						// 当前滚动条位置    
-				    clientHeight = window.innerHeight; 				// 设备窗口的高度（不会变）    
-				    scrollHeight = document.body.scrollHeight; 		// 滚动条总高度 
+						scrollTop = window.scrollY; 						// 当前滚动条位置    
+					    clientHeight = window.innerHeight; 				// 设备窗口的高度（不会变）    
+					    scrollHeight = document.body.scrollHeight; 		// 滚动条总高度 
 //					    console.log(scrollTop + clientHeight+'=='+scrollHeight)
-		    			if(Math.floor(scrollTop + clientHeight)==scrollHeight || Math.ceil(scrollTop + clientHeight)==scrollHeight){
-//			    				console.log(scrollTop + clientHeight+'=='+scrollHeight)
-		    				document.querySelector('.jiaZai').innerText='加载中';
-		    				setTime=setTimeout(()=> {
-		    					this.pushHtml();
-		    				},200)
+		    			if(scrollHeight-(Math.floor(scrollTop + clientHeight))<18 || scrollHeight-(Math.ceil(scrollTop + clientHeight))<18){
+		    				if(x==0){
+		    					x+=1;
+	//			    			console.log(scrollTop + clientHeight+'=='+scrollHeight)
+			    				document.querySelector('.jiaZai').innerText='加载中';
+			    				setTime=setTimeout(()=> {
+			    					this.pushHtml();
+			    				},10)
+		    				}
 		    			}
 		    			if(scrollTop>jiLuScrollTop){
 		    				imgeSrc();
@@ -231,6 +238,7 @@
 			    },
 			    pushHtml(){
 		    		clearTimeout(setTime);
+		    		x=0;
 		    		if(dataLength!=pageNum-1){
 				    	let thmlList='';
 //					    	console.log(pageNum);
@@ -239,7 +247,7 @@
 				    			"<p class='first'>"+List[key].bizDate+"<font></font></p>"+
 				    			"<p class='first'>"+List[key].pointCount+"<font></font></p>"+
 				    			"<p class='laste'>"+List[key].memo+"<font></font></p>"+
-				    			"<img style='width:100px;height:50px;background:#00C2C2;' class='imges'url='./slide4.png'>"+
+				    			"<img onclick=domalert('woshi'+"+key+") style='width:100px;height:50px;background:#00C2C2;' class='imges'url='./slide4.png'>"+
 				    		"</li>"
 				    	}
 				    let dom= document.querySelector('.list ul');
