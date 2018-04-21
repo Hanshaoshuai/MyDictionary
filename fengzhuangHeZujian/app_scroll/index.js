@@ -26,8 +26,8 @@ function uitan(dataLength,pageNums,pushHtml,dom) {
                 var abs = Math.abs(y - startY)
                 if (abs > 0 && abs < 688) {
                     container.style.cssText =
-                    "transition:10ms cubic-bezier(.1, .57, .1, 1);"+
-                    "-webkit-transition: 10ms cubic-bezier(.1, .57, .1, 1);"+
+                    "transition:0ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-webkit-transition: 0ms cubic-bezier(.1, .57, .1, 1);"+
                     "-webkit-transform: translate(0px, " + (y - startY)/2 + "px) translateZ(0);"+
                     "transform: translate(0px, " + (y - startY)/2 + "px) translateZ(0);"+
                     "-webkit-backface-visibility: hidden;"+
