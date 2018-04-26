@@ -53,7 +53,8 @@
 	                fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "星期" : "周") : "") + week[date.getDay() + ""]);
 	            }
 	            if (/(AM+)/.test(fmt)) {
-	                fmt = fmt.replace(RegExp.$1, time.match('上午') ? time.match('上午') : '下午 ');
+	                let x = date.getHours()
+					fmt = fmt.replace(RegExp.$1, time.match('上午') ? time.match('上午') : (x<12 ? '上午 ' : '下午 '));
 	            }
 	            for (var k in o) {
 	                if (new RegExp("(" + k + ")").test(fmt)) {

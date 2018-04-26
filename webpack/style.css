@@ -1,4 +1,5 @@
-div{
+.box{
+	margin-top:50px;
 	width:100px;
 	height:100px;
 	background-image:url('./images/slide1.jpg');
