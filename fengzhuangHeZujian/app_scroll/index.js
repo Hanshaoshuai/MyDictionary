@@ -44,8 +44,10 @@ function uitan(dataLength,pageNums,pushHtml,dom) {
                 if((endY - startY) >120){//下拉刷新
             		document.querySelector('.shuaXin').innerText='放手刷新'
                 }
+                console.log(endY - startY)
             });
             container.addEventListener('touchend', function(e) {
+            	console.log(endY - startY)
 //              e.preventDefault();
                 if (Math.abs(endY - startY) > 0) {
                     container.style.cssText =
@@ -64,18 +66,21 @@ function uitan(dataLength,pageNums,pushHtml,dom) {
 				   	"-o-perspective: 1000;"+
 				   	"perspective: 1000;";
                 }
-                if((endY - startY) >120 && scrollTop==0){//下拉刷新
-            		document.querySelector('.shuaXin').innerText='下拉刷新';
-//          		document.querySelector('.jiaZai').innerText='加载中'
-                	if(length==1){
-                		datelist=[];
-                		pageNum=1;
-                		document.querySelector('.list ul').innerHTML='';
-                		pushHtml();
-                		length+=1;
-                	}
-                	length=1;
-                }
+                container.addEventListener('transitionend',function(){
+	                if((endY - startY) >120 && scrollTop==0){//下拉刷新
+	            		document.querySelector('.shuaXin').innerText='下拉刷新';
+	//          		document.querySelector('.jiaZai').innerText='加载中'
+	                	if(length==1){
+		            		datelist=[];
+		            		pageNums=1;
+		            		document.querySelector('.list ul').innerHTML='';
+		            		pushHtml();
+		            		length+=1;
+	                	}
+	                	length=1;
+	                }
+	                container.removeEventListener('transitionend',function(){},false)
+                })
             });
         }
         /**
