@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#box .pageList {
+			  overflow: hidden;
+			  margin-top: 20px;
+			}
+			#box .pageList .container {
+			  width: 600px;
+			  float: right;
+			  overflow: hidden;
+			}
+			#box .pageList .container .container-prev {
+			  padding: 0 10px;
+			}
+			#box .pageList .container .container-next {
+			  padding: 0 10px;
+			}
+			#box .pageList .container .container-btn {
+			  min-width: 22px;
+			  height: 32px;
+			  float: left;
+			  line-height: 32px;
+			  text-align: center;
+			  border: 1px solid #d9d9d9;
+			  font-size: 14px;
+			  border-radius: 6px;
+			  margin-right: 8px;
+			  padding: 0 6px;
+			}
+			#box .pageList .container .ellipsis {
+			  float: left;
+			  font-size: 16px;
+			  line-height: 2;
+			  padding: 0 10px;
+			  margin: 5px;
+			}
+			#box .pageList .container .changeStyle {
+			  color: #fff;
+			  background: #00A0DC;
+			}
+			#box .pageList .container .container-btn:hover {
+			  border-color: #00A0DC;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div class="pageList">
+				<div class="container">
+					<!--<div class="container-btn container-prev page">上一页</div>
+					<div class="container-page page">
+						<div class="container-btn">1</div>
+						<div class="container-btn">2</div>
+						<div class="container-btn">3</div>
+						<div class="container-btn">4</div>
+						<div class="container-btn">5</div>
+						<div class="container-btn">6</div>
+						<div class="container-btn">7</div>
+						<div class="container-btn">8</div>
+						<div class="container-btn">9</div>
+						<div class="container-btn">10</div>
+						<div class="container-btn">11</div>
+						<div class="container-btn">12</div>
+					</div>
+					<div class="container-btn container-next page">下一页</div>-->
+				</div>
+			</div>
+		</div>
+		<script src="jq3_2_1.js"></script>
+		<script type="text/javascript">
+			function Page() {
+				this.container = $(".container");
+				this.length = 60; //一共多少页
+				this.index = 3; //默认选中第一页
+				this.pageListMsg = [];
+				this.temp = -1; //临时变量
+				this.init();
+			}
+			$.extend(Page.prototype, {
+				init() {
+					this.createDom();
+					this.bindevents();
+					this.defaultSelectDom(this.index);
+				},
+				createDom() {
+					var html = "",
+						prev = "",
+						pageList = "",
+						next = "";
+					prev = `<div class="container-btn container-prev page">上一页</div>`;
+					pageList = `<div class="container-page page">`;
+					if(this.length >= 7) {
+						for(var i = 1; i <= 7; i++) {
+							if(i == 2 || i == 7) {
+								pageList += `<div class="ellipsis">...</div>`;
+							}
+							pageList += `<div class="container-btn">${i}</div>`;
+						}
+					} else {
+						for(var i = 1; i <= this.length; i++) {
+							pageList += `<div class="container-btn">${i}</div>`;
+						}
+					}
+					pageList += `</div>`;
+					next = `<div class="container-btn container-next page">下一页</div>`;
+					html = prev + pageList + next;
+					this.container.append(html);
+					this.prev = this.container.find(".container-prev");
+					this.pageList = this.container.find(".container-page").find(".container-btn");
+					this.next = this.container.find(".container-next");
+					this.ellipsis = this.container.find(".ellipsis");
+				},
+				bindevents() {
+					this.prev.on("click", $.proxy(this.handlePrevClick, this));
+					this.pageList.on("click", $.proxy(this.handlePageListClick, this));
+					this.next.on("click", $.proxy(this.handleNextClick, this));
+				},
+				handlePrevClick() {
+					this.index = this.index-- <= 1 ? 1 : this.index;
+					this.defaultSelectDom(this.index);
+				},
+				handlePageListClick(e) {
+					this.index = parseInt($(e.currentTarget).html());
+					this.defaultSelectDom(this.index);
+				},
+				handleNextClick() {
+					this.index = this.index++ >= this.length ? this.length : this.index;
+					this.defaultSelectDom(this.index);
+				},
+				defaultSelectDom(index) {
+					if($(".changeStyle") && this.temp == index) { //防止用户多次点击同一页,增加dom的渲染性能
+						return;
+					}
+					index==1 ? this.prev.css({"pointer-events":"none","opacity":"0.5"}) : this.prev.css({"pointer-events":"auto","opacity":"1"});
+					index==this.length ? this.next.css({"pointer-events":"none","opacity":"0.5"}) : this.next.css({"pointer-events":"auto","opacity":"1"});
+					this.ellipsis.show();
+					if(this.length >= 7) {
+						this.pageListMsg = (this.temp = index) >= 5 && index <= this.length - 5 && [1, index - 2, index - 1, index, index + 1, index + 2, this.length] 
+							|| index > this.length - 5 && [1, this.length - 5, this.length - 4, this.length - 3, this.length - 2, this.length - 1, this.length]
+							|| index < 5 && [1, 2, 3, 4, 5, 6, this.length] || (this.pageListMsg = []);
+						this.ellipsis.eq(index < 5 ? 0 : index > this.length - 5 ? 1 : this.ellipsis.length).hide();
+					} else {
+						for(var i = 1; i <= this.length; i++) {
+							this.pageListMsg.push(i);;
+						}
+					}
+					this.pageList.removeClass("changeStyle");
+					for(var i = 0; i < this.pageList.length; i++) {
+						this.pageList.eq(i).html(this.pageListMsg[i]).addClass(this.pageListMsg[i] == index ? "changeStyle" : "");
+					}
+//					alert(this.index)
+				},
+			});
+			new Page();
+		</script>
+	</body>
+
+</html>
