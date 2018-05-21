@@ -36,6 +36,7 @@
 			  border-radius: 6px;
 			  margin-right: 8px;
 			  padding: 0 6px;
+			  cursor:pointer;
 			}
 			#box .pageList .container .ellipsis {
 			  float: left;
@@ -50,6 +51,16 @@
 			}
 			#box .pageList .container .container-btn:hover {
 			  border-color: #00A0DC;
+			}
+			#box .pageList .container .opacityY:hover{
+				cursor:not-allowed;
+				/*opacity:0.5;*/
+				border:1px solid #d9d9d9;
+			}
+			#box .pageList .container .opacityN:hover{
+				cursor:pointer;
+				/*opacity:1;*/
+				border:1px solid #00A0DC;
 			}
 		</style>
 	</head>
@@ -82,7 +93,7 @@
 			function Page() {
 				this.container = $(".container");
 				this.length = 60; //一共多少页
-				this.index = 3; //默认选中第一页
+				this.index = 1; //默认选中第一页
 				this.pageListMsg = [];
 				this.temp = -1; //临时变量
 				this.init();
@@ -142,8 +153,8 @@
 					if($(".changeStyle") && this.temp == index) { //防止用户多次点击同一页,增加dom的渲染性能
 						return;
 					}
-					index==1 ? this.prev.css({"pointer-events":"none","opacity":"0.5"}) : this.prev.css({"pointer-events":"auto","opacity":"1"});
-					index==this.length ? this.next.css({"pointer-events":"none","opacity":"0.5"}) : this.next.css({"pointer-events":"auto","opacity":"1"});
+					index==1 ? this.prev.css({"opacity":"0.5"}).removeClass("opacityN").addClass('opacityY') : this.prev.css({"opacity":"1"}).removeClass("opacityY").addClass("opacityN");
+					index==this.length ? this.next.css({"opacity":"0.5"}).removeClass("opacityN").addClass('opacityY') : this.next.css({"opacity":"1"}).removeClass("opacityY").addClass("opacityN");
 					this.ellipsis.show();
 					if(this.length >= 7) {
 						this.pageListMsg = (this.temp = index) >= 5 && index <= this.length - 5 && [1, index - 2, index - 1, index, index + 1, index + 2, this.length] 
