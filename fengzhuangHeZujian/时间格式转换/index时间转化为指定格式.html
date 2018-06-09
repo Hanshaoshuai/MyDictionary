@@ -11,7 +11,7 @@
 			// 为Date对象增加时间格式化函数
 	        function formatDate(date, fmt) {
 	            date = new Date(date);
-	            let newNum = new Date().getTime(),
+	            var newNum = new Date().getTime(),
 	              	time = date.toLocaleString(),
 	              	S= Math.floor((date.getMilliseconds()/10)),
 	              	q= date.getMonth()
@@ -53,7 +53,7 @@
 	                fmt = fmt.replace(RegExp.$1, ((RegExp.$1.length > 1) ? (RegExp.$1.length > 2 ? "星期" : "周") : "") + week[date.getDay() + ""]);
 	            }
 	            if (/(AM+)/.test(fmt)) {
-	                let x = date.getHours()
+	                var x = date.getHours()
 					fmt = fmt.replace(RegExp.$1, time.match('上午') ? time.match('上午') : (x<12 ? '上午 ' : '下午 '));
 	            }
 	            for (var k in o) {
@@ -74,7 +74,7 @@
 		//过去式记录格式为：刚刚、多少分钟前、多少小时前
 		  function numToTime(num){
 		  //num *= 1000;
-		    let newNum = new Date().getTime(),
+		    var newNum = new Date().getTime(),
 		      	time = new Date(num).toLocaleString(),
 		      	year,
 		      	mouth,
@@ -114,7 +114,7 @@
 		function numToTime1(num){
 		//	num *= 1000;
 		//	console.log(num)
-		    let newNum = new Date().getTime(),
+		    var newNum = new Date().getTime(),
 		      	time = new Date(num).toLocaleString(),
 		      	year,
 		      	mouth,
@@ -175,8 +175,11 @@
 		//倒计时格式：一次性提示，还剩下 几天几小时几分钟
 		function numToTime2(num){
 		//	num *= 1000;
-		    let newNum = new Date().getTime();
-		    num = (num+10*24*3600*1000-newNum) /1000;
+		    var newNum = new Date().getTime();
+		    if(num*1 - newNum <= 0){
+		    	return '0';
+		    }
+		    num = (num*1 - newNum) /1000;
 		    var D = num/3600/24;
 		    var H = D- Math.floor(D);
 		    		H = H*24;
@@ -193,15 +196,19 @@
 		    	return Math.round(M)+ "分钟";
 		    }
 		}
-		document.write("还剩下 "+numToTime2(1524303940833)+'<br/>');
+		document.write("还剩下 "+numToTime2(1599608720054)+'<br/>');
 			
 			
 			
 		//倒计时格式：实时刷新性提示，还剩下 几天几小时几分钟几秒
 			function numToTime3(num){
 			//	num *= 1000;
-			    let newNum = new Date().getTime();
-			    num = (num+10*24*3600*1000-newNum) /1000;
+			    var newNum = new Date().getTime();
+			    if(num*1 - newNum <= 0){
+			    	clearInterval(timesNo);
+			    	return '0';
+			    }
+			    num = (num*1 - newNum) /1000;
 			    var D = num/3600/24;
 			    var H = D- Math.floor(D);
 			    		H = H*24;
@@ -240,8 +247,8 @@
 			    }
 			}
 	//		document.write("还剩下 "+numToTime3(1524303940833)+'<br/>');
-			setInterval(function(){
-				document.getElementById('times').innerText="还剩下 "+numToTime3(1524303940833);
+			var timesNo = setInterval(function(){
+				document.getElementById('times').innerText="还剩下 "+numToTime3(1599608720054);
 			},10)
 			
 		</script>

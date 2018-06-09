@@ -1,3 +1,4 @@
+
 const webpack = require("webpack");
 const path = require('path');
 const autoprefixer=require("autoprefixer")
@@ -5,11 +6,12 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default
 const HtmlWebpackPlugin = require ('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OpenBrowserPlugin = require ('open-browser-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const GenerateAssetPlugin = require('generate-asset-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackDevServer = require('webpack-dev-server');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+//const CleanWebpackPlugin = require('clean-webpack-plugin');
+//const GenerateAssetPlugin = require('generate-asset-webpack-plugin');
+//const CopyWebpackPlugin = require('copy-webpack-plugin');
+//const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 var config = {
 	entry:"./entry.js",
@@ -20,7 +22,7 @@ var config = {
 	devServer: {
 		contentBase: './dist',
 		host: 'localhost',
-		port:8090,
+		port:8089,
 		historyApiFallback: false,
 		proxy:{
 			'/api1': {
@@ -72,18 +74,28 @@ var config = {
 				})
 			},
 			{
-				test: /\.js$/,
-				loader: 'babel-loader',
-				include: path.resolve(__dirname, 'src'),
-				exclude: __dirname + '/node_modules/',
-				query: {
-					presets: ['es2015']
-				}
-			},
+	            test: /\.js$/,
+	            use: [{
+	               loader: 'babel-loader',
+	                options: {
+	                   presets: ['es2015']
+	                }
+	            }]
+	        },
+//			{
+//				test: /\.(js|jsx)$/,
+//				loader: 'babel-loader',
+//				include: path.resolve(__dirname, 'src'),
+//				exclude: __dirname + '/node_modules/',
+//				query: {
+//					presets: ['es2015','react',"env"]
+//				}
+//			},
 			{
 				test: /\.html$/,
 				loader: 'html-loader',
 				include: path.resolve(__dirname, 'src'),
+				exclude: __dirname + '/node_modules/'
 			},
 			{
 				test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,		//image背景时用
@@ -128,13 +140,23 @@ var config = {
 		]
 	},
 	resolve: {
-//	  	extensions: ['.js', '.vue', '.jsx'], //后缀名自动补全
+	  	extensions: ['.js', '.vue', '.jsx'], //后缀名自动补全
 	    alias: {
+//	    	Utilities: path.resolve(__dirname, 'src/utilities/'),		//创建 import 或 require 的别名，来确保模块引入变得更简单
 	    	'jquery': 'jquery'
 	    }
 	},
 	plugins: [
 	    new webpack.BannerPlugin('这个就是我们调用了webpack自带的插件，我们給bundle.js的头部添加了注释信息'),
+	    new webpack.optimize.UglifyJsPlugin({
+//	    	sourceMap: true,
+			compress: {
+				warnings: false
+			},
+			output: {
+				comments: false
+			}
+		}),
 	    new HtmlWebpackPlugin({
 			template: 'index.ejs',
 			filename: 'index.html',
@@ -152,7 +174,7 @@ var config = {
 		}),
 //		new CleanWebpackPlugin(['dist']),
 		new OpenBrowserPlugin({
-			url: 'http://localhost:8090'
+			url: 'http://localhost:8089'
 		}),
 		new ImageminPlugin({
 			disable: process.env.NODE_ENV !== 'production',
