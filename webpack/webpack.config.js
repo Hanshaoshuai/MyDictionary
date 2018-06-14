@@ -31,7 +31,7 @@ var config = {
 		   		changeOrigin: true
 			},
 			'/api': {
-			    target: 'http://images.sctvgo.com/',
+			    target: 'http://127.0.0.1:8020/MyDictionary/MyDictionary/webpack/mock/',
 			   	pathRewrite: {'^/api': ''},
 			   	changeOrigin: true
 			}
@@ -74,7 +74,7 @@ var config = {
 				})
 			},
 			{
-	            test: /\.js$/,
+	            test: /\.(js|jsx)$/,
 	            use: [{
 	               loader: 'babel-loader',
 	                options: {

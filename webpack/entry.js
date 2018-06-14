@@ -5,11 +5,14 @@
 //var hello = require("./md1.js");
 
 //引入css
-//require("!style-loader!css-loader!./main.css");
-//require("./main.css");
+require('./style.css');
+require('./index.scss');
 
 var times= require('gettimesjs');
 //var getuppercase= require('getuppercase');
+
+import Ajax from 'request.js'
+import axios from 'axios';
 
 var dom = document.getElementById('box');
 var dom1 = document.getElementById('box1');
@@ -29,8 +32,34 @@ setInterval(function(){
 //dom5.innerText=getuppercase.digitUppercase(68.68);
 
 
-require('./style.css');
-require('./index.scss');
+
+$.ajax({
+  	url:'/api/package.json',
+  	type: 'GET',
+  	dataType: 'json',
+  	data: {},
+  	success: function(res){
+//  	console.log(res)
+  	}
+}) 
+
+
+axios.get('/api/package.json', {
+    params: {}
+})
+.then((response) => {
+    console.log(response);
+})
+.catch((response) => {
+    console.log(response);
+});
+
+
+Ajax("get","/api/index.json",{}).then((req) => {
+  console.log(req)
+})
+
+
 document.write("哈哈，我是bundle.js的前身!");
 $('.box').css({
 	"color":"red"
