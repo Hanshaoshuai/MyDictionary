@@ -15,6 +15,7 @@ function bigimg(){
     bmove.style.display="none";
   }
   bbox.onmousemove = function(e){//获取鼠标位置
+  	var e = e || window.event;  //兼容多个浏览器的event参数模式
     var x = e.clientX;//鼠标相对于视口的位置
     var y = e.clientY;
     var t = bbox.offsetTop;//box相对于视口的位置

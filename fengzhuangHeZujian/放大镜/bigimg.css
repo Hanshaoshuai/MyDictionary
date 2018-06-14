@@ -13,7 +13,7 @@
 	width:100%;
 	height:100%;
 }
-#move{
+/*#move{
   background-image:url(./images/move.png);
   width:100px;
   height:100px;
@@ -21,6 +21,16 @@
   left:0px;
   top:0px;
   display:none;//先让他隐藏，用js使其显示
+}*/
+#move {
+    display: none;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background: #ffffcc;
+    border: 1px solid #ccc;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
 }
 #bimg{
   width:400px;
