@@ -1,0 +1,40 @@
+*{
+  margin:0px;
+  padding:0px;
+}
+#box{
+  width:400px;
+  height:400px;
+  margin:50px;
+  margin-left:17%;
+  position:relative;//这里使用相对定位，好让其他的元素能依靠这个元素定位
+}
+#simg{
+	width:100%;
+	height:100%;
+}
+#move{
+  background-image:url(./images/move.png);
+  width:100px;
+  height:100px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  display:none;//先让他隐藏，用js使其显示
+}
+#bimg{
+  width:400px;
+  height:400px;
+  overflow:hidden;
+  position:absolute;
+  top:0px;
+  left:450px;
+  display:none;//先让他隐藏，用js使其显示
+}
+#bimg img{
+  width:1600px;
+  height:1600px;
+  position:absolute;
+  top:0px;
+  left:0px;
+}
