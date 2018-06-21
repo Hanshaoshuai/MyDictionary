@@ -1,0 +1,133 @@
+<!doctype html>
+	<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	    <title></title>
+	    <style>
+	        * {
+	            padding: 0;
+	            margin: 0;
+	            border: none;
+	        }
+	        #card_view {
+	            width: 200px;
+	            height: 100px;
+	            line-height: 100px;
+	            font-size: 30px;
+	            text-align: center;
+	            font-weight: bold;
+	            border-radius: 10px;
+	            border: 1px solid #ccc;
+	            overflow: hidden;
+	            position: absolute;
+	            color: red;
+	            top: 100px;
+	            left: 0;
+	            right: 0;
+	            margin:auto;
+	            -moz-user-select: none;
+	            -khtml-user-select: none;
+	            user-select: none;
+	        }
+	        #cardCanvas {
+	            position: absolute;
+	            top: 0px;
+	            left: 0px;
+	        }
+	        .disappear{
+			 -webkit-animation: disa 1.2s 1;
+			 animation: disa 1.2s 1;
+			 -webkit-animation-fill-mode: forwards;
+			 -moz-animation-fill-mode: forwards;
+			 -o-animation-fill-mode: forwards;
+			 animation-fill-mode: forwards;
+			}
+			@keyframes disa{
+			 0%{opacity:1;}
+			 100%{opacity: 0;}
+			}
+	    </style>
+	</head>
+	<body>
+	    <div id="card_view">
+	        hello world
+	        <canvas id="cardCanvas"></canvas>
+	    </div>
+	    <script>  
+	        document.querySelector('body').addEventListener('touchstart', function (e) {
+	            var e = e || window.event;
+	            e.preventDefault();
+	        });
+	        var cv = document.getElementById('card_view');
+	        var c = document.getElementById('cardCanvas');
+	        var ctx = c.getContext('2d');
+	        console.log(cv.clientWidth)
+	        console.log(cv.clientHeight)
+	        c.width = cv.clientWidth;   //画布宽  
+	        c.height = cv.clientHeight;  //画布高  
+	        ctx.beginPath();  //画布的第一层  
+	        ctx.fillStyle = "#ccc";
+	        ctx.fillRect(0, 0, cv.clientWidth, cv.clientHeight);
+	        ctx.closePath();
+	        //画布的第二层  
+	        ctx.font = "bold 50px Microsoft Yahei";
+	        ctx.textAlign = "left";
+	        ctx.fillStyle = "#666666";
+	        ctx.fillText("刮一刮", 25, 70);
+	        ctx.globalCompositeOperation = "destination-out";  //新图像和原图像重合部分变透明  
+	        //移动端  
+	        c.addEventListener('touchstart', function (e) {
+	            var e = e || window.event;
+	            var x = e.touches[0].clientX - cv.offsetLeft;
+	            var y = e.touches[0].clientY - cv.offsetTop;
+	            ctx.moveTo(x, y)
+	            c.addEventListener('touchmove', gmove, false)
+	        }, false)
+	        c.addEventListener('touchend', function () {
+	            clearC();
+	        }, false)
+	        //PC端  
+	        c.addEventListener('mousedown', function (e) {
+	            var e = e || window.event;
+	            var x = e.clientX - cv.offsetLeft;
+	            var y = e.clientY - cv.offsetTop;
+	            ctx.moveTo(x, y)
+	            c.addEventListener('mousemove', gmove, false)
+	        }, false)
+	        c.addEventListener('mouseup', function () {
+	            clearC();
+	            c.removeEventListener('mousemove', gmove, false)
+	        }, false)
+	        function gmove(e) {    //刮卡函数  
+	            console.log(e);
+	            if (typeof e.touches != 'undefined') {
+	                e = e.touches[0];
+	            }
+	            var mx = e.clientX - cv.offsetLeft;
+	            var my = e.clientY - cv.offsetTop;
+	            ctx.strokeStyle = "white";
+	            ctx.lineCap = "round";    //绘制的线结束时为圆形  
+	            ctx.lineJoin = "round";   //当两条线交汇时创建圆形边角  
+	            ctx.lineWidth = 30;
+	            ctx.lineTo(mx, my);
+	            ctx.stroke();
+	        }
+	        function clearC() {              //刮开一定面积执行擦除画布函数  
+	            var data = ctx.getImageData(0, 0, c.width, c.height).data;
+	            for (var i = 0, j = 0; i < data.length; i += 4) {   //data.length=c.width*c.heigth*4,一个像素块是一个对象RGBA四个值,A范围为0~255  
+	                if (data[i] && data[i + 1] && data[i + 2] && data[i + 3]) {      //存在imageData对象时j加1  PS:该像素区域透明即为不存在该对象  
+	                    j++;
+	                }
+	            }
+	            if (j <= c.width * c.height * 0.2) {          
+	            		// disappear里面写了缓慢清除的css3动画效果
+				  	c.setAttribute('class','disappear'); 
+				  	//超过canvas面积的80%，就清除画布  
+	//              ctx.clearRect(0, 0, c.width, c.height);
+	            }
+	        } 
+	    </script>
+	</body>
+
+</html>

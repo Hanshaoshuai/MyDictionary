@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<p>562326.2546</p>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+//		function Number (nub){
+//			console.log(nub*1)
+//			var nb = (nub*1).toString();
+//			if( nb !== 'NaN' ){
+//				var len = nb.length;
+//				console.log(len)
+//				if(nub == 0){
+//					return '0.00'
+//				}else if (!/\.+/.test(nb)){
+//					var n = nb.split('');
+//					n.splice(len,0,".00");
+//					var b = ''
+//					for(var i=0; i<n.length; i++){
+//						b += n[i];
+//					}
+//					console.log(b)
+//					return b;
+//				}else{
+//					var x = (nub*1).toFixed(2);
+//					return x;
+//				}
+//			}else{
+//				console.error('请传入number类型');
+//				return 'NaN';
+//			}
+//		}
+		
+		console.log('4567123489.28'.replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,"))
+		function formatNum(num){
+		  return ((num*1).toFixed(2) + '').replace(/\d{1,3}(?=(\d{3})+(\.\d*)?$)/g, '$&,');
+		}
+		console.log(formatNum(12354.325))
+		document.querySelector('p').innerText = formatNum(document.querySelector('p').innerText);
+	</script>
+</html>
