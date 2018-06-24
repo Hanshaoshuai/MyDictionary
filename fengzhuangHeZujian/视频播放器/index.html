@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.IIV::-webkit-media-controls-play-button,
+			.IIV::-webkit-media-controls-start-playback-button {
+			  opacity: 0;
+			  pointer-events: none;
+			  width: 5px;
+			}
+			.videobox {
+			  width: 4.78rem;
+			  height: 7.8rem;
+			  position: absolute;
+			  top: 3.2rem;
+			  left: 1.2rem;
+			}
+			video{
+			  width: 4.2rem;
+			  height: 7.69rem;
+			  position: absolute;
+			  left: .22rem;
+			  top: .7rem;
+			  overflow: hidden;
+			  margin-top:-.7rem;
+			}
+		</style>
+	</head>
+	<body>
+		<video
+		  	id="video1" 
+			:src="src_mp4" 
+			preload="auto"
+			webkit-playsinline
+			playsinline="true"
+			
+			x-webkit-airplay="allow" 
+			x5-video-player-type="h5"  
+			x5-video-player-fullscreen="true"
+			x5-video-orientation="portraint"
+			style="object-fit:fill">
+		
+		</video>
+	</body>
+	<script type="text/javascript">
+//		iphone-inline-video
+		
+		var video = document.querySelector('video');
+		videoMethod(video);
+		
+		function videoMethod(video) {
+		    video.addEventListener('touchstart', function () {
+		        video.play();
+		    });
+		    setTimeout(function () { video.play(); }, 1000);
+		    document.addEventListener("WeixinJSBridgeReady", function (){ 
+		        video.play();
+		        video.pause();
+		    }, false);
+		    video.addEventListener('ended', function (e) {
+		      video.play();
+		    })
+		    //进入全屏
+		    video.addEventListener("x5videoenterfullscreen", function(){
+		    
+		      window.onresize = function(){
+		        video.style.width = window.innerWidth + "px";
+		        video.style.height = window.innerHeight + "px";
+		      }
+		    })
+		    //退出全屏
+		    video.addEventListener("x5videoexitfullscreen", function(){
+		      window.onresize = function(){
+		        video.style.width = 原尺寸;
+		        video.style.height = 原尺寸;
+		      }
+		     
+		    })
+		}
+	</script>
+</html>
+
+
+
+
+
+

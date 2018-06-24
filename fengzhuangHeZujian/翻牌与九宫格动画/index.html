@@ -16,10 +16,14 @@
 			Default</span><br />
 			<span style="cursor:pointer">
 			Pointer</span><br />
+			<span style="cursor:progress">
+			cursor: progress;</span><br />
 			<span style="cursor:move">
 			Move</span><br />
 			<span style="cursor:e-resize">
 			e-resize</span><br />
+			<span style="cursor:no-drop">
+			cursor: no-drop;</span><br />
 			<span style="cursor:ne-resize">
 			ne-resize</span><br />
 			<span style="cursor:nw-resize">
@@ -39,7 +43,9 @@
 			<span style="cursor:wait">
 			wait</span><br />
 			<span style="cursor:help">
-			help</span>
+			help</span><br />
+			<span style="cursor:not-allowed">
+			cursor:not-allowed</span>
 		</div>
 		<div class="boxs">
 			<div class="gift gift1">1</div>  
@@ -230,9 +236,8 @@
 						}
 					}else{
 						if(/[`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?_]{1,}|[·、，。！……（）【】？《》——-]$/.test(obj[i])){
-							
-						}else{
-							content+=obj[i];
+							let w= newarr.length>=7 ? "，如需联系请投资方申请交换名片": ""
+							content='<a style='+'"'+'color:#2abdfc'+'"'+'>['+textChenge+ w+ ']</a>';
 						}
 					}
 				}
@@ -327,4 +332,30 @@
 		}
 	</script>
 	<iframe id="iframe" src="../MaimaiGou/maitaigou/home.html" onload="onLoad()" width="200px" height="200px"></iframe>
+	<form>
+	    你爱好的运动是？<br/>
+	    <input type="checkbox" name="items" value="足球" />足球
+	    <input type="checkbox" name="items" value="篮球" />篮球
+	    <input type="checkbox" name="items" value="羽毛球" />羽毛球
+	    <input type="checkbox" name="items" value="乒乓球" />乒乓球 <br/>
+	    <input type="button" id="CheckAll" value="全选" />
+	    <input type="button" id="CheckNo" value="全不选" />
+	    <input type="button" id="CheckRev" value="反选" />
+    </form>
+	<script>
+    $(function(){
+        $("#CheckAll").click(function(){
+            $("input:checkbox").prop("checked","checked");
+        });
+        $("#CheckNo").click(function(){
+            $("input:checkbox").removeAttr("checked");
+        });
+        $("#CheckRev").click(function(){
+            $("input:checkbox").each(function(){
+                this.checked=!this.checked;
+            });
+        });
+    });
+</script>
+	
 </html>
