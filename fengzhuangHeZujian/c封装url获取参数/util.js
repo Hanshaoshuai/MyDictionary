@@ -3,8 +3,13 @@
 
 
 export function urlParse(){
-	let url=window.location.search;
-	let obj={};
+	let url = "",
+		obj={};
+	if(window.location.search){
+		url = window.location.search; //获取url中"?"符后的字串
+	}else{
+		url = window.location.href; //获取url中"?"符后的字串
+	}
 	let reg=/[?&][^?&]+=[^?&]+/g;//匹配   ?id=123456&a=b  正则
 	let arr=url.match(reg);
 	//['?di=123456','&a=b']
