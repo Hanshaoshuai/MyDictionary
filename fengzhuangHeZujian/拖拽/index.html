@@ -22,16 +22,14 @@
 			<div id="title" style="height: 100px;width:100px;background-color: antiquewhite;position: absolute;left: 0px;top: 0px"></div>
 		</div>
 		<script>
-		    function Mover(title, box) {
-		        this.mainDiv = title;
+		    function Mover(mv, box) {
+		    	var that = this;
 		        this.startx = 0;
 		        this.starty;
 		        this.startLeft;
 		        this.startTop;
 		        this.clientWidth = box.clientWidth;
 		        this.clientHeight = box.clientHeight;
-//		        this.mainDiv = title.parentNode;
-		        var that = this;
 		        this.isDown = false;
 		        this.movedown = function (e) {
 		            e = e ? e : window.event;
@@ -42,11 +40,13 @@
 		//            所有鼠标输入都针对该窗口，无论光标是否在窗口的边界内。同一时刻只能有一个窗口捕获鼠标。
 		//            如果鼠标光标在另一个线程创建的窗口上，只有当鼠标键按下时系统才将鼠标输入指向指定的窗口。
 		//            非ie浏览器 需要在document上设置事件
+		            var left = mv.style.left || mv.offsetLeft;
+			    	var top = mv.style.top || mv.offsetTop;
 		            that.isDown = true;
 		            that.startx = e.clientX;
 		            that.starty = e.clientY;
-		            that.startLeft = parseInt(that.mainDiv.style.left);
-		            that.startTop = parseInt(that.mainDiv.style.top);
+		            that.startLeft = parseInt(left);
+		            that.startTop = parseInt(top);
 		        }
 		        this.move = function (e) {
 		            e = e ? e : window.event;
@@ -54,24 +54,24 @@
 		            	var lefts = e.clientX - (that.startx - that.startLeft);
 		            	var tops = e.clientY - (that.starty - that.startTop);
 		            	if( lefts <= 0 ){
-		            		that.mainDiv.style.left = "0px";
+		            		mv.style.left = "0px";
 		            		if( e.clientX < 0 ){
 //		            			that.moveup();
 		            		}
-		            	}else if( lefts + that.mainDiv.clientWidth >= that.clientWidth){
-		            		that.mainDiv.style.left = (that.clientWidth - that.mainDiv.clientWidth) + "px";
+		            	}else if( lefts + mv.clientWidth >= that.clientWidth){
+		            		mv.style.left = (that.clientWidth - mv.clientWidth) + "px";
 		            	}else{
-		            		that.mainDiv.style.left = lefts + "px";
+		            		mv.style.left = lefts + "px";
 		            	};
 		                if( tops <= 0 ){
-		            		that.mainDiv.style.top = "0px";
+		            		mv.style.top = "0px";
 		            		if( e.clientY < 0 ){
 //		            			that.moveup();
 		            		}
-		            	}else if( tops + that.mainDiv.clientHeight >= that.clientHeight){
-		            		that.mainDiv.style.top = (that.clientHeight - that.mainDiv.clientHeight) + "px";
+		            	}else if( tops + mv.clientHeight >= that.clientHeight){
+		            		mv.style.top = (that.clientHeight - mv.clientHeight) + "px";
 		            	}else{
-		            		that.mainDiv.style.top = tops + "px";
+		            		mv.style.top = tops + "px";
 		            	};
 		            }
 		        }
@@ -81,9 +81,9 @@
 		                this.releaseCapture();
 		            } //事件捕获仅支持ie
 		        }
-		        this.mainDiv.onmousedown = this.movedown;
-		        this.mainDiv.onmousemove = this.move;
-		        this.mainDiv.onmouseup = this.moveup;
+		        mv.onmousedown = this.movedown;
+		        mv.onmousemove = this.move;
+		        window.onmouseup = this.moveup;
 		        //非ie浏览器
 		        document.addEventListener("mousemove", this.move, true);
 		    }
