@@ -10,13 +10,19 @@
 			.box1{width:100%;height:60px;margin:0 auto;text-align:center;background:#dce2f3;overflow:hidden;}
 			.box1 font{display:inline-block;line-height:60px;font-size:40px;font-family: 'iconfont';margin-top:-5px;}
 			.box2{width:98%;height:88%;margin:0 auto;border:2px #302e5d solid;position:relative;margin-bottom:18px;}
-			.box3{width:300px;height:100%;border-right:2px #302e5d solid;overflow-y:auto;box-sizing:border-box;position:absolute;left:0;top:0;
-				/*-moz-user-select: none; /*火狐*/
-				/*-webkit-user-select: none; /*webkit浏览器*/
-				/*-ms-user-select: none; /*IE10*/
-				/*-khtml-user-select: none; /*早期浏览器*/
-				/*user-select: none;*/
+			.select{
+				-moz-user-select: none; /*火狐*/
+				-webkit-user-select: none; /*webkit浏览器*/
+				-ms-user-select: none; /*IE10*/
+				-khtml-user-select: none; /*早期浏览器*/
+				user-select: none;
+				/*-webkit-tap-highlight-color: transparent;
+			    -webkit-touch-callout: none;
+			    -webkit-user-select: none;
+			    text-decoration: none;
+			    -webkit-appearance: none;*/
 			}
+			.box3{width:300px;height:100%;border-right:2px #302e5d solid;overflow-y:auto;box-sizing:border-box;position:absolute;left:0;top:0;}
 			.box0 .box .box2 .box3 p{
 				margin:8px 16px 8px 16px;
 				line-height:18px;
@@ -25,11 +31,6 @@
 				cursor:pointer;
 				/*display: -webkit-box;
     			display: -ms-flexbox;*/
-				/*-webkit-tap-highlight-color: transparent;
-			    -webkit-touch-callout: none;
-			    -webkit-user-select: none;
-			    text-decoration: none;
-			    -webkit-appearance: none;*/
 			}
 			.box0 .box .box2 .box3 p:first-child{margin-top:20px;}
 			.box0 .box .box2 .box3 p:last-child{margin-bottom:20px;}
@@ -40,7 +41,7 @@
 			.box0 .box .box2 .box3 p:active{color:#f200f2}
 			.box0 .box .box2 .box3 p:hover span{background:#dce2f3;}
 			.aa{margin-top:10px;}
-			#box3_5{background:#008000;width:10px;height:100%;position:absolute;top:0;left:300px;box-sizing:border-box;cursor:w-resize;cursor:move;z-index:100;}
+			#box3_5{background:#008000;width:10px;height:100%;position:absolute;top:0;left:300px;box-sizing:border-box;cursor:w-resize;cursor:move;z-index:1000;}
 			.box4{width:79%;height:100%;border-left:2px #302e5d solid;position:absolute;top:0;left:310px;box-sizing:border-box;}
 			
 			@font-face {
@@ -213,46 +214,50 @@
 	        this.move = function (e) {
 	            e = e ? e : window.event;
 	            if (that.isDown) {
-		            	var lefts = e.clientX - (that.startx - that.startLeft);
-		            	var tops = e.clientY - (that.starty - that.startTop);
-		            	if( lefts <= 160 ){
-		            		mv.style.left = "160px";
-		            		leftChenge (160);
-		            		if( e.clientX < 0 ){
-	//		            			that.moveup();
-		            		}
-		            	}else if( lefts + mv.clientWidth >= 800){
-		            		mv.style.left = (800 - mv.clientWidth) + "px";
-		            		width2 = box2.clientWidth;
-		            		box3.style.width = (800 - mv.clientWidth) + "px";
-		            		width3 = box3.clientWidth;
-		            		box4.style.width = (width2-width3-30) + "px";
-		            		box4.style.left = (800 - mv.clientWidth+10) + "px";
-		            		
-		            	}else{
-		            		mv.style.left = lefts + "px";
-		            		leftChenge (lefts);
-		            	};
-		            if( tops <= 0 ){
-//		            		mv.style.top = "0px";
-		            		if( e.clientY < 0 ){
-	//		            			that.moveup();
-		            		}
-		            	}else if( tops + mv.clientHeight >= that.clientHeight){
-//		            		mv.style.top = (that.clientHeight - mv.clientHeight) + "px";
-		            	}else{
-//		            		mv.style.top = tops + "px";
-		            	};
-	            }
-	            function leftChenge (x){
+	            	var lefts = e.clientX - (that.startx - that.startLeft);
+	            	var tops = e.clientY - (that.starty - that.startTop);
+	            	if( lefts <= 160 ){
+	            		mv.style.left = "160px";
+	            		leftChenge (160);
+	            		if( e.clientX < 0 ){
+//		            			that.moveup();
+	            		}
+	            	}else if( lefts + mv.clientWidth >= 800){
+	            		mv.style.left = (800 - mv.clientWidth) + "px";
 	            		width2 = box2.clientWidth;
-	            		box3.style.width = x + "px";
+	            		box3.style.width = (800 - mv.clientWidth) + "px";
 	            		width3 = box3.clientWidth;
 	            		box4.style.width = (width2-width3-30) + "px";
-	            		box4.style.left = (x+10) + "px";
-	            	}
+	            		box4.style.left = (800 - mv.clientWidth+10) + "px";
+	            		
+	            	}else{
+	            		mv.style.left = lefts + "px";
+	            		leftChenge (lefts);
+	            	};
+	            if( tops <= 0 ){
+//		            		mv.style.top = "0px";
+	            		if( e.clientY < 0 ){
+//		            			that.moveup();
+	            		}
+	            	}else if( tops + mv.clientHeight >= that.clientHeight){
+//		            		mv.style.top = (that.clientHeight - mv.clientHeight) + "px";
+	            	}else{
+//		            		mv.style.top = tops + "px";
+	            	};
+	            }
+	            function leftChenge (x){
+	            	$('.box2').addClass('select');
+	            	box3.scrollLeft = 0;
+            		width2 = box2.clientWidth;
+            		box3.style.width = x + "px";
+            		width3 = box3.clientWidth;
+            		box4.style.width = (width2-width3-30) + "px";
+            		box4.style.left = (x+10) + "px";
+            	}
 	        }
 	        this.moveup = function () {
+	        	$('.box2').removeClass('select');
+	        	box3.scrollLeft = 0;
 	            that.isDown = false;
 	            if (!window.captureEvents) {
 	                this.releaseCapture();
