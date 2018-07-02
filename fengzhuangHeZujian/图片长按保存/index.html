@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>长按保存图片</title>
+		<link rel="stylesheet" type="text/css" href="./css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/preview.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">长按保存图片</h1>
+		</header>
+		<div class="mui-content" style="position: relative;">
+			<div class="mui-content-padded">
+				<p>这是图片放大预览后长按保存图片示例，点击如下图片可全屏预览功能</p>
+				<p>
+					<img src="./img/yuantiao.jpg" data-preview-src="" data-preview-group="1" />
+				</p>
+				<p>图片全屏预览后，长按预览图片可以保存到本地</p>
+				<p>
+					<img src="./img/muwu.jpg" data-preview-src="" data-preview-group="1" />
+				</p>
+				<p>第三张图片，纯粹为了占位： </p>
+				<p>
+					<img src="./img/shuijiao.png" data-preview-src="" data-preview-group="1" />
+				</p>
+			</div>
+		</div>
+		<script src="./js/mui.min.js"></script>
+		<script src="./js/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig: {
+					longtap: true
+				}
+			});
+			
+			mui.previewImage();
+
+			mui.plusReady(function() {
+				document.addEventListener('longtap', function(e) {
+					var target = e.target;
+					savePic(target);
+				});
+			});
+			
+			/**
+			 * 长按保存图片 
+			 * 1. 获取图片链接
+			 * 2. 创建下载并下载图片
+			 * 3. 保存至相册
+			 */
+			function savePic(target) {
+				if(target.tagName == 'IMG' && target.currentSrc.length > 0 && target.classList.contains('mui-zoom')) { //确保图片链接不为空
+						var imgUrl = target.src;
+						console.log('图片地址：' + imgUrl);
+						var suffix = cutImageSuffix(imgUrl);
+						mui.confirm("是否保存此图片", "", ["保存", "取消"], function(event) {
+							var index = event.index;
+							if(index == 0) {
+								/**
+								 * 创建下载任务
+								 * http://www.html5plus.org/doc/zh_cn/downloader.html#plus.downloader.createDownload
+								 */
+								var downLoader = plus.downloader.createDownload(imgUrl, {
+									method: 'GET',
+									filename: '_downloads/image' + suffix  
+								}, function(download, status) {
+									var fileName = download.filename;
+									console.log('文件名:' + fileName);
+									console.log('下载状态：' + status);
+									/**
+									 * 保存至本地相册
+									 */
+									plus.gallery.save(fileName, function() {
+										/**
+										 * 保存后，弹出对话框是否查看；
+										 */
+										mui.confirm("打开相册查看", "", ["打开", "取消"], function(event) {
+											var gindex = event.index;
+											if(gindex == 0) {
+												/**
+												 * 选择图片
+												 */
+												plus.gallery.pick(function(file) {
+													mui.toast("你选择了图片：" + file);
+												}, function(error) {
+													console.log(JSON.stringify(error));
+												}, {
+
+												});
+											}
+										});
+									});
+								});
+								/**
+								 * 开始下载任务
+								 */
+								downLoader.start();
+							}
+						});
+					}
+			}
+			// 截取图片后缀用于重命名图片，防止%E5%85%89%E6%98%8E%E8%A1%8C编码的文件不被系统相册识别；
+			function cutImageSuffix(imageUrl) {
+				var index = imageUrl.lastIndexOf('.');
+				return imageUrl.substring(index);
+			}
+		</script>
+	</body>
+
+</html>
