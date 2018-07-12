@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var obj1 = [{b: '1'},{b: '2'},{b: '3'},{b: '4'},{b: '5'},{b: '6'},{b: '7'},{b: '8'}];
+		var obj = [{a: '1'},{a: '8'}];
+		var s = [];
+		var b = [];
+		for(var i= 0; i<obj1.length; i++){
+		    for(var x= 0; x<obj.length; x++){
+		      	if(obj1[i].b == obj[x].a){
+		        	s.push(
+		          	i
+		        	)
+		        	break;
+		      	}
+		    }
+		};
+		var u=0;
+		var k=0;
+		for(var y=0; y<s.length-1; y++){
+		    for(var z=0; z<obj1.length; z++){
+			    if(s[0]!=0){
+			        u=s[0];
+			    }
+			    if(z<u){
+			        b.push(obj1[z])
+			    }
+			    if(z>s[y] && z<s[y+1]){
+			        b.push(obj1[z])
+			    }
+			    if(s[s.length-1]!=obj1.length-1){
+			        k=s[s.length-1];
+			        if(z>k){
+			         	b.push(obj1[z])
+			       	}
+			    }
+		    }
+		};
+		if(s.length===1 && s[0]===0) {
+		    for(var t=1; t<obj1.length; t++){
+		      	b.push(obj1[t])
+		    }
+		}
+		if(s.length===1 && s[0]===obj1.length-1) {
+		    for(var e=0; e<obj1.length-1; e++){
+		      	b.push(obj1[e])
+		    }
+		}
+		if(s.length===1 && s[0]!==obj1.length-1 && s[0]!==0) {
+		    for(var m=0; m<obj1.length; m++){
+		      	if(m !== s[0]){
+		        	b.push(obj1[m])
+		      	}
+		    }
+		}
+		var len = b.length;
+		for(var h=0; h<len; h++){
+		    for(var j=h+1; j<len; j++){
+		      	if(b[h].b == b[j].b){
+		        	b.splice(j,1);
+		        	len--;
+		        	j--;
+		      	}
+		    }
+		}
+		console.log(s,b)
+	</script>
+</html>
