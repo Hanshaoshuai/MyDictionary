@@ -70,5 +70,79 @@
 		    }
 		}
 		console.log(s,b)
+		
+		
+		// var st = 'jdgdj546gf46h5464564s6dg45dfh456465$%%$$#$&^*^^&%$%#%$'
+		// for(var i = 0; i<st.length; i++){
+		// 	var len = 0;
+		// 	st.replace(st[i],function(text){
+		// 		if(text === st[i]){
+					
+		// 		}
+		// 		console.log(st[i])
+		// 	})
+		// }
+		
+		var st = 'hhhglj65465121dfhfgjgdfsl;;;;;;;gkdfjgggg??'
+		var lent= st.length;
+		var objs = [];
+		for(var i = 0; i<lent; i++){
+			var len = 0;
+			for(var x = 0; x<lent; x++){
+				if(st[i] === st[x]){
+					len+=1;
+				}
+				if(x == lent-1){
+					objs.push(len)
+				}
+			}
+		}
+		var lens = objs.length;
+		for(var h=0; h<lens; h++){
+		    for(var j=h+1; j<lens; j++){
+		      	if(objs[h] == objs[j]){
+		        	objs.splice(j,1);
+		        	lens--;
+		        	j--;
+		      	}
+		    }
+		}
+		console.log(objs)
+		
+		// var str = "vfmn;eortigvmdaskfgknjcv;ortrhm𠮷";
+		// var obj = {};
+		// str.split("").sort().join("").replace(/(.)\1*/ug, (totalChart, chart) => obj[chart] = totalChart.length);
+		// for(var i in obj) {
+		// 	console.log(`字符${i}出现了${obj[i]}次.`)
+		// }
+		// console.log('𠮷'.length)
+		var str = "vfmn;eortigvm……*&%&￥……#%@（*&（**……&￥￥&……（……daskfgknjcv;ortrhm𠮷";
+		var obj = {};
+		str.split("").sort().join("").replace(/(.)\1*/ug, (totalChart, chart) => obj[chart] = chart.codePointAt(0) > 0xFFFF ? totalChart.length / 2 : totalChart.length);
+		for(var i in obj) {
+			console.log(`字符${i}出现了${obj[i]}次.`)
+		}
+		
+		var fun = function({
+			x,
+			y,
+			z
+		}) {
+			console.log(x, y, z)
+		}
+		fun({
+			y: 2,
+			x: 1
+		})
+		
+		document.onkeydown=function(event){
+	      	var e = event || window.event || arguments.callee.caller.arguments[0];
+	      	for(var p=0; p<300; p++){
+	      		if(e && e.keyCode==p){ // 按 Esc 
+		        	alert(e.keyCode)
+		        	return;
+		       	}
+	      	}
+	    }; 
 	</script>
 </html>
