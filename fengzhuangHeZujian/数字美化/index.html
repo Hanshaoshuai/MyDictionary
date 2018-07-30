@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数字美化</title>
+  <style>
+    @font-face {
+    font-family: 'number-beauty';
+    src: url('./font/dinBold.ttf');
+
+    }
+    .din-num {
+    font-family: "number-beauty";
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    }
+    @font-face {
+    font-family: 'number-medium-beauty';
+    src: url('./font/dinBold.ttf');
+    }
+    .din-m-num {
+    font-family: "number-medium-beauty";
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div class="din-num">
+      -12345,678.09
+    </div>
+    <div class="din-m-num">
+      -12345,678.09
+    </div>
+    -12345,678.09
+  </div>
+</body>
+</html>

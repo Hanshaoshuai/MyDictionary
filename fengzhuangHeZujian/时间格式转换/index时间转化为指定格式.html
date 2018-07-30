@@ -251,6 +251,53 @@
 				document.getElementById('times').innerText="还剩下 "+numToTime3(1599608720054);
 			},10)
 			
+
+
+			function numToTime(num, newNum) {
+				// let newNum = new Date().getTime();
+				if(num*1 - newNum*1 <= 0) {
+					return '0';
+				}
+				num = (num*1 - newNum*1) /1000;
+				let D = num / 3600 / 24;
+				let H = D - Math.floor(D);
+				H = H * 24;
+				let M = H - Math.floor(H);
+				M = M * 60;
+				let S = M - Math.floor(M);
+				S = S * 60;
+				let MS = S - Math.floor(S);
+				MS = Math.floor(MS * 100);
+				if(D >= 1) {
+					H = H < 10 ? "0" + Math.floor(H).toString() : Math.floor(H);
+					M = M < 10 ? "0" + Math.floor(M).toString() : Math.floor(M);
+					S = S < 10 ? "0" + Math.floor(S).toString() : Math.floor(S);
+					MS = MS < 10 ? "0" + MS.toString() : MS;
+					// return Math.floor(D) + '天' + H + "小时" + M + "分钟" + S + "秒" + MS + "毫秒"
+					return {'D':Math.floor(D),'H':H,'M':M,'S':S,'MS':MS}
+				} else if(H >= 1) {
+					H = H < 10 ? "0" + Math.floor(H).toString() : Math.floor(H);
+					M = M < 10 ? "0" + Math.floor(M).toString() : Math.floor(M);
+					S = S < 10 ? "0" + Math.floor(S).toString() : Math.floor(S);
+					MS = MS < 10 ? "0" + MS.toString() : MS;
+					// return H + "小时" + M + "分钟" + S + "秒" + MS + "毫秒"
+					return {'D':0,'H':H,'M':M,'S':S,'MS':MS}
+				} else if(M >= 1) {
+					M = M < 10 ? "0" + Math.floor(M).toString() : Math.floor(M);
+					S = S < 10 ? "0" + Math.floor(S).toString() : Math.floor(S);
+					MS = MS < 10 ? "0" + MS.toString() : MS;
+					// return M + "分钟" + S + "秒" + MS + "毫秒"
+					return {'D':0,'H':'00','M':M,'S':S,'MS':MS}
+				} else {
+					S = S < 10 ? "0" + Math.floor(S).toString() : Math.floor(S);
+					MS = MS < 10 ? "0" + MS.toString() : MS;
+					// return S + "秒" + MS + "毫秒"
+					return {'D':0,'H':'00','M':'00','S':S,'MS':MS}
+				}
+			}
+			// export default numToTime;
+
+
 		</script>
 	</body>
 </html>
