@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Demo</title>
+		<style type="text/css">
+      .yuan{ width:200px; height:200px; margin:0 auto; box-sizing:border-box; padding-top:20px; text-align:center; background-color:#f1f1f1; border-radius:50%; position:relative;}
+      .yuan_bl1 , .yuan_bl2 , .yuan_bl3 , .yuan_bl4{ width:100%; height:100%; border-radius:50%; position:absolute; left:0; top:0;}
+      .yuan_bl1 , .yuan_bl2{ background-color:#FF7F4C; -webkit-box-shadow:0 0 1px 1px #fff inset; box-shadow:0 0 1px 1px #fff inset;}
+      .yuan_bl3 , .yuan_bl4{ background-color:#f1f1f1;}
+      .yuan_bl1 , .yuan_bl3{ clip:rect(0 200px 100px 0);}
+      .yuan_bl2 , .yuan_bl4{ clip:rect(100px 200px 200px 0);}
+      .yuan_text{ width:160px; height:160px; line-height:160px; box-sizing:border-box; padding-left:10px; margin:0 auto; color:#FF7F4C; font-size:36px; font-family:"PingFangSC-Thin","sans-serif","STHeitiSC-Light","微软雅黑","Microsoft YaHei"; background-color:#fff; border-radius:50%; position:relative;}
+
+    </style>
+		<script type="text/javascript">
+			
+		</script>
+	</head>
+	<body>
+		<div class="yuan">
+      <div class="yuan_bl1"></div>
+      <div class="yuan_text">300°</div>
+    </div>
+  </body>
+  <script>
+    $(function(){
+      //初始化
+      var bl = parseInt($('.yuan_text').html());
+      var rotatenum = bl;
+      if(bl > 180){
+        var blhtml = '';
+        rotatenum = bl - 180;
+        blhtml += '<div class="yuan_bl2">';
+        blhtml += '<div class="yuan_bl4" style="-webkit-transform:rotate(' + rotatenum + 'deg);transform:rotate(' + rotatenum + 'deg);"></div>';
+        blhtml += '</div>';
+        //$('.yuan_bl1').remove($('.yuan_bl3'));
+        $('.yuan_bl1').after(blhtml);
+      }else{
+        var blhtml = '';
+        blhtml += '<div class="yuan_bl3" style="-webkit-transform:rotate(' + rotatenum + 'deg);transform:rotate(' + rotatenum + 'deg);"></div>';
+        $('.yuan_bl1').append(blhtml);
+      }
+    })
+  </script>
+</html>
