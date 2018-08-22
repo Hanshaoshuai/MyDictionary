@@ -27,6 +27,24 @@
 				line-height: 200px;
 				text-align: center;
 			}
+			.notice_active{
+				width:500px;
+				height:60px;
+				overflow:hidden;
+				margin:0 auto;
+				background:#AAAAAA;
+			}
+			.notice_ul{
+				width:100%;	
+			}
+			.notice_li{
+				width:100%;
+				height:60px;
+				line-height:60px;
+				color:#A51B1B;
+				text-align: center;
+				font-size:20px;
+			}
 		</style>
 	</head>
 	<body>
@@ -41,7 +59,65 @@
 			</div>
 		</div>
 		
+		<div class="notice_active">
+            <ul class="notice_ul">
+                <li class="notice_li">
+                    <span>09:00</span>
+                </li>
+                <li class="notice_li">
+                    <span>02:00</span>
+                </li>
+                <li class="notice_li">
+                    <span>08:00</span>
+                </li>
+            </ul>   
+        </div>
 		<script src="js/jq3_2_1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function run(dom,ul,li,tm,ms,h,px){
+		        //dom为最外层、ul为第二层、li为多个滚动数据元素、tm为滚动时间间隔、ms向上滚动的速度、h为最外层高度和多个滚动数据元素的每个高度
+		        let x = 1000;
+		        if(ms>2000){
+		          ms = 2000;
+		        }
+		        if(tm<2000 && ms>1500){
+		          ms = 1000;
+		        }
+		        if(tm<1000){
+		          tm = 1000;
+		          x = 500;
+		          ms =300;
+		        }
+		        let tims = null;
+		        let num = $(dom).find(li).length;
+		        let bom = $(dom).find(ul);
+		        if(num > 1){
+		          setInterval(function(){
+		            bom[0].style.cssText +=
+		              "-webkit-transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		              "transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		              "-webkit-transform: translate(0px, " + -h + px +") translateZ(0);"+
+		              "transform: translate(0px, " + -h + px +") translateZ(0);"+
+		              "-webkit-backface-visibility: hidden;"+
+		              "-ms-backface-visibility: hidden;"+
+		              "backface-visibility: hidden;"+
+		              "-webkit-perspective: 1000;"+
+		              "-ms-perspective: 1000;"+
+		              "perspective: 1000;";
+		            tims = setTimeout(function(){
+		              bom[0].style.cssText +=
+		                "-webkit-transition: all 0ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		                "transition: all 0ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		                "-webkit-transform: translate(0px, " + 0 + "em) translateZ(0);"+
+		                "transform: translate(0px, " + 0 + "em) translateZ(0);";
+		              clearTimeout(tims);
+		              bom.find("li").eq(0).appendTo(bom);
+		              },x);
+		          },tm);
+		        }
+		    };
+		    run('.notice_active','.notice_ul','.notice_li',3000,1000,60,'px')
+		</script>
 	</body>
 </html>

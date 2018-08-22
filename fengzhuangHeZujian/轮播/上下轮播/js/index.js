@@ -1,6 +1,6 @@
 function Page() {
 	this.stopTime = 2000; //停留时间
-	this.rollTime = 5000; //滚动时间
+	this.rollTime = 3000; //滚动时间
 	this.containerList = $(".containerList");
 	this.init();
 }
