@@ -77,7 +77,7 @@
 		<script type="text/javascript">
 			function run(dom,ul,li,tm,ms,h,px){
 		        //dom为最外层、ul为第二层、li为多个滚动数据元素、tm为滚动时间间隔、ms向上滚动的速度、h为最外层高度和多个滚动数据元素的每个高度
-		        let x = 1000;
+		        var x = 1000;
 		        if(ms>2000){
 		          ms = 2000;
 		        }
@@ -89,27 +89,33 @@
 		          x = 500;
 		          ms =300;
 		        }
-		        let tims = null;
-		        let num = $(dom).find(li).length;
-		        let bom = $(dom).find(ul);
+		        var tims = null;
+		        var num = $(dom).find(li).length;
+		        var bom = $(dom).find(ul);
 		        if(num > 1){
 		          setInterval(function(){
-		            bom[0].style.cssText +=
-		              "-webkit-transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
-		              "transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
-		              "-webkit-transform: translate(0px, " + -h + px +") translateZ(0);"+
-		              "transform: translate(0px, " + -h + px +") translateZ(0);"+
-		              "-webkit-backface-visibility: hidden;"+
-		              "-ms-backface-visibility: hidden;"+
-		              "backface-visibility: hidden;"+
-		              "-webkit-perspective: 1000;"+
-		              "-ms-perspective: 1000;"+
-		              "perspective: 1000;";
+		            bom[0].style.cssText =
+		              	"-webkit-transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		              	"-moz-transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		              	"-ms-transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		              	"-o-transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		              	"transition: all "+ms+"ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		              	"-webkit-transform: translate(0px, " + -h + px +") translateZ(0);"+
+		              	"-moz-transform: translate(0px, " + -h + px +") translateZ(0);"+
+		              	"-ms-transform: translate(0px, " + -h + px +") translateZ(0);"+
+		              	"-o-transform: translate(0px, " + -h + px +") translateZ(0);"+
+		              	"transform: translate(0px, " + -h + px +") translateZ(0);";
 		            tims = setTimeout(function(){
-		              bom[0].style.cssText +=
+		              bom[0].style.cssText =
 		                "-webkit-transition: all 0ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		                "-moz-transition: all 0ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		                "-ms-transition: all 0ms cubic-bezier(0.86, 0, 0.07, 1);"+
+		                "-o-transition: all 0ms cubic-bezier(0.86, 0, 0.07, 1);"+
 		                "transition: all 0ms cubic-bezier(0.86, 0, 0.07, 1);"+
 		                "-webkit-transform: translate(0px, " + 0 + "em) translateZ(0);"+
+		                "-moz-transform: translate(0px, " + 0 + "em) translateZ(0);"+
+		                "-ms-transform: translate(0px, " + 0 + "em) translateZ(0);"+
+		                "-o-transform: translate(0px, " + 0 + "em) translateZ(0);"+
 		                "transform: translate(0px, " + 0 + "em) translateZ(0);";
 		              clearTimeout(tims);
 		              bom.find("li").eq(0).appendTo(bom);
