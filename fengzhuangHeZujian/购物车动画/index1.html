@@ -1,0 +1,106 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>购物车</title>  
+    <style>  
+        #addToCart {  
+            position: fixed;  
+            left: 600px;  
+            cursor: pointer;  
+            width: 100px;  
+            height: 40px;  
+            line-height: 40px;  
+            border: 1px solid deeppink;  
+            text-align: center;  
+            color: deeppink;  
+            top:500px;
+        }  
+        #addToCart:hover {  
+            color: #fff;  
+            background-color: deeppink;  
+        }  
+  
+        #shopCart {  
+            position: fixed;  
+            right: 0;  
+            top: 200px;  
+            color: red;  
+        }  
+        #shopNum{
+        	width: 60px;
+        	height: 25px;
+        	background: deeppink;
+        	color:black;
+        	text-align: center;
+        	line-he0ight: 25px;
+        }
+    </style>
+	<body>
+		<div id="addToCart">  
+		   添加到购物车  
+		</div>  	
+		<div id="shopCart">  
+		    购物车  
+		  <p id="shopNum"></p>
+		</div>
+	</body>
+</html>  
+<script type="text/javascript">
+	var addToCart = document.getElementById("addToCart");
+	var shopCart = document.getElementById("shopCart");
+	var shopNum = document.getElementById("shopNum");
+	var num = 0;
+	addToCart.onclick = function(){
+		//第一步  获取坐标值 
+		//起点坐标
+		var startPoint = {
+			"x":addToCart.offsetLeft + addToCart.offsetWidth/2,
+			"y":addToCart.offsetTop
+		}
+		var endPoint = { 
+			"x":shopCart.offsetLeft + shopCart.offsetWidth/2,
+			"y":shopCart.offsetTop+30
+		}
+		var topPoint = {
+			"x":endPoint.x - 100,
+			"y":endPoint.y -80
+		}
+		//第二步  根据坐标值 确定抛物线方程的三个系数   就能确定抛物线方程
+		//根据抛物线三点坐标，计算出抛物线的系数a  b   c  ，  就可以求出抛物线方程   
+		//根据三点坐标确定抛物线的系数
+		var a = ((startPoint.y - endPoint.y) * (startPoint.x - topPoint.x) - (startPoint.y - topPoint.y) * (startPoint.x - endPoint.x)) / ((startPoint.x * startPoint.x - endPoint.x * endPoint.x) * (startPoint.x - topPoint.x)-(startPoint.x * startPoint.x - topPoint.x * topPoint.x) * (startPoint.x - endPoint.x));  
+		
+		var b = ((endPoint.y - startPoint.y) - a * (endPoint.x * endPoint.x - startPoint.x * startPoint.x)) / (endPoint.x - startPoint.x);  
+		
+		var c = startPoint.y - a * startPoint.x * startPoint.x - b * startPoint.x;
+		
+		var x = startPoint.x;
+		var y = startPoint.y;
+		//第三步 创建商品（div）
+		var good = document.createElement("div");
+		good.style.width = "30px";
+		good.style.height = "30px";
+		good.style.background = "lightseagreen";
+		good.style.position = "absolute";
+		good.style.left =  x + "px";
+		good.style.top = y + "px";
+		document.body.appendChild(good);
+		//第四步 商品移动  启动定时器 
+		var timer = setInterval(function(){
+			//第五步 定时器操作  当商品移动到购物车时 停下来  删除商品  数量累加  
+			if( x < endPoint.x ){
+				x = x + 5; //left
+				y = a*x*x + b*x + c; //top
+				good.style.left = x + "px";
+				good.style.top = y + "px";
+			}else{
+				document.body.removeChild(good);
+				clearInterval(timer);
+				shopNum.innerHTML = ++num;
+			}
+		},6)
+	}
+	/**/
+</script>
+
