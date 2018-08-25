@@ -26,20 +26,16 @@ function uitan(dataLength,pageNums,pushHtml,dom) {
                 var abs = Math.abs(y - startY)
                 if (abs > 0 && abs < 688) {
                     container.style.cssText =
-                    "transition:0ms cubic-bezier(.1, .57, .1, 1);"+
                     "-webkit-transition: 0ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-moz-transition:0ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-ms-transition:0ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-o-transition:0ms cubic-bezier(.1, .57, .1, 1);"+
+                    "transition:0ms cubic-bezier(.1, .57, .1, 1);"+
                     "-webkit-transform: translate(0px, " + (y - startY)/2 + "px) translateZ(0);"+
-                    "transform: translate(0px, " + (y - startY)/2 + "px) translateZ(0);"+
-                    "-webkit-backface-visibility: hidden;"+
-				   	"-moz-backface-visibility: hidden;"+
-				   	"-ms-backface-visibility: hidden;"+
-				   	"-o-backface-visibility: hidden;"+
-				   	"backface-visibility: hidden;"+
-				   	"-webkit-perspective: 1000;"+
-				   	"-moz-perspective: 1000;"+
-				   	"-ms-perspective: 1000;"+
-				   	"-o-perspective: 1000;"+
-				   	"perspective: 1000;";
+                    "-moz-transform: translate(0px, " + (y - startY)/2 + "px) translateZ(0);"+
+                    "-ms-transform: translate(0px, " + (y - startY)/2 + "px) translateZ(0);"+
+                    "-o-transform: translate(0px, " + (y - startY)/2 + "px) translateZ(0);"+
+                    "transform: translate(0px, " + (y - startY)/2 + "px) translateZ(0);";
                 }
                 if((endY - startY) >120){//下拉刷新
             		document.querySelector('.shuaXin').innerText='放手刷新'
@@ -51,20 +47,16 @@ function uitan(dataLength,pageNums,pushHtml,dom) {
 //              e.preventDefault();
                 if (Math.abs(endY - startY) > 0) {
                     container.style.cssText =
-                    "transition:600ms cubic-bezier(.1, .57, .1, 1);"+
                     "-webkit-transition: 600ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-moz-transition:600ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-ms-transition:600ms cubic-bezier(.1, .57, .1, 1);"+
+                    "-o-transition:600ms cubic-bezier(.1, .57, .1, 1);"+
+                    "transition:600ms cubic-bezier(.1, .57, .1, 1);"+
                     "-webkit-transform: translate(0px,0px) translateZ(0);"+
-                    "transform: translate(0px,0px) translateZ(0);"+
-                    "-webkit-backface-visibility: hidden;"+
-				   	"-moz-backface-visibility: hidden;"+
-				   	"-ms-backface-visibility: hidden;"+
-				   	"-o-backface-visibility: hidden;"+
-				   	"backface-visibility: hidden;"+
-				   	"-webkit-perspective: 1000;"+
-				   	"-moz-perspective: 1000;"+
-				   	"-ms-perspective: 1000;"+
-				   	"-o-perspective: 1000;"+
-				   	"perspective: 1000;";
+                    "-moz-transform: translate(0px,0px) translateZ(0);"+
+                    "-ms-transform: translate(0px,0px) translateZ(0);"+
+                    "-o-transform: translate(0px,0px) translateZ(0);"+
+                    "transform: translate(0px,0px) translateZ(0);";
                 }
                 container.addEventListener('transitionend',function(){
 	                if((endY - startY) >120 && scrollTop==0){//下拉刷新
