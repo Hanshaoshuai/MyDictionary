@@ -5,21 +5,29 @@
   <title>数字美化</title>
   <style>
     @font-face {
-    font-family: 'number-beauty';
-    src: url('./font/dinBold.ttf');
-
+    font-family: 'din';
+    src: url('./font/din.ttf');
     }
     .din-num {
-    font-family: "number-beauty";
+    font-family: "din";
     -webkit-font-smoothing: antialiased;
     font-style: normal;
     }
     @font-face {
-    font-family: 'number-medium-beauty';
+    font-family: 'dinMedium';
+    src: url('./font/dinMedium.ttf');
+    }
+    .dinMedium {
+    font-family: "dinMedium";
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    }
+    @font-face {
+    font-family: 'dinBold';
     src: url('./font/dinBold.ttf');
     }
     .din-m-num {
-    font-family: "number-medium-beauty";
+    font-family: "dinBold";
     -webkit-font-smoothing: antialiased;
     font-style: normal;
     }
@@ -28,6 +36,9 @@
 <body>
   <div id="box">
     <div class="din-num">
+      -12345,678.09
+    </div>
+    <div class="dinMedium">
       -12345,678.09
     </div>
     <div class="din-m-num">

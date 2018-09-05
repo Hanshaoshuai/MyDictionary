@@ -33,9 +33,158 @@
 			    	.replace(/(零.)+/g, '零')
 			    	.replace(/^整$/, '零元整');
 			}
-			document.write(digitUppercase(1200.62))
+			document.write(digitUppercase(1200.62)+'<br/>')
 			
-			
+			function getUppercase(num){
+		        var s,x,q,a,l,y,z,n,r,nw = '',mw = '';
+		        x = num.toString();
+		        q = x.replace(/\d+\./,'');
+		        x = x.replace(/\.\d+/,'');
+		        l = x.length;
+		        y = ((l/4).toString()).slice(0,1)*1;
+		        z = l-y*4;
+		        n = x.slice(z);
+		        r = x.slice(0,z);
+		        for(let i=0; i<y; i++){
+		          if(y==4){
+		            if(i==0){
+		              nw += n.slice(i*4,i*4+4)+'万';
+		            }
+		            if(i==1){
+		              var v = parseInt(n.slice(i*4,i*4+4));
+		              if(v !== 0){
+		                if(v.toString().length < 4){
+		                  nw += '零'+v+'亿';
+		                }else{
+		                  nw += v+'亿';
+		                }
+		              }
+		            }
+		            if(i==2){
+		              var v = parseInt(n.slice(i*4,i*4+4));
+		              if(v !== 0){
+		                if(v.toString().length < 4){
+		                  nw += '零'+v+'万';
+		                }else{
+		                  nw += v+'万';
+		                }
+		              }
+		            }
+		            if(i==3){
+		              var f = parseInt(n.slice(i*4,i*4+4));
+		              if(f !== 0){
+		                if(f.toString().length < 4){
+		                  nw += '零'+f+'元';
+		                }else{
+		                  nw += f+'元';
+		                }
+		              }
+		            }
+		            if(i==4){
+		              var f = parseInt(n.slice(i*4,i*4+4));
+		              if(f !== 0){
+		                if(f.toString().length < 4){
+		                  nw += '零'+f+'元';
+		                }else{
+		                  nw += f+'元';
+		                }
+		              }
+		            }
+		          }
+		          if(y==3){
+		            if(i==0){
+		              nw += n.slice(i*4,i*4+4)+'亿';
+		            }
+		            if(i==1){
+		              var v = parseInt(n.slice(i*4,i*4+4));
+		              if(v !== 0){
+		                if(v.toString().length < 4){
+		                  nw += '零'+v+'万';
+		                }else{
+		                  nw += v+'万';
+		                }
+		              }
+		            }
+		            if(i==2){
+		              var f = parseInt(n.slice(i*4,i*4+4));
+		              if(f !== 0){
+		                if(f.toString().length < 4){
+		                  nw += '零'+f+'元';
+		                }else{
+		                  nw += f+'元';
+		                }
+		              }
+		            }
+		          }
+		          if(y==2){
+		            if(i==0){
+		              var v = parseInt(n.slice(i*4,i*4+4));
+		              if(v !== 0){
+		                if(v.toString().length < 4){
+		                  nw += '零'+v+'万';
+		                }else{
+		                  nw += v+'万';
+		                }
+		              }
+		            }
+		            if(i==1){
+		              var f = parseInt(n.slice(i*4,i*4+4));
+		              if(f !== 0){
+		                if(f.toString().length < 4){
+		                  nw += '零'+f+'元';
+		                }else{
+		                  nw += f+'元';
+		                }
+		              }
+		            }
+		          }
+		          if(y==1){
+		            var v = parseInt(n.slice(i*4,i*4+4));
+		            if(i==0){
+		              if(v !== 0){
+		                if(v.toString().length < 4){
+		                  nw += '零'+v+'元';
+		                }else{
+		                  nw += v+ '元';
+		                }
+		                
+		              }
+		            }
+		          }
+		        }
+		        if(y==4 && r.length == 0){
+		          r = nw;
+		        }
+		        if(y==3 && r.length !== 0){
+		          r += '万';
+		          r = r+nw;
+		        }
+		        if(y==2){
+		          r += '亿';
+		          r = r+nw;
+		        }
+		        if(y==1){
+		          r += '万';
+		          r = r+nw;
+		        }
+		        if(y==3 && r.length == 0){
+		          r = r+nw;
+		        }
+		        if(q.length<=2){
+		          console.log(q);
+		          if(q.slice(0,1)*1 > 0){
+		            mw += q.slice(0,1)+'角';
+		          }else{
+		            mw += '零';
+		          }
+		          if(q.slice(1,2)*1 > 0){
+		            mw += q.slice(1,2)+'分';
+		          }
+		        }
+		        return r = r+mw;
+		    }
+		    console.log(getUppercase('1234067890268120.02'));
+			document.write(getUppercase('1234067890268120.02'))
 		</script>
 	</body>
 </html>
