@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+	
+	</body>
+	<script type="text/javascript">
+    const format = function(text) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(text), 3000);
+        // setTimeout(() => reject(1), 3000);
+      }).then(res => {
+        console.log('res111',res);
+        // return Promise.reject('出错了')
+        return res;
+      }).then(res => {
+        console.log('res222',res);
+        return Promise.reject('出错了');
+      }).catch(error => {
+        console.log('err',error);
+        }
+      );
+    }
+    format('我成功了哈哈哈😄');
+    
+    
+    const format1 = function(text) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(text), 3000);
+        // setTimeout(() => reject(1), 3000);
+      })
+    }
+    format1('你也是哦😄').then(res => {
+      console.log('res111',res);
+      return Promise.reject('出错了');
+      // return res;
+    }).then(res => {
+      console.log('res222',res);
+      return Promise.reject('出错了');
+    }).catch(error => {
+      console.log('err',error);
+      }
+    );
+	</script>
+</html>
+
+
+
+
+
+
