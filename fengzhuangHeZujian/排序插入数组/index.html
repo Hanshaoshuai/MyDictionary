@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  let timeSeq = function(opts){
+    var seperator = opts.seperator==null?'':opts.seperator;
+    var slot = opts.slot==null?1:opts.slot;
+    var defaultMaxValue = '23'+seperator+'59';
+    var maxValue = opts.maxValue==null?defaultMaxValue:opts.maxValue;
+    var hours = [];
+    for(let i=0;i<24;i++){
+        hours.push((''+(100+i)).substr(1,2));
+    }
+    var minutes = [];
+    for(let i=0;i<60;i++){
+        minutes.push((''+(100+i)).substr(1,2));
+    }
+    var times = [];
+    hours.forEach(hour=>{
+        minutes.forEach(min=>{
+            times.push(hour+seperator+min);
+        });
+    });
+    if(slot>1){
+        times = times.filter((time,index,array)=>{
+            return index%slot===0;
+        });
+    }
+    if(maxValue!==defaultMaxValue){
+        times = times.filter(time=>time<=maxValue);
+    }
+    return times;
+}
+let momentSeq = function(seperator,maxValue){
+    return timeSeq({
+        slot:5,
+        seperator:':',
+        maxValue:'01:40'
+    });
+};
+var time = momentSeq();
+console.log(time);
+
+var data = {
+    "rows": [{
+        "name": "张三",
+        "bizDate": "2011-4-1 00:10",
+    },{
+        "name": "李四",
+        "bizDate": "2011-4-1 00:05",
+    },{
+        "name": "王五",
+        "bizDate": "2011-4-1 00:30",
+    },{
+        "name": "赵六",
+        "bizDate": "2011-4-1 01:25",
+    },{
+        "name": "赵六",
+        "bizDate": "2011-4-1 00:55",
+    },{
+        "name": "赵六",
+        "bizDate": "2011-4-1 00:50",
+    }]
+};
+var res = data.rows;
+var res1 = [];
+var date = '';
+
+for (let i = 0; i < res.length; i++) {
+  date = res[i].bizDate.split(" ")[0]
+  console.log(date)
+}
+for (let i = 0; i < time.length; i++) {
+  res1.push({"bizDate":date+' '+ time[i]})
+}
+
+for (let i = 0; i < res.length; i++) {
+    for (let j = 0; j < res1.length; j++) {
+        if(res[i].bizDate===res1[j].bizDate){
+            res1.splice(j,1,res[i])
+            break
+        }     
+    }
+    
+}
+
+console.log(res1)
+
+console.log(JSON.stringify({"bizDate":"2011-9-1 22:10:00"})=== JSON.stringify({"bizDate":"2011-9-1 22:15:00"}))
+</script>
