@@ -57,6 +57,11 @@ axios.get('/api/package.json', {
 
 Ajax("get","/api/index.json",{}).then((req) => {
   console.log(req)
+  return Ajax("get","/api/index.json",{});
+}).then((req) =>{
+  console.log(req);
+}).catch((err) =>{
+  console.log(err);
 })
 
 
