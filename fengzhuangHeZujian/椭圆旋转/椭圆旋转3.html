@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>测试</title>
+	<style>
+		body, #container{
+			padding: 0;
+			margin: 0;
+		}
+		#box{
+			width:600px;
+			height:200px;
+			top:-100px;
+			left:-300px;
+			border: 1px solid #007AFF;
+			box-sizing: border-box;
+			position: absolute;
+			border-radius:50% 50%;
+		}
+		#container{
+			width:5px;
+			height:5px;
+			border-radius:50% 50%;
+			background: red;
+			position: relative;
+			position: absolute;
+			left:600px;
+			top:300px;
+			animation: myfirst 5s ease-in-out 0s infinite alternate;
+			
+		}
+		@keyframes myfirst
+		{
+			0%   {transform:rotate(20deg);}
+			100% {transform:rotate(-20deg);}
+		}
+		#ball_1, #ball_2, #ball_3{
+			border-radius: 100%;
+			position: absolute;
+		}
+		#ball_1{
+			width:10px;
+			height:10px;
+			background-color: red;
+		}
+		#ball_2{
+			width:20px;
+			height:20px;
+			background-color: darkgreen;
+		}
+		#ball_3{
+			width:30px;
+			height:30px;
+			background-color: aquamarine;
+		}
+	</style>
+    <script type="text/javascript" src="../app_scroll/jquery.js"></script>
+
+</head>
+<body>
+	<div id="container">
+		<div id="box"></div>
+	</div>
+</body>
+	<script>
+		//初始化3个小球
+		let container = document.getElementById("container");
+		let box = document.getElementById("box");
+		let box_width = box.clientWidth/2;
+		let box_height = box.clientHeight/2;
+		let ball_arr = [];
+ 
+		for(let i=1; i<=3; i++){
+			let ball = document.createElement('div');
+			ball.id = "ball_" + i;
+			ball_arr.push( ball );				//压入小球数组
+			container.appendChild( ball );		//添加小球到网页中显示
+		};
+		
+		function run(width,height,angels,increases,gaps){
+			//定义椭圆路径
+			let path_width = width;			//定义路径的半长轴的长度
+			let path_height = height;			//定义路径的半短轴的长度
+			let path_angel = angels;			//初始化角度为0
+			let angel_increase = increases;	//小球运动角度增量
+			let ball_gap = gaps;				//小球间距
+			//根据椭圆路径，执行小球运动
+			function drawFrame(){
+				for(let i=0; i<ball_arr.length; i++){
+					var ball = ball_arr[i];
+					//显示小球
+					ball.style.display = "block";
+					//转化角度为弧度制
+					var angel = ((path_angel * Math.PI / 180) + (i * ball_gap)) % 360;
+					//更新小球横坐标
+					ball.style.left = path_width * Math.cos(angel) - ball.clientWidth/2 - document.body.clientLeft + "px";
+					//更新小球纵坐标
+					ball.style.top = path_height * Math.sin(angel) - ball.clientHeight/2 - document.body.clientTop + "px";
+					//根据增量更新角度
+					path_angel = (path_angel + angel_increase) % 360;
+				}
+				//再次渲染
+				requestAnimationFrame(drawFrame);
+			}
+			drawFrame();
+		};
+		run(box_width,box_height,0,-0.6,0.8);
+	</script>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>测试</title>
+	<style>
+		body, #container{
+			padding: 0;
+			margin: 0;
+		}
+		.container{
+			width:400px;
+			height:200px;
+			background-color: white;
+			position: relative;
+			background: #00C2C2;
+		}
+		.img{
+			width:20px;
+			height:20px;
+		}
+		.dot{
+			width:10px;
+			height:10px;
+			background: #00C2C2;
+			position: absolute;
+		}
+		#container{
+			width:100%;
+			height:100%;
+			background-color: white;
+			position: absolute;
+		}
+		#ball_1, #ball_2, #ball_3{
+			border-radius: 100%;
+			position: absolute;
+		}
+		#ball_1{
+			width:8px;
+			height:8px;
+			background-color: #999;
+		}
+		#ball_2{
+			width:12px;
+			height:12px;
+			background-color: #666;
+		}
+		#ball_3{
+			width:16px;
+			height:16px;
+			background-color: #333;
+		}
+	</style>
+    <script type="text/javascript" src="../app_scroll/jquery.js"></script>
+    <script type="text/javascript">
+        var ball_count = 12;//小球的个数
+        var circle_x = 0;//圆心的X坐标
+        var circle_y = 0;//圆心的Y坐标
+        var circle_a = 100;//椭圆长轴  
+        var circle_b = 10;//椭圆短轴  
+        var now_count = 0;//当前显示小球的个数
+        var balls_array;//用来存储小球信息
+        var angle_change = 1;//角度变化
+        var iID;
+        var canvas;//画布
+        var context;//画布环境
+        $(function () {
+            var $canvas = $('#myCanvas');
+            canvas = $canvas[0];
+            canvas.addEventListener('mouseover', mouseOverCanvas, false);//鼠标移到Canvas
+            canvas.addEventListener('mouseout', mouseOutCanvas, false);//鼠标移出Canvas
+            canvas.addEventListener('click', clickCanvas, false);//鼠标单击Canvas
+            context = canvas.getContext('2d');
+            balls_array = new Array(ball_count);
+            circle_x = $canvas.width() / 2;
+            circle_y = $canvas.height() / 2;
+            loadBall();
+        });
+        //小球移动
+        function ballMove() {
+            context.clearRect(0, 0, canvas.width, canvas.height);//清空画布内容
+            for (var i = 0; i < balls_array.length; i++) {
+                var ball = balls_array[i];
+                if (ball.angle == 360) {
+                    ball.angle = 0;
+                }
+                ball.angle = ball.angle + angle_change;//角度
+                var radian = ball.angle * (Math.PI / 180);//弧度
+                ball.x = (circle_x + circle_a * Math.cos(radian)) - ball.w / 2;
+                ball.y = (circle_y + circle_b * Math.sin(radian)) - ball.h / 2;
+                var num = setProp(ball, 0.5, 1);
+                context.globalAlpha = num;
+                context.drawImage(ball.image, ball.x, ball.y, ball.w * num, ball.h * num);
+                context.globalAlpha = 1;
+            }
+        }
+        //加载小球
+        function loadBall() {
+            for (var i = 0; i < ball_count; i++) {
+                var angle = (i + 1) * (360 / ball_count);//角度
+                var radian = angle * (Math.PI / 180);//弧度
+                //初始化图片
+                var img = new Image()
+                img.id = i + 1;
+                img.src = './slide4.png';
+                //存放小球信息
+                var ball = {};
+                ball.id = img.id;
+                ball.w = 32;
+                ball.h = 32;
+                ball.x = (circle_x + circle_a * Math.cos(radian)) - ball.w / 2;
+                ball.y = (circle_y + circle_b * Math.sin(radian)) - ball.h / 2;
+                ball.angle = angle;
+                ball.image = img;
+                balls_array[i] = ball;
+                img.onload = function () {
+                    for (var j = 0; j < balls_array.length; j++) {
+                        if (this.id == balls_array[j].id) {
+                            var item = balls_array[j];
+                            var num = setProp(item, 0.5, 1);
+                            context.globalAlpha = num;//设置图片的透明度
+                            context.drawImage(img, item.x, item.y, item.w * num, item.h * num);
+                            context.globalAlpha = 1;
+                            break;
+                        }
+                    }
+                    now_count++;
+                    if (now_count == ball_count) {//当小球全部加载完成
+                        iID = setInterval(ballMove, 40);//40ms移动小球
+                    }
+                }
+                img.onerror = function () {
+                    alert('图片加载失败！');
+                }
+            }
+        }
+        //鼠标单击canvas
+        function clickCanvas(e) {
+            p = getEventPosition(e);
+            for (var i = 0; i < balls_array.length; i++) {
+                var ball = balls_array[i];
+                if (p.x >= ball.x && p.x <= (ball.x + ball.w) && p.y >= ball.y && p.y <= (ball.y + ball.h)) {
+                    alert(ball.id);
+                    //window.location.href = 'http://www.baidu.com?id=' + ball.id;
+                    break;
+                }
+            }
+        }
+        //鼠标移到Canvas,小球停止移动
+        function mouseOverCanvas() {
+            clearInterval(iID);
+        }
+        //鼠标移出Canvas,小球移动
+        function mouseOutCanvas() {
+            iID = setInterval(ballMove, 40);
+        }
+        //获取事件对象发生的位置
+        function getEventPosition(ev) {
+            var x, y;
+            if (ev.layerX || ev.layerX == 0) {
+                x = ev.layerX;
+                y = ev.layerY;
+            } else if (ev.offsetX || ev.offsetX == 0) { // Opera   
+                x = ev.offsetX;
+                y = ev.offsetY;
+            }
+            return { x: x, y: y };
+        }
+        //把Y坐标转化为透明度和尺寸属性，范围在n1到n2之间;  
+        function setProp(ball, n1, n2) {
+            return (((ball.y + ball.h / 2 - circle_y) + 2 * circle_b) / circle_b - 1) / 2 * (n2 - n1) + n1;
+        }
+    </script>
+</head>
+<body>
+    <canvas id="myCanvas" width="300" height="300">
+        这个浏览器不支持HTML5元素。
+    </canvas>
+	<div id="container"></div>
+	<div class="container">
+		<img class='img' src='../dva_app/dva-app/src/assets/yay.jpg'></img>
+		<div class="dot">
+			
+		</div>
+	</div>
+</body>
+<script>
+ 
+		//初始化3个小球
+		var container = document.getElementById("container");
+		var ball_arr = [];
+ 
+		for(var i=1; i<=3; i++){
+			var ball = document.createElement('div');
+			ball.id = "ball_" + i;
+			// ball.style.display = "none";
+			ball_arr.push( ball );				//压入小球数组
+			container.appendChild( ball );		//添加小球到网页中显示
+		}
+ 
+		//定义椭圆路径
+		var path_length = 50;	//定义路径的半长轴的长度
+		var path_width = 30;	//定义路径的半短轴的长度
+		var path_angel = 0;		//初始化角度为0
+		var angel_increase = 1.3;	//小球运动角度增量
+		var ball_gap = 0.8;		//小球间距
+ 
+		//鼠标移动事件(兼容性写法)
+		var webUI = container;
+		if (document.addEventListener) { //FireFox,Chrome,Opera…
+			// webUI.addEventListener('click', onMouseClick, false); //单击事件是在同一元素上发生了鼠标按下事件之后又发生了鼠标放开事件时才发生的。
+			// webUI.addEventListener('mousedown', OnMouseDown, false); //事件会在鼠标按键被按下时发生。
+			// webUI.addEventListener('mouseup', OnMouseUp, false); //事件会在鼠标按键被松开时发生。
+			webUI.addEventListener('mousemove',onMouseMove,false); //事件会在鼠标指针移动时发生。
+			// webUI.addEventListener('mouseover', onMouseOver, false); //事件会在鼠标指针移动到指定的对象上时发生。
+			// webUI.addEventListener('mouseout', onMouseOut, false); //事件会在鼠标指针移出指定的对象时发生。
+			//c.addEventListener('touch',onMouseClick,false);       
+		}
+		else if (document.attachEvent) { //IE
+			// webUI.attachEvent('onclick', onMouseClick, false); //单击事件是在同一元素上发生了鼠标按下事件之后又发生了鼠标放开事件时才发生的。
+			// webUI.attachEvent('onmousedown', OnMouseDown, false); //事件会在鼠标按键被按下时发生。
+			// webUI.attachEvent('onmouseup', OnMouseUp, false); //事件会在鼠标按键被松开时发生。
+			webUI.attachEvent('onmousemove', onMouseMove, false); //事件会在鼠标指针移动时发生。
+			// webUI.attachEvent('onmouseover', onMouseOver, false); //事件会在鼠标指针移动到指定的对象上时发生。
+			// webUI.attachEvent('onmouseout', onMouseOut, false); //事件会在鼠标指针移出指定的对象时发生。
+		}
+		else { //Other（IE，FireFox，Chrome，Opera等，绝大部分浏览器支持方法 onclick 监听）
+			alert("您的当前的浏览器可能是：……");
+			// webUI.onclick=onMouseClick;
+			// webUI.onmousedown=OnMouseDown;
+			// webUI.onmouseup=OnMouseUp;
+			webUI.onmousemove=onMouseMove;
+			// webUI.onmouseover=onMouseOver;
+			// webUI.onmouseout=onMouseOut;
+		}
+ 
+		//定义实时鼠标坐标
+		var mouseX = 0;
+		var mouseY = 0;
+ 
+		//鼠标移动事件
+		function onMouseMove(event){
+ 
+			//先停止小球运动
+			if( timer != null ){
+				cancelAnimationFrame(timer);
+			}
+ 
+			//更新坐标
+			mouseX = event.clientX + document.body.scrollLeft - document.body.clientLeft;
+			mouseY = event.clientY + document.body.scrollTop - document.body.clientTop;
+ 
+			//开启小球运动
+			timer = requestAnimationFrame(drawFrame);
+		}
+ 
+		//定义帧事件（兼容性写法）
+		window.requestAnimFrame = (function(){
+			return  window.requestAnimationFrame       || 
+					window.webkitRequestAnimationFrame || 
+					window.mozRequestAnimationFrame    || 
+					window.oRequestAnimationFrame      || 
+					window.msRequestAnimationFrame     || 
+					function( callback ){
+						window.setTimeout(callback, 1000 / 60);
+					};
+		})();
+		//取消帧事件（兼容性写法）
+		window.cancelAnimationFrame = (function () {
+			return window.cancelAnimationFrame ||
+					window.webkitCancelAnimationFrame ||
+					window.mozCancelAnimationFrame ||
+					window.oCancelAnimationFrame ||
+					function (timer) {
+						window.clearTimeout(timer);
+					};
+		})();
+ 
+		//监听帧事件，帧渲染和帧绘制的变量
+		var timer = null;
+ 
+		//根据椭圆路径，执行小球运动
+		function drawFrame(){
+ 
+			for(var i=0; i<ball_arr.length; i++){
+ 
+				var ball = ball_arr[i];
+ 
+				//显示小球
+				ball.style.display = "block";
+ 
+				//转化角度为弧度制
+				var angel = ((path_angel * Math.PI / 180) + (i * ball_gap)) % 360;
+ 
+				//更新小球横坐标
+				ball.style.left = path_length * Math.cos(angel) + mouseX - ball.style.width/2 - document.body.clientLeft + "px";
+				//更新小球纵坐标
+				ball.style.top = path_width * Math.sin(angel) + mouseY - ball.style.height/2 - document.body.clientTop + "px";
+ 
+				//根据增量更新角度
+				path_angel = (path_angel + angel_increase) % 360;
+			}
+ 
+			//再次渲染
+			timer = requestAnimationFrame(drawFrame);
+		}
+ 
+	</script>
+	<script type="text/javascript">
+		$(function(){
+        //中心点横坐标
+        var dotLeft = ($(".container").width()-$(".dot").width())/2-100;
+        //中心点纵坐标
+        var dotTop = ($(".container").height()-$(".dot").height())/2-100;
+        //椭圆长边
+        a = 460;
+        //椭圆短边
+        b = 120;
+        //起始角度
+        var stard = 0;
+
+        //每一个BOX对应的角度;
+        var avd = 360/$(".container img").length;
+        //每一个BOX对应的弧度;
+        var ahd = avd*Math.PI/180;
+        //运动的速度
+        var speed = 2;
+        //图片的宽高
+        var wid = $(".container img").width();
+        var hei = $(".container img").height();
+        //总的TOP值
+        var totTop = dotTop+100;
+        
+    
+
+        //设置圆的中心点的位置
+        $(".dot").css({"left":dotLeft,"top":dotTop});
+
+        
+        //运动函数
+        var fun_animat = function(){
+            
+            speed = speed<360?speed:2;
+            
+            //运运的速度
+            speed+=2;
+            //运动距离，即运动的弧度数;
+            var ainhd = speed*Math.PI/180;
+            
+            //按速度来定位DIV元素
+            $(".container img").each(function(index, element){
+                var allpers = (Math.cos((ahd*index+ainhd))*b+dotTop)/totTop;
+                var wpers = Math.max(0.1,allpers);
+                var hpers = Math.max(0.1,allpers);
+                $(this).css({
+                    "left":Math.sin((ahd*index+ainhd))*a+dotLeft,
+                    "top":Math.cos((ahd*index+ainhd))*b+dotTop,
+                    "z-index":Math.ceil(allpers*10),
+                    "width":wpers*wid,
+                    "height":hpers*hei,
+                    "opacity":allpers
+                });
+             });
+        }
+        
+        
+        //定时调用运动函数
+        var setAnimate = setInterval(fun_animat,100);
+    })
+	</script>
+</html>
