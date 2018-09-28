@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			.haorooms-dot {
+				width:20px;
+				height:20px;
+				-webkit-animation: xAxis 2.5s infinite ease-in;;
+				animation: xAxis 2.5s infinite ease-in;
+				position:relative;
+				top:200px;
+				left:100px;
+			}
+			.haorooms-dot::after {
+				position:absolute;
+				content: 'haorooms';
+				display: block;
+				width: 20px;
+				height: 20px;
+				border-radius: 20px;
+				background-color: red;
+				-webkit-animation: yAxis 2.5s infinite ease-out;
+				animation: yAxis 2.5s infinite ease-out;
+			}
+			@-webkit-keyframes xAxis {
+			  50% {
+				-webkit-transform: translateX(150px);
+				transform: translateX(150px);
+			  }
+			}
+			@keyframes xAxis {
+			  50% {
+				-webkit-transform: translateX(150px);
+				transform: translateX(150px);
+			  }
+			}
+			@-webkit-keyframes yAxis {
+			  50% {
+				-webkit-transform: translateY(-150px);
+				transform: translateY(-150px);
+			  }
+			}
+			@keyframes yAxis {
+			  50% {
+				-webkit-transform: translateY(-150px);
+				transform: translateY(-150px);
+			  }
+			}
+			.haorooms{
+			  position: absolute; top: 50px; left: 50px;
+			  -webkit-animation: clockwise 1.5s linear infinite; 
+			  animation: clockwise 1.5s linear  infinite ;
+			  transform-origin: 100px 100px;
+			  background: red;
+			}
+			.haorooms em {
+				display: block;
+				width: 40px; height: 40px;
+				background: red;
+				color:fff;
+				-webkit-animation: counter-clockwise 1.5s linear infinite; 
+				animation: counter-clockwise 1.5s linear  infinite ;
+			}
+			@-webkit-keyframes clockwise{
+			  0%  { -webkit-transform: rotate(0deg) ;  }
+			  100%{ -webkit-transform: rotate(360deg); }
+			}
+			@keyframes clockwise {
+			  0%  { transform: rotate(0deg) ; }
+			  100%{ transform: rotate(360deg); }
+			}
+			@-webkit-keyframes counter-clockwise {
+			  0%  { -webkit-transform: rotate(360deg) ;  }
+			  100%{ -webkit-transform: rotate(0deg); }
+			}
+			@keyframes counter-clockwise {
+			  0%  { transform: rotate(360deg) ;  }
+			  100%{ transform: rotate(0deg); }
+			}
+			/* animation-fill-mode：forwards; 实现css3 使用animation 只执行一次然后停留在执行后的状态, 我们只需要把infinite 去掉，默认让其只执行一次！ forwards含义是设置对象状态为动画结束时的状态。*/
+		</style>
+	</head>
+	<body>
+		<div class="haorooms-dot"></div>
+		<div class="haorooms"><em></em></div>
+	</body>
+</html>
