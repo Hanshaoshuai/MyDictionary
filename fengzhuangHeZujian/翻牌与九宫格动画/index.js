@@ -5,7 +5,7 @@ const page = {
 		var stopStep=1;//表示最终奖品位置  
 	    var runT=null;//转动方法  
 	    var step=-1;//计算转动的步数，控制转速和停止  
-	    var during=2;//转速  
+	    var during=8;//转速  
 	    $("button").click(function(e){  
 	        stopStep=Math.floor(Math.random()*8+1);  
 	        runT=setTimeout(runF,100);  
@@ -16,7 +16,7 @@ const page = {
 	            $(".gift"+(step%8)).css("background-color","#F00");  
 	            step=stopStep;  
 	            alert("you get"+step);
-	            during=2;
+	            during=8;
 	            clearTimeout(runT);//停止转动  
 	            return;  
 	        }  
