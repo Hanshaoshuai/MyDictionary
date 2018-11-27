@@ -246,14 +246,14 @@
 			    	return S+ "秒"+ MS+ "毫秒";
 			    }
 			}
-	//		document.write("还剩下 "+numToTime3(1524303940833)+'<br/>');
+//			document.write("还剩下111111 "+numToTime3(1524303940833)+'<br/>');
 			var timesNo = setInterval(function(){
 				document.getElementById('times').innerText="还剩下 "+numToTime3(1599608720054);
 			},10)
 			
 
 
-			function numToTime(num, newNum) {
+			function numToTime_1(num, newNum) {
 				// let newNum = new Date().getTime();
 				if(num*1 - newNum*1 <= 0) {
 					return '0';
@@ -295,8 +295,106 @@
 					return {'D':0,'H':'00','M':'00','S':S,'MS':MS}
 				}
 			}
+			console.log(numToTime_1(1588527230294,1543327230294))
+			document.write('倒计时还剩'+numToTime_1(1588527230294,1543327230294).D+'天<br/>');
 			// export default numToTime;
-
+			//过去式记录格式为：几时几分、超过24小时显示几月几日
+			function numToTime_s (num){
+				if(num == ''){
+				  return;
+				}
+				var newNum = new Date().getTime(),
+					time = new Date(num).toLocaleString(),
+					date = new Date(new Date()),
+					year,
+					mouth,
+					day,
+					h,
+					m,
+					newTime = new Date(newNum).toLocaleString(),
+					week = {
+						"0": "日",
+						"6": "一",
+						"5": "二",
+						"4": "三",
+						"3": "四",
+						"2": "五",
+						"1": "六"
+					},
+					getDays=new Date().getDate()*1;;
+		        console.log(newNum)
+				time = time.replace(/\d+[\/\-]/, function(text){
+					year = text.match(/\d+/)[0];
+					return '';
+				});
+				time = time.replace(/\d+[\/\-]/, function(text){
+					mouth = text.match(/\d+/)[0];
+					return '';
+				});
+				time = time.replace(/\d+/, function(text){
+					day = text.match(/\d+/)[0];
+					return '';
+				});
+				time = time.replace(/\d+/, function(text){
+					h = text.match(/\d+/)[0];
+					return '';
+				});
+				time = time.replace(/\d+/, function(text){
+					m = text.match(/\d+/)[0];
+					return '';
+				});
+				num = (newNum - num) / 1000;
+				function getHours (){
+					if(/上午/.test(time)){
+						if(h == 12 || h < 5){
+							if(h == 12){
+								return '凌晨00' + ':'+ m;
+							}else{
+								return '凌晨0'+h.toString() + ':'+ m;
+							}
+						  
+						}else if(h == 5){
+							return '清晨0'+h.toString() + ':'+ m;
+						}else if(h > 5 && h < 11){
+							if(h == 10){
+								return '早上'+ h.toString() + ':'+ m;
+							}else{
+								return '早上0'+h.toString() + ':'+ m;
+							}
+						}else if(h > 10 && h < 12){
+							return '中午'+h.toString() + ':'+ m;
+						}
+					} else {
+						if(h == 12 || h < 1){
+							if(h == 12){
+								return '中午'+h.toString() + ':'+ m;
+							}else{
+								return '中午'+(h*1+12).toString() + ':'+ m;
+							}
+						  
+						}else if(h > 0 && h < 7){
+							return '下午'+(h*1+12).toString() + ':'+ m;
+						}else if(h > 6 && h < 12){
+							return '晚上'+(h*1+12).toString() + ':'+ m;
+						}
+					}
+				}
+		//        console.log('ooooooo====',date.getDay());
+				if(getDays == day*1){
+					return getHours();
+				}
+				if(getDays - day*1 == 1){
+					return '昨天&nbsp'+getHours();
+				}else if((getDays - day*1) > 1 && (getDays - day*1) < day*1){
+					// return '周' + week[getDays - day*1 + ""] + '&nbsp' + getHours();
+				}
+				if(year === newTime.match(/\d+/)[0]){
+					return mouth + '月' + day + '日&nbsp'+getHours();
+				} else {
+					return year + '年' + mouth + '月' + day + '日&nbsp'+getHours();
+				}
+			}
+			document.write(numToTime_s(1599608720054));
 
 		</script>
 	</body>
