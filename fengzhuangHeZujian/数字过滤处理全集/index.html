@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<a href="https://www.cnblogs.com/ckf1988/p/5619337.html">https://www.cnblogs.com/ckf1988/p/5619337.html</a>
+		<br/>
+		<a href="https://www.cnblogs.com/TigerZhang-home/p/8656345.html">https://www.cnblogs.com/TigerZhang-home/p/8656345.html</a>
+		<input onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+		<input id='inputs' onkeyup="" onafterpaste=""/>
+	</body>
+	<script type="text/javascript">
+		var inputs = document.getElementById('inputs');
+		inputs.onkeyup = function(){
+			if(this.value.length==1){
+				this.value=this.value.replace(/[^1-9]/g,'')
+			}else{
+				this.value=this.value.replace(/\D/g,'')
+			}
+		}
+		inputs.onafterpaste =function(){
+			if(this.value.length==1){
+				this.value=this.value.replace(/[^1-9]/g,'')
+			}else{
+				this.value=this.value.replace(/\D/g,'')
+			}
+		}
+	</script>
+</html>
