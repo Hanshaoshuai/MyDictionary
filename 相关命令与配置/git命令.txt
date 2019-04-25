@@ -4,6 +4,9 @@
 	2、配置
 		$  git  config  --global  user.name  "Your  Name"
 		$  git  config  --global  user.email  "email@example.com"
+	3、清楚本地缓存；
+		cloneDeep
+		git rm -r --cached .
 二、创建版本库
 	1、找一个目录创建一个空目录
 		$  mkdir  learngit
