@@ -1,5 +1,7 @@
 参考网址：http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
+sourcetree.        git管理工具
 一、安装git
+	没有root权限 怎么npm  可以在这个命令前加个sudo  ：sudo npm install dva-cli -g
 	1、下载
 	2、配置
 		$  git  config  --global  user.name  "Your  Name"
@@ -7,6 +9,7 @@
 	3、清楚本地缓存；
 		cloneDeep
 		git rm -r --cached .
+
 二、创建版本库
 	1、找一个目录创建一个空目录
 		$  mkdir  learngit
@@ -27,6 +30,7 @@
 		$  git  add  file1.txt
 		$  git  add  file2.txt  file3.txt
 		$  git  commit  -m  "add  3  files."
+
 三、版本回退
 	1、修改reademe.txt
 		我们是好程序员2班的大神
@@ -150,9 +154,12 @@
 
 	创建+切换分支：git checkout -b <name>
 
+	创建+切换分支+合并某分支: git checkout -b develop_20181026 origin/develop_20181026
+
 	合并某分支到当前分支：git merge <name>
 
 	删除分支：git branch -d <name>
+
 七、解决冲突
 	1、准备新的feature1分支，继续我们的新分支开发：
 		$ git checkout -b feature1
@@ -209,8 +216,8 @@
 	10、最后，删除feature1分支：
 		$ git branch -d feature1
 		Deleted branch feature1 (was 75a857c).
-八、多人协作
 
+八、多人协作
 	https://www.cnblogs.com/bluestorm/p/6252900.html
 
 	3.建立本地到上游（远端）仓的链接 --这样代码才能提交上去
@@ -251,3 +258,92 @@
 	建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
 
 	从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+
+十、发布安装包命令
+	Underscore.js
+
+	首先执行npm adduser
+		Username: hanshaoshuai
+		Password: 865923han
+		Email: (this IS public) 361062939@qq.com
+		Logged in as hanshaoshuai on https://registry.npmjs.org/.
+
+	在执行npm publish
+		如果出现下面报错说明package.json中的mame属性名有人用过了换一个就行了  如果 ERR! publish Failed PUT 400  说明你package.json中的mame属性名有大写字母不允许大写；
+		npm ERR! publish Failed PUT 403
+		npm ERR! code E403
+		npm ERR! You do not have permission to publish "gettime". Are you logged in as the correct user? : gettime
+
+		npm ERR! A complete log of this run can be found in:
+		npm ERR!     C:\Users\Hanshaoshuai\AppData\Roaming\npm-cache\_logs\2018-04-22T15_12_48_625Z-debug.log
+
+
+十一、VS code 使用设置:
+	{
+			"emmet.syntaxProfiles": {
+				"vue-html": "html",
+				"vue": "html"
+			},
+			"files.associations": {
+				"*.ejs": "html",
+				"*.twig": "html"
+			},
+			"beautify.language": {
+				"js": {
+					"type": ["json"],
+					"filename": [".jshintrc", ".jsbeautifyrc"]
+				},
+				"css": ["css", "scss", "less"],
+				"html": ["htm", "html", "twig", "ejs", "velocity"]
+			},
+			"html.format.wrapAttributes": "force-expand-multiline",
+			"gitlens.advanced.messages": {
+				"suppressCommitHasNoPreviousCommitWarning": false,
+				"suppressCommitNotFoundWarning": false,
+				"suppressFileNotUnderSourceControlWarning": false,
+				"suppressGitVersionWarning": false,
+				"suppressLineUncommittedWarning": false,
+				"suppressNoRepositoryWarning": false,
+				"suppressResultsExplorerNotice": false,
+				"suppressShowKeyBindingsNotice": true,
+				"suppressUpdateNotice": false,
+				"suppressWelcomeNotice": true
+			},
+			"workbench.iconTheme": "vscode-icons",
+			"editor.fontSize": 15,
+			"editor.tabSize": 2,
+			"terminal.integrated.fontSize": 15,
+			"editor.lineHeight": 20,
+			"editor.fontFamily": "Ayuthaya, Menlo, Monaco, 'Courier New', monospace",
+			"editor.wordWrap": "on",
+			"workbench.colorTheme": "One Dark Pro",
+			"sublimeTextKeymap.promptV3Features": true,
+			"editor.formatOnSave": false,
+			"editor.multiCursorModifier": "ctrlCmd",
+			"editor.snippetSuggestions": "top",
+			"editor.formatOnPaste": false,
+			"eslint.autoFixOnSave": true,
+			"emmet.includeLanguages": {
+				"javascript": "javascriptreact",
+				"velocity": "html"
+			},
+			"eslint.validate": [
+				"javascript",
+				"javascriptreact",
+				"html",
+				{
+					"language": "vue",
+					"autoFix": true
+				}
+			],
+			"javascript.validate.enable": false,
+			"prettier.singleQuote": true,
+			"prettier.eslintIntegration": true,
+			"css.validate": false,
+			"scss.validate": false,
+			"window.zoomLevel": 0,
+			"gitlens.historyExplorer.enabled": true,
+			"git.confirmSync": false,
+			"vsicons.dontShowNewVersionMessage": true
+	}
+	插件安装使用：
