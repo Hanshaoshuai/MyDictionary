@@ -16,25 +16,28 @@ sourcetree.        git管理工具
 		$  cd  learngit
 		$  pwd
 		/Users/michael/learngit
+
 	2、通过git  init  命令把这个目录变成git可以管理的仓库
 		$  git  init
 		Initialized  empty  Git  repository  in  /Users/michael/learngit/.git/
 		可以通过ls-ah命令看见有哪些文件
-	3、创建一个文件readme.txt，编写内容
-		我们是好程序员2班的大神
+
+	3、创建一个文件readme.txt，编写内容	我们是好程序员2班的大神
+
 	4、用命令git  add告诉Git，把文件添加到仓库：
 		$  git  add  readme.txt
+
 	5、用命令git  commit告诉Git，把文件提交到仓库：
 		$git  commit  -m  "我们只是初步创建了一下而已“
+
 	6、commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：
 		$  git  add  file1.txt
 		$  git  add  file2.txt  file3.txt
 		$  git  commit  -m  "add  3  files."
 
 三、版本回退
-	1、修改reademe.txt
-		我们是好程序员2班的大神
-		这是真的
+	1、修改reademe.txt 我们是好程序员2班的大神这是真的
+
 	2、运行git  status命令查看结果
 		$  git  status
 
@@ -48,7 +51,9 @@ sourcetree.        git管理工具
 		-Git  is  a  version  control  system.
 		+Git  is  a  distributed  version  control  system.
 			Git  is  free  software.
+
 	4、git  add  readme.txt  
+
 	5.git  status
 		$  git  status
 		#  On  branch  master
@@ -60,18 +65,22 @@ sourcetree.        git管理工具
 	6.$  git  commit  -m  "add  distributed"
 		[master  ea34578]  add  distributed
 			1  file  changed,  1  insertion(+),  1  deletion(-)
+
 	7.git  status命令看看仓库的当前状态
 		$  git  status
 		#  On  branch  master
 		nothing  to  commit  (working  directory  clean)
+
 	8.再次修改文件
 		Git  is  a  distributed  version  control  system.
 		Git  is  free  software  distributed  under  the  GPL.
+
 	9.提交
 		$  git  add  readme.txt
 		$  git  commit  -m  "append  GPL"
 		[master  3628164]  append  GPL
 			1  file  changed,  1  insertion(+),  1  deletion(-)
+
 	10.通过git  log查看历史版本
 		或者git  log  --pretty=oneline
 		$  git  log  --pretty=oneline
@@ -82,11 +91,13 @@ sourcetree.        git管理工具
 		git  reset  --hard  HEAD^
 		$  git  reset  wq:wq
 		HEAD  is  now  at  ea34578  add  distributed
+
 	12.查看版本库状态
 		git  log
 		最新的那个版本append  GPL已经看不到了！
 		$  git  reset  --hard  3628164
 		HEAD  is  now  at  3628164  append  GPL
+		
 		要上面的命令行窗口还没有被关掉，你就可以顺着往上找啊找啊，找到那个append  GPL的commit  id是3628164...，于是就可以指定回到未来的某个版本
 		$  git  reset  --hard  3628164
 		HEAD  is  now  at  3628164  append  GPL
@@ -110,6 +121,7 @@ sourcetree.        git管理工具
 	2、在Repository  name填入learngit，其他保持默认设置，点击“Create  repository”按钮，就成功地创建了一个新的Git仓库：
 		git  remote add origin git@github.com:michaelliao/learngit.git
 		（远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。）
+
 	3、本地库的所有内容推送到远程库上
 		$ git push -u origin master
 		Counting objects: 19, done.
@@ -120,6 +132,7 @@ sourcetree.        git管理工具
 		To git@github.com:michaelliao/learngit.git
 		* [new branch]      master -> master
 		Branch master set up to track remote branch master from origin.
+
 	4、从现在起，只要本地作了提交，就可以通过命令：
 		$ git push origin master
 		把本地master分支的最新修改推送至GitHub，现在，你就拥有了真正的分布式版本库！
@@ -127,7 +140,9 @@ sourcetree.        git管理工具
 
 五、从远程库中获取数据
 	1、登陆GitHub，创建一个新的仓库，名字叫gitskills
+
 	2.我们勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个	README.md文件。创建完毕后，可以看到	README.md文件：
+
 	3.用命令git clone克隆一个本地库：
 		$ git clone git@github.com:michaelliao/gitskills.git
 		Cloning into 'gitskills'...
@@ -165,22 +180,27 @@ sourcetree.        git管理工具
 		$ git checkout -b feature1
 		修改readme.txt最后一行，改为：
 		Creating a new branch is quick AND simple.
+
 	2、在feature1分支上提交：
 		$ git add readme.txt 
 		$ git commit -m "AND simple"
 		[feature1 75a857c] AND simple
 		1 file changed, 1 insertion(+), 1 deletion(-)
+
 	3、	切换到master分支：
 		$ git checkout master
 		Switched to branch 'master'
 		Your branch is ahead of 'origin/master' by 1 commit.
+
 	4、在master分支上把readme.txt文件的最后一行改为
 		Creating a new branch is quick & simple.
+
 	5、提交：
 		$ git add readme.txt 
 		$ git commit -m "& simple"
 		[master 400b400] & simple
 			1 file changed, 1 insertion(+), 1 deletion(-)	
+
 	6、这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突，我们试试看：
 		$ git merge feature1
 		Auto-merging readme.txt
@@ -197,6 +217,7 @@ sourcetree.        git管理工具
 		#       both modified:      readme.txt
 		#
 		no changes added to commit (use "git add" and/or "git commit -a")	
+
 	7、我们可以直接查看readme.txt的内容：	
 		Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改如下后保存：
 		Creating a new branch is quick and simple.
@@ -204,6 +225,7 @@ sourcetree.        git管理工具
 		$ git add readme.txt 
 		$ git commit -m "conflict fixed"
 		[master 59bc1cb] conflict fixed	
+
 	9、用带参数的git log也可以看到分支的合并情况：
 		$ git log --graph --pretty=oneline --abbrev-commit
 		*   59bc1cb conflict fixed
@@ -213,6 +235,7 @@ sourcetree.        git管理工具
 		|/
 		* fec145a branch test
 		...	
+
 	10、最后，删除feature1分支：
 		$ git branch -d feature1
 		Deleted branch feature1 (was 75a857c).
