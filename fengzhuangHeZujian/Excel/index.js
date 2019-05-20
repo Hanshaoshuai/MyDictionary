@@ -5,8 +5,8 @@ var tmpDown; //  导出的二进制对象
 var scriptLoad = false; //是否加载完成；
 
 var index = function PureComponent(obj){
-  var types = obj.type || undefined, // 导入Excel('Import')返回两项数据[{}],boolean/导出Excel('export'),返boolean
-      elements = obj.elements || undefined, // input上传后的dom元素;
+  var types = obj.type || undefined, // 导入Excel('Import')/导出Excel('export'),
+      elements = obj.elements || undefined, // input上传变更后的dom元素;
       dataList = obj.dataList || undefined, // 要导出Excel的数据, 格式：[{}]
       textName = obj.textName || undefined, // 要导出Excel文件名
       fileTypes = obj.fileTypes,            // 自定义文件类型

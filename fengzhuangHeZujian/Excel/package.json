@@ -1,12 +1,25 @@
 {
   "name": "excel-filejs",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.5",
+  "description": "excel上传和导出excel",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Hanshaoshuai",
+  "license": "ISC",
+  "homepage": "https://github.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/"
+  },
+  "keywords": [
+    "excel-filejs",
+    "excel",
+    "exceljs",
+    "Excel",
+    "Exceljs",
+    "JSExcel"
+  ]
 }
