@@ -2,7 +2,7 @@
 
 // 获取日期、时间、上午/下午，毫秒、季度 "yyyy-MM-dd EE AM hh:mm:ss S q"
 function formatDate (fmt) {
-	if(!fmt || !isNaN(num)) {
+	if(!fmt || !isNaN(fmt)) {
 		console.error('入参格式错误应为String"yyyy-MM-dd EE AM hh:mm:ss S q"！')
 		return;
 	}
@@ -61,11 +61,11 @@ function formatDate (fmt) {
 
 // 过去式记录格式为：刚刚、多少分钟前、多少小时前，超过24小时为几月几日
 function pastTime (num) {
-	if(!fmt || isNaN(num) || num == null || num == true) {
+	if(!num || isNaN(num) || num == null || num == true) {
 		console.error('入参错误应为时间戳Number！')
 		return;
 	}
-	fmt = fmt.toString()
+	num = num.toString()
 	var newNum = new Date().getTime(),
 		time = new Date().toLocaleString(),
 		year, mouth, day, newTime = new Date(newNum).toLocaleString();
@@ -83,21 +83,22 @@ function pastTime (num) {
 	});
 	num = (newNum - num) / 1000;
 	if(num < 60) {
-		return '刚刚'
+		if(num<0) return '你穿越时空啦！';
+		return '刚刚';
 	} else if(num < 3600) {
-		return parseInt(num / 60) + '分钟前'
+		return parseInt(num / 60) + '分钟前';
 	} else if(num < 86400) {
-		return parseInt(num / 3600) + '小时前'
+		return parseInt(num / 3600) + '小时前';
 	} else if(year === newTime.match(/\d+/)[0]) {
-		return mouth + '月' + day + '日'
+		return mouth + '月' + day + '日';
 	} else {
-		return year + '年' + mouth + '月' + day + '日'
+		return year + '年' + mouth + '月' + day + '日';
 	}
 }
 
 // 过去式记录格式为：上午/下午几时几分、超过24小时显示几月几日
 function specificPastTime (num){
-	if(!fmt || isNaN(num) || num == null || num == true) {
+	if(!num || isNaN(num) || num == null || num == true) {
 		console.error('入参错误应为时间戳Number！')
 		return;
 	}
@@ -193,7 +194,7 @@ function specificPastTime (num){
 
 // 倒计时格式：一次性提示，还剩下 几天几小时几分钟
 function countDown (num) {
-	if(!fmt || isNaN(num) || num == null || num == true) {
+	if(!num || isNaN(num) || num == null || num == true) {
 		console.error('入参错误应为时间戳Number！')
 		return;
 	}
@@ -218,8 +219,8 @@ function countDown (num) {
 }
 
 // 倒计时格式：实时刷新性提示，还剩下 几天几小时几分钟几秒
-function realTimeReverse (num) {
-	if(!fmt || isNaN(num) || num == null || num == true) {
+function realTimeCountDown (num) {
+	if(!num || isNaN(num) || num == null || num == true) {
 		console.error('入参错误应为时间戳Number！')
 		return;
 	}
@@ -262,8 +263,8 @@ function realTimeReverse (num) {
 }
 
 // 倒计时格式：实时刷新性提示，返回对象为： {D:天、H:小时、M:分钟、S:秒、MS:毫秒}；
-function realTimeReverseSeparate (num, newNums) {
-	if(!fmt || isNaN(num) || num == null || num == true) {
+function realTimeCountDownSeparate (num, newNums) {
+	if(!num || isNaN(num) || num == null || num == true) {
 		console.error('入参错误应为时间戳Number！')
 		return;
 	}
@@ -322,10 +323,10 @@ module.exports = {
 	"countDown": function(num) {
 		return countDown(num);
 	},
-	"realTimeReverse": function(num) {
-		return realTimeReverse(num);
+	"realTimeCountDown": function(num) {
+		return realTimeCountDown(num);
 	},
-	"realTimeReverseSeparate": function(num) {
-		return realTimeReverseSeparate(num);
+	"realTimeCountDownSeparate": function(num) {
+		return realTimeCountDownSeparate(num);
 	}
 };

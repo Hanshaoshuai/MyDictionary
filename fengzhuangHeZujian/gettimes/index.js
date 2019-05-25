@@ -1,3 +1,3 @@
-var getTime = require('./time.js');
+var gettimesjs = require('./time.js');
 // console.log(time)
-module.exports = getTime;
+module.exports = gettimesjs;
