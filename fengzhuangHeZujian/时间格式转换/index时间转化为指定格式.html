@@ -9,9 +9,9 @@
 		<div id="body"></div>
 		<script type="text/javascript">
 			// 为Date对象增加时间格式化函数
-	        function formatDate(date, fmt) {
-	            date = new Date(date);
-	            var newNum = new Date().getTime(),
+	        function formatDate(fmt) {
+							var date = new Date(),
+									newNum = new Date().getTime(),
 	              	time = date.toLocaleString(),
 	              	S= Math.floor((date.getMilliseconds()/10)),
 	              	q= date.getMonth()
@@ -65,14 +65,14 @@
 	        }
 	      setInterval(function(){
 	        //调用：
-	        document.getElementById('body').innerText=formatDate(new Date(),"yyyy-MM-dd EE AM hh:mm:ss S q");
+	        document.getElementById('body').innerText=formatDate("yyyy-MM-dd EE AM hh:mm:ss S q");
 	      },10)
 
 		</script>
 		<div id="times"></div>
 		<script>
 		//过去式记录格式为：刚刚、多少分钟前、多少小时前
-		  function numToTime(num){
+		  function pastTime(num){
 		  //num *= 1000;
 		    var newNum = new Date().getTime(),
 		      	time = new Date(num).toLocaleString(),
@@ -80,7 +80,7 @@
 		      	mouth,
 		      	day,
 		      	newTime = new Date(newNum).toLocaleString();
-		
+						console.log(newNum,time)
 		    time = time.replace(/\d+[\/\-]/, function(text){
 		      	year = text.match(/\d+/)[0];
 		      	return '';
@@ -108,7 +108,7 @@
 		    }
 		  }
 		
-		  document.write(numToTime(1524300940833)+'<br/>');
+		  document.write(pastTime(1541757356514)+'<br/>');
 		  
 		//过去式记录格式为：几时几分、超过24小时显示几月几日
 		function numToTime1(num){
@@ -169,14 +169,14 @@
 		      	return year + '年' + mouth + '月' + day + '日';
 		    }
 		}
-		document.write(numToTime1(1514301940833)+'<br/>');
+		document.write(numToTime1(1558757356514)+'<br/>');
 		  
 		  
 		//倒计时格式：一次性提示，还剩下 几天几小时几分钟
-		function numToTime2(num){
+		function countDown(num){
 		//	num *= 1000;
 		    var newNum = new Date().getTime();
-		    if(num*1 - newNum <= 0){
+		    if(num*1 <= newNum){
 		    	return '0';
 		    }
 		    num = (num*1 - newNum) /1000;
@@ -196,15 +196,15 @@
 		    	return Math.round(M)+ "分钟";
 		    }
 		}
-		document.write("还剩下 "+numToTime2(1599608720054)+'<br/>');
+		document.write("还剩下 "+countDown(1568771628442)+'<br/>');
 			
 			
 			
 		//倒计时格式：实时刷新性提示，还剩下 几天几小时几分钟几秒
-			function numToTime3(num){
+			function realTimeReverse(num){
 			//	num *= 1000;
 			    var newNum = new Date().getTime();
-			    if(num*1 - newNum <= 0){
+			    if(num*1 <= newNum){
 			    	clearInterval(timesNo);
 			    	return '0';
 			    }
@@ -248,15 +248,17 @@
 			}
 //			document.write("还剩下111111 "+numToTime3(1524303940833)+'<br/>');
 			var timesNo = setInterval(function(){
-				document.getElementById('times').innerText="还剩下 "+numToTime3(1599608720054);
+				document.getElementById('times').innerText="还剩下 "+realTimeReverse(1599608720054);
 			},10)
 			
 
 
-			function numToTime_1(num, newNum) {
-				// let newNum = new Date().getTime();
-				if(num*1 - newNum*1 <= 0) {
-					return '0';
+			function realTimeReverseSeparate(num, newNums) {
+				//倒计时格式：实时刷新性提示，返回对象为： {D:天、H:小时、M:分钟、S:秒、MS:毫秒}；
+				let newNum = new Date().getTime();
+				console.log('kkk', num,newNum)
+				if((num*1 - newNum*1) <=0 ) {
+					return {'D':0,'H':'00','M':'00','S':'00','MS':'0000'};
 				}
 				num = (num*1 - newNum*1) /1000;
 				let D = num / 3600 / 24;
@@ -295,11 +297,11 @@
 					return {'D':0,'H':'00','M':'00','S':S,'MS':MS}
 				}
 			}
-			console.log(numToTime_1(1588527230294,1543327230294))
-			document.write('倒计时还剩'+numToTime_1(1588527230294,1543327230294).D+'天<br/>');
+			console.log(realTimeReverseSeparate(1558771628442))
+			document.write('倒计时还剩'+realTimeReverseSeparate(1558771628442).D+'天<br/>');
 			// export default numToTime;
 			//过去式记录格式为：几时几分、超过24小时显示几月几日
-			function numToTime_s (num){
+			function specificPastTime (num){
 				if(num == ''){
 				  return;
 				}
@@ -352,7 +354,6 @@
 							}else{
 								return '凌晨0'+h.toString() + ':'+ m;
 							}
-						  
 						}else if(h == 5){
 							return '清晨0'+h.toString() + ':'+ m;
 						}else if(h > 5 && h < 11){
@@ -371,7 +372,6 @@
 							}else{
 								return '中午'+(h*1+12).toString() + ':'+ m;
 							}
-						  
 						}else if(h > 0 && h < 7){
 							return '下午'+(h*1+12).toString() + ':'+ m;
 						}else if(h > 6 && h < 12){
@@ -394,7 +394,7 @@
 					return year + '年' + mouth + '月' + day + '日&nbsp'+getHours();
 				}
 			}
-			document.write(numToTime_s(1599608720054));
+			document.write(specificPastTime(1558769207601));
 
 		</script>
 	</body>

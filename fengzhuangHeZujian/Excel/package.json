@@ -1,7 +1,7 @@
 {
   "name": "excel-filejs",
-  "version": "1.0.5",
-  "description": "excel上传和导出excel",
+  "version": "1.0.6",
+  "description": "excel文件上传填充表格和将表格导数据出excel文件",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,10 +9,10 @@
   },
   "author": "Hanshaoshuai",
   "license": "ISC",
-  "homepage": "https://github.com/",
+  "homepage": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/fengzhuangHeZujian/Excel",
   "repository": {
     "type": "git",
-    "url": "https://github.com/"
+    "url": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/fengzhuangHeZujian/Excel"
   },
   "keywords": [
     "excel-filejs",
@@ -20,6 +20,12 @@
     "exceljs",
     "Excel",
     "Exceljs",
-    "JSExcel"
+    "JSExcel",
+    "excel-react",
+    "excel-vue",
+    "reactExcel",
+    "vueExcel",
+    "react-excel",
+    "vue-excel"
   ]
 }

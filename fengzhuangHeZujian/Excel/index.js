@@ -5,11 +5,11 @@ var tmpDown; //  导出的二进制对象
 var scriptLoad = false; //是否加载完成；
 
 var index = function PureComponent(obj){
-  var types = obj.type || undefined, // 导入Excel('Import')/导出Excel('export'),
-      elements = obj.elements || undefined, // input上传变更后的dom元素;
-      dataList = obj.dataList || undefined, // 要导出Excel的数据, 格式：[{}]
-      textName = obj.textName || undefined, // 要导出Excel文件名
-      fileTypes = obj.fileTypes,            // 自定义文件类型
+  var types = obj.type,            // 导入Excel('Import')/导出Excel('export'),
+      elements = obj.elements,    // input上传变更后的dom元素;
+      dataList = obj.dataList,    // 要导出Excel的数据, 格式：[{}]
+      textName = obj.textName,    // 要导出Excel文件名
+      fileTypes = obj.fileTypes,  // 自定义文件类型
       EXCEL = undefined;
 
   function componentWillMount(){
@@ -145,15 +145,20 @@ var index = function PureComponent(obj){
     setTimeout(function () {
       reject('err，数据处理发生错误！')
     }, 20000);
-    if(list.length == 0){
-      console.error('导出数据不能为空！');
-      reject({
-        "judges": false,
-        "text": '导出的数据有误！',
-      });
-      return;
+    if(Array.isArray(list)){
+      if(list.length == 0){
+        console.error('导出数据不能为空！');
+        reject({
+          "judges": false,
+          "text": '导出的数据有误！',
+        });
+        return;
+      }else{
+        downloadExl(list, type, resolve, reject);
+      }
+    }else{
+      reject('err，入参数据格式不正确！（Array）');
     }
-    downloadExl(list, type, resolve, reject);
   }
 
   function downloadExl(json, type, resolve, reject){

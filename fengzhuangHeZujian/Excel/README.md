@@ -32,14 +32,12 @@ excelFile({
 #### 导出excel文件
 
 ``` javascript
-excelFile(
-  {
-    type: "export",             // 'export'导出Excel,
-    dataList: list,             // 要导出Excel的数据, 格式：[{}]
-    textName: '2019年下载量统计', // 自定义Excel文件名或不传
-    // fileTypes: 'xls',        // 自定义文件类型
-  }
-).then(res => {
+excelFile({
+  type: "export",             // 'export'导出Excel,
+  dataList: list,             // 要导出Excel的数据, 格式：[{}]
+  textName: '2019年下载量统计', // 自定义Excel文件名或不传
+  // fileTypes: 'xls',        // 自定义文件类型
+}).then(res => {
   console.log('返回数据==》》',res);
 }).catch(error => {
   console.log('err',error);

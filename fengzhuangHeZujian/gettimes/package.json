@@ -1,0 +1,33 @@
+{
+  "name": "gettimesjs",
+  "version": "1.1.2",
+  "description": "时间格式转换、倒计时处理6种方法6种使用场景",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Hanshaoshuai",
+  "license": "ISC",
+  "homepage": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/fengzhuangHeZujian/gettimes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/fengzhuangHeZujian/gettimes"
+  },
+  "keywords": [
+    "gettimejs",
+    "timejs",
+    "gettime-js",
+    "js-gettime",
+    "gettimes",
+    "time-js",
+    "tim-time",
+    "time-number",
+    "time-message-js",
+    "reactExcel",
+    "vue-gettime",
+    "react-gettime",
+    "vue-time",
+    "react-tim"
+  ]
+}
