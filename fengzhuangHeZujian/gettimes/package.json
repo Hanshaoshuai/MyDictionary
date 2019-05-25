@@ -1,6 +1,6 @@
 {
   "name": "gettimesjs",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "时间格式转换、倒计时处理6种方法6种使用场景",
   "main": "index.js",
   "scripts": {

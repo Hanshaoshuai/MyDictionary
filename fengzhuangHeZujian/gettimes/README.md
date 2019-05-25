@@ -30,7 +30,7 @@ import {
 
 'specificPastTime()' 使用：入参为时间戳，显示过去时间式为：上午/下午几时几分、超过24小时显示几月几日上午/下午几时几分；
 
-'countDown()' 使用：入参为固定的时间戳，倒计时格式：还剩 几天几小时几分钟（realTimeReverse可代替它）；
+'countDown()' 使用：入参为固定的时间戳，倒计时格式：还剩 几天几小时几分钟（realTimeCountDown可代替它）；
 
 'realTimeCountDown()' 使用：'setInterval(()=>{realTimeCountDown(num)},10)'入参为固定的时间戳，倒计时格式：还剩下 几天几小时几分钟几秒；
 
