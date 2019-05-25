@@ -324,7 +324,7 @@ module.exports = {
 	},
 	"realTimeReverse": function(num) {
 		return realTimeReverse(num);
-	}
+	},
 	"realTimeReverseSeparate": function(num) {
 		return realTimeReverseSeparate(num);
 	}
