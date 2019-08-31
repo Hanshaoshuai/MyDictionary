@@ -47,6 +47,21 @@
       console.log('err',error);
       }
     );
+    
+    const response = await Promise.race([
+      fetch(url, options),
+      new Promise((resolve, reject) => {
+        setTimeout(() => resolve({ errMsg: '请求超时请稍后再试！', success: false }), 6000);
+      }),
+    ]);
+    if (response.errMsg === '请求超时请稍后再试！') {
+      console.log('请求超时==>>', response);
+      notification.error({
+        message: `请求超时请稍后再试！`,
+        // description: 'errortext',
+      });
+      return response;
+    }
 	</script>
 </html>
 

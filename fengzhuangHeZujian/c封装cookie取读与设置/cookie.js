@@ -46,6 +46,15 @@ export function cookielist(){
 	return obj;
 }
 
+function setCookie(name, value, days) {
+  const Days = days || 30;
+  const exp = new Date();
+  exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${escape(value)};expires=${exp.toGMTString()}`;
+}
+
+setCookie('aa', 'bb', -1);
+
 
 
 

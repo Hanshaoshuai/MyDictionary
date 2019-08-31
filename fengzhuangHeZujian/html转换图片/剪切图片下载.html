@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        #demo {
+            display: block;
+            width: 400px;
+            height: 400px;
+            margin: 50px;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+		#jp, #qx, #xz{
+			margin-top: 20px;
+			width: 100%;
+			text-align: center;
+			padding: 6px 0px;
+			border: 1px solid #2AC845;
+		}
+		#qx{
+			display: none;
+		}
+		#box{
+			width:100%;
+			height:100%;
+			background: #555555;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 999;
+			filter: alpha(opacity=50);
+			opacity: 0.5;
+			display:none;
+		}
+        #simg{
+        	width:100%;
+        	height:100%;
+        }
+        #small-box {
+			width:100%;
+			height:100%;
+            position: relative;
+            z-index: 1;
+        }
+        #float-box {
+            display: none;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: #ffffcc;
+            border: 1px solid #ccc;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+        }
+        #mark {
+            position: absolute;
+            display: block;
+            width: 400px;
+            height: 400px;
+            background-color: #fff;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            z-index: 10;
+        }
+        #big-box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 460px;
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            z-index: 1;;
+        }
+        #big-box img {
+            position: absolute;
+            width: 1600px;
+            height: 1600px;
+            z-index: 5
+        }
+		#myCanvas{
+			position: absolute;
+			left:0;
+			top:0;
+			width:0;
+			height: 0;
+			z-index: 9999;
+		}
+    </style>
+	<script src="../../MyDictionary-www/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="html2canvas.js"></script>
+	<script type="text/javascript" src="canvas2image.js"></script>
+    <script>
+        //页面加载完毕后执行
+        window.onload = function () {
+			var simg = document.getElementById("simg");
+			var canvasImg = document.getElementById("myCanvas")
+			// var context = canvasImg.getContext("2d")
+			
+            var objDemo = document.getElementById("demo");
+            var objSmallBox = document.getElementById("small-box");
+            var objMark = document.getElementById("mark");
+			var objbox = document.getElementById("box");
+            var objFloatBox = document.getElementById("float-box");
+            var objBigBox = document.getElementById("big-box");
+            var objBigBoxImage = objBigBox.getElementsByTagName("img")[0];
+            objMark.onmouseover = function () {
+                objFloatBox.style.display = "block"
+                objBigBox.style.display = "block"
+            }
+            objMark.onmouseout = function () {
+                objFloatBox.style.display = "none"
+                objBigBox.style.display = "none"
+            }
+            objMark.onmousemove = function (ev) {
+                var _event = ev || window.event;  //兼容多个浏览器的event参数模式
+                var left = _event.clientX - objDemo.offsetLeft - objSmallBox.offsetLeft - objFloatBox.offsetWidth / 2;
+                var top = _event.clientY - objDemo.offsetTop - objSmallBox.offsetTop - objFloatBox.offsetHeight / 2;
+                //设置边界处理，防止移出小图片
+                if (left < 0) {
+                    left = 0;
+                } else if (left > (objMark.offsetWidth - objFloatBox.offsetWidth)) {
+                    left = objMark.offsetWidth - objFloatBox.offsetWidth;
+                }
+                if (top < 0) {
+                    top = 0;
+                } else if (top > (objMark.offsetHeight - objFloatBox.offsetHeight)) {
+                    top = objMark.offsetHeight - objFloatBox.offsetHeight;
+                }
+                objFloatBox.style.left = left + "px";   //oSmall.offsetLeft的值是相对什么而言
+                objFloatBox.style.top = top + "px";
+                //求其比值
+                var percentX = left / (objMark.offsetWidth - objFloatBox.offsetWidth);
+                var percentY = top / (objMark.offsetHeight - objFloatBox.offsetHeight);
+                //方向相反，小图片鼠标移动方向与大图片相反，故而是负值
+                objBigBoxImage.style.left = -percentX * (objBigBoxImage.offsetWidth - objBigBox.offsetWidth) + "px";
+                objBigBoxImage.style.top = -percentY * (objBigBoxImage.offsetHeight - objBigBox.offsetHeight) + "px";
+            }
+			var fixedLeft = 0, fixedTop = 0, endLeft = 0, endTop = 0, left = 0, top = 0, start = false, returns = false, downloadWidth = 0, downloadHeight = 0;
+			document.onmousemove = function (ev) {
+			    var _event = ev || window.event;  //兼容多个浏览器的event参数模式
+			    left = _event.clientX - objDemo.offsetLeft;
+			    top = _event.clientY - objDemo.offsetTop;
+				// console.log('tttt', left, top, _event)
+			    // //设置边界处理，防止移出小图片
+			    if ((objSmallBox.offsetWidth - left < 0 || objSmallBox.offsetHeight - top < 0) && start) {
+					start = false;
+					returns = false;
+					console.log(start)
+			        return;
+			    }
+				if(start && returns){
+					$('#myCanvas').css({
+						"width": left - fixedLeft - 6 + 'px',
+						'height': top - fixedTop - 6 + 'px',
+						'border': '1px solid #007AFF',
+						'background-image': "url('./slide.png')",
+						'background-size': objbox.offsetWidth + 'px '+ objbox.offsetHeight + "px" ,
+						'background-repeat': 'no-repeat',
+						// 'background-attachment': 'fixed',
+						'background-position': -(fixedLeft + 1) + "px " + -(fixedTop + 1) + "px",
+					})
+					downloadWidth = left - fixedLeft - 6; // 下载图片宽度
+					downloadHeight = top - fixedTop - 6; // 下载图片高度
+					// console.log('tttt', objbox.offsetWidth, objbox.offsetHeight, fixedLeft, fixedTop)
+					// context.drawImage(
+					// 	simg,
+					// 	fixedLeft,
+					// 	fixedTop,
+					// 	left - fixedLeft - 6,
+					// 	top - fixedTop - 6,
+					// 	0,
+					// 	0,
+					// 	left - fixedLeft - 6,
+					// 	top - fixedTop - 6,
+					// )
+				}
+			}
+			$('#jp').on('click', function(){
+				returns = true;
+				$('#box').show();
+				$('#qx').show();
+				$('#jp').hide();
+			})
+			function noneBox () {
+				fixedLeft = 0, fixedTop = 0, endLeft = 0, endTop = 0, left = 0, top = 0, start = false, returns = false;
+				$('#myCanvas').css({
+					'width': 0,
+					'height': 0,
+					'border': 'none'
+				})
+				$('#box').hide();
+				$('#jp').show();
+				$('#qx').hide();
+			}
+			$('#qx').on('click', function(){
+				noneBox();
+			})
+			
+			$("#box").mousedown(function(){
+				$("#box").css("color","#f666");
+				if(!returns)return;
+				fixedLeft = left;
+				fixedTop = top;
+				console.log('qqqqq', fixedLeft, fixedTop, returns)
+				$('#myCanvas').css({
+					'left': fixedLeft,
+					'top': fixedTop,
+				})
+				start = true;
+			});//这个是鼠标键，是你鼠标左击按下的的效果
+			$("#box").mouseup(function(){
+				fixedLeft = 0, fixedTop = 0, endLeft = 0, endTop = 0, left = 0, top = 0, start = false, returns = false;
+			})
+			$("#xz").on('click', function() {
+				// 调用html2canvas插件
+				canvasImg.style.border = 'none'
+				html2canvas(canvasImg).then(function(canvas) {
+				    // canvas宽度
+				    var canvasWidth = canvas.width;
+				    // canvas高度
+				    var canvasHeight = canvas.height;
+				    // 渲染canvas
+				    // $('#demo').after(canvas);
+					// 调用Canvas2Image插件‘转成图片’
+					var img = Canvas2Image.convertToImage(canvas, canvasWidth, canvasHeight);
+					// 渲染图片
+					// $("#demo").after(img);
+					let type = $('#sel').val(); //图片类型
+					let f = $('#imgFileName').val() || 'img'; //图片文件名
+					// 调用Canvas2Image插件,下载图片
+					Canvas2Image.saveAsImage(canvas, downloadWidth, downloadHeight, type, f);
+					noneBox();
+				});
+			})
+        }
+    </script>
+</head>
+<body>
+    <div id="demo">
+		<div id="box">
+			
+		</div>
+        <div id="small-box">
+            <div id="mark"></div>
+            <div id="float-box"></div>
+            <img id='simg' src="./slide.png"/>
+        </div>
+        <div id="big-box">
+            <img src="./slide.png"/>
+        </div>
+		<div id="jp">
+			截取图片
+		</div>
+		<div id="qx">
+			取消截取图片
+		</div>
+		<!-- <canvas id="myCanvas">当前浏览器不支持canvas</canvas> -->
+		<div id="myCanvas">
+		</div>
+		<div id="xz">
+			下载
+		</div>
+		<label for="imgFileName">文件名:</label>
+		<input type="text" placeholder="文件名" id="imgFileName" />
+		<select id="sel">
+			<option value="jpg">jpg</option>
+			<option value="png">png</option>
+			<option value="jpeg">jpeg</option>
+			<option value="bmp">bmp</option>
+		</select>
+    </div>
+</body>
+</html>
