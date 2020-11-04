@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script type="text/javascript">
+window.onload = function() {
+    var obj = document.getElementsByTagName('input');
+    for(var i = 0; i < obj.length; i ++) {
+        if (obj[i].type.toLowerCase() == 'button') {
+            obj[i].onmouseover = function() {
+                this.style.backgroundColor = '#900';
+                this.style.color = '#FFF';
+            }
+            obj[i].onmouseout = function() {
+                this.style.backgroundColor = '';
+                this.style.color = '';
+            }
+        }
+    }
+    var list = [1,2,3,2,1,22,4,4,5,6,5,6,7];
+    var newList = [];
+    var newList1 = [];
+    for (var i=0; i<list.length; i++) {
+        if(newList.indexOf(list[i]) === -1){
+            newList.push(list[i]);
+        }
+    }
+    // for (var i=0; i<list.length; i++) {
+    //     if(!newList1.includes(list[i])){
+    //         newList1.push(list[i]);
+    //     }
+    // }
+    console.log(newList,newList1)
+    var number = function(n) {
+        if(n == 1) {
+            return 1
+        } else {
+            product = 1;
+            for(i = 1; i <= n; i++) {
+                product *= i;
+                console.log(product)
+            }
+            return product;
+        }
+    }
+    var d =  number(5);
+    // alert(d);
+
+    var arr = [
+        {name:'zopp',age:0},
+        {name:'gpp',age:18},
+        {name:'yjj',age:8}
+    ];
+
+    function compare(property){
+        return function(a,b){
+            var value1 = a[property];
+            var value2 = b[property];
+            return value1 - value2;
+        }
+    }
+    console.log(arr.sort(compare('age')))
+
+    try{
+        if(x==""){}  
+        // var x = ''
+        // if(x=="") throw "值为空";
+    }
+    catch(err){
+        console.log('错误信息' + err)
+    }
+
+    onerror = function (message,url,line)
+    {
+        var txt = '出现的错误的信息==' + message + '\n\n出现错误的文档的URL'
+        + url + '\n\n出现错误的代码行的行号' + line
+        alert(txt)
+        return true
+    }
+    text()  // 解开会报错并在73行打印出来
+
+
+    
+    
+}
+</script>
+</head>
+ 
+<body>
+    <input type="button" value="我是只按钮" />
+</body>
+</html>
