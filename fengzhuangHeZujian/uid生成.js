@@ -9,7 +9,6 @@ function uid(n) {
   if (n < 2) {
     throw new RangeError('n 不能小于 2');
   }
-
   return ('xx' + 'z'.repeat(n - 2)).replace(/[xz]/g, function(c) {
     return c === 'x' ?
       CHARS[Math.random() * 26 | 0] :
