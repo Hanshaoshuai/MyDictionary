@@ -4,53 +4,54 @@
 var tmpDown; //  导出的二进制对象
 var scriptLoad = false; //是否加载完成；
 
-var index = function PureComponent(obj){
+var index = function PureComponent(obj) {
   var types = obj.type,            // 导入Excel('Import')/导出Excel('export'),
-      elements = obj.elements,    // input上传变更后的dom元素;
-      dataList = obj.dataList,    // 要导出Excel的数据, 格式：[{}]
-      textName = obj.textName,    // 要导出Excel文件名
-      fileTypes = obj.fileTypes,  // 自定义文件类型
-      EXCEL = undefined;
+    elements = obj.elements,    // input上传变更后的dom元素;
+    dataList = obj.dataList,    // 要导出Excel的数据, 格式：[{}]
+    textName = obj.textName,    // 要导出Excel文件名
+    fileTypes = obj.fileTypes,  // 自定义文件类型
+    EXCEL = undefined;
 
-  function componentWillMount(){
+  function componentWillMount() {
     EXCEL = `EXCEL${uidS('EXCEL')}`;
     return componentDidMount();
   }
 
-  function componentDidMount(){
-    if(!document.getElementById('scriptEXCEL')){
+  function componentDidMount() {
+    if (!document.getElementById('scriptEXCEL')) {
       return new Promise((resolve, reject) => {
         const dom = document.createElement('script');
         dom.id = 'scriptEXCEL'
         // dom.src = "https://gw-office.alipayobjects.com/basement_prod/0efb83da-6233-4e83-b2e6-2d491902518f.js";  // 公司内网使用
-          dom.src = 'http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js'; // 其他链接使用
+        // dom.src = 'http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js'; // 其他链接使用
+        dom.src = './xlsx-min.js'; // 其他链接使用
         const body = document.getElementsByTagName('body')[0];
         body.appendChild(dom);
         //  console.log(body,dom);
-        dom.onload = function(params) {
+        dom.onload = function (params) {
           // console.log('加载完成===》》》')
           scriptLoad = true;
           resolve(implement());
         }
       })
-    }else{
+    } else {
       return implement();
     }
   }
 
-  function implement(){
-    if(types === 'Import'){
+  function implement() {
+    if (types === 'Import') {
       return new Promise((resolve, reject) => {
         importf(elements, resolve, reject);
       })
-    }else if(types === 'export'){
-      if(!textName){
+    } else if (types === 'export') {
+      if (!textName) {
         console.warn("最好设置自己的Excel文件名！")
       }
       return new Promise((resolve, reject) => {
         downloadList(dataList, fileTypes, resolve, reject);
       })
-    }else{
+    } else {
       console.error('入参types属性错误！');
       return new Promise((resolve, reject) => {
         reject('入参types属性错误！');
@@ -65,7 +66,7 @@ var index = function PureComponent(obj){
   //   });
   // }
 
-  function uidS(text){
+  function uidS(text) {
     const CHARS = 'abcdefghigklmnopqrstuvwxyz';
     const NUMS = '0123456789';
     const ALL = CHARS + NUMS;
@@ -75,24 +76,24 @@ var index = function PureComponent(obj){
       if (n < 2) {
         throw new RangeError('n  不能小于  2');
       }
-      return ('xx' + 'z'.repeat(n - 2)).replace(/[xz]/g, function(c) {
+      return ('xx' + 'z'.repeat(n - 2)).replace(/[xz]/g, function (c) {
         return c === 'x' ?
           CHARS[Math.random() * 26 | 0] :
           ALL[Math.random() * 36 | 0];
       });
     }
-    console.log('uidS====>>>',uid('name66uid'));
+    // console.log('uidS====>>>',uid('name66uid'));
     return uid(text);
   }
 
-  function importf(dom, resolve, reject){ // 导入
+  function importf(dom, resolve, reject) { // 导入
     setTimeout(function () {
       reject('err，数据处理发生错误！')
     }, 20000);
-    if(dom.files && dom.files.length !== 0){
+    if (dom.files && dom.files.length !== 0) {
       files = dom.files[0]
-    }else{
-      console.error('input没有找到files！') 
+    } else {
+      console.error('input没有找到files！')
       reject('err');
       return;
     }
@@ -118,7 +119,7 @@ var index = function PureComponent(obj){
       // 遍历每张表读取
       Object.keys(workbook.Sheets).forEach((key) => {
         // console.log('每张表读取===>>',key,workbook.Sheets)
-        if (workbook.Sheets.hasOwnProperty(key)){
+        if (workbook.Sheets.hasOwnProperty(key)) {
           const newObj = {
             keyName: key,
             value: values.concat(XLSX.utils.sheet_to_json(workbook.Sheets[key])),
@@ -130,7 +131,7 @@ var index = function PureComponent(obj){
         }
       });
       dataList = newList;
-      if(newList.length > 0){
+      if (newList.length > 0) {
         resolve({
           "judges": true,
           "data": dataList,
@@ -140,28 +141,28 @@ var index = function PureComponent(obj){
     };
   }
 
-  function downloadList(list, type, resolve, reject){ // 导出
-    console.log('导出数据==》》》》', list);
+  function downloadList(list, type, resolve, reject) { // 导出
+    // console.log('导出数据==》》》》', list);
     setTimeout(function () {
       reject('err，数据处理发生错误！')
     }, 20000);
-    if(Array.isArray(list)){
-      if(list.length == 0){
+    if (Array.isArray(list)) {
+      if (list.length == 0) {
         console.error('导出数据不能为空！');
         reject({
           "judges": false,
           "text": '导出的数据有误！',
         });
         return;
-      }else{
+      } else {
         downloadExl(list, type, resolve, reject);
       }
-    }else{
+    } else {
       reject('err，入参数据格式不正确！（Array）');
     }
   }
 
-  function downloadExl(json, type, resolve, reject){
+  function downloadExl(json, type, resolve, reject) {
     const dataObj = json[0];
     json.unshift({});
     const keyMap = []; // 获取keys
@@ -173,31 +174,31 @@ var index = function PureComponent(obj){
     json.map((v, i) => keyMap.map((k, j) => Object.assign({}, {
       v: v[k],
       position: (j > 25 ? getCharCol(j) : String.fromCharCode(65 + j)) + (i + 1)
-    }))).reduce((prev, next) => prev.concat(next)).forEach((v, i) => tmpdata[v.position] = {v: v.v});
+    }))).reduce((prev, next) => prev.concat(next)).forEach((v, i) => tmpdata[v.position] = { v: v.v });
     const outputPos = Object.keys(tmpdata); // 设置区域,比如表格从A1到D10
-    console.log('qqqqqqq===>>',outputPos,tmpdata, type)
+    // console.log('===>>',outputPos,tmpdata, type)
     const tmpWB = {
       SheetNames: ['mySheet'], // 保存的表标题
       Sheets: {
         'mySheet': Object.assign({},
           tmpdata, // 内容
           {
-            '!ref': `${outputPos[0]  }:${  outputPos[outputPos.length - 1]}` // 设置填充区域
+            '!ref': `${outputPos[0]}:${outputPos[outputPos.length - 1]}` // 设置填充区域
           })
       }
     };
     tmpDown = new Blob([s2ab(XLSX.write(tmpWB,
-      {bookType: (type == undefined ? 'xlsx' : type),bookSST: false, type: 'binary'}// 这里的数据是用来定义导出的格式类型
-      ))], {
+      { bookType: (type == undefined ? 'xlsx' : type), bookSST: false, type: 'binary' }// 这里的数据是用来定义导出的格式类型
+    ))], {
       type: ""
     }); // 创建二进制对象写入转换好的字节流
     var href = URL.createObjectURL(tmpDown); // 创建对象超链接
     var dom = document.createElement('a');
-    console.log('数据处理===》》',tmpWB,tmpDown);
-    dom.target="blank";
-    if(textName){
+    // console.log('数据处理===》》', tmpWB, tmpDown);
+    dom.target = "blank";
+    if (textName) {
       dom.download = textName + '.xlsx';
-    }else{
+    } else {
       dom.download = '数据列表.xlsx';
     }
     dom.href = href;
@@ -213,14 +214,14 @@ var index = function PureComponent(obj){
     });
   }
 
-  function s2ab(s){ // 字符串转字符流
+  function s2ab(s) { // 字符串转字符流
     const buf = new ArrayBuffer(s.length);
     const view = new Uint8Array(buf);
     for (let i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
     return buf;
   }
 
-  function getCharCol(n){// 将指定的自然数转换为26进制表示。映射关系：[0-25] -> [A-Z]。
+  function getCharCol(n) {// 将指定的自然数转换为26进制表示。映射关系：[0-25] -> [A-Z]。
     let s = '';
     let m = 0
     while (n > 0) {
