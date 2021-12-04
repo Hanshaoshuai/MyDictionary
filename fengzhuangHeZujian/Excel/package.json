@@ -22,9 +22,15 @@
     "Exceljs",
     "JSExcel",
     "excel-react",
+    "excelreact",
+    "excelReact",
     "excel-vue",
+    "excelvue",
+    "excelVue",
     "reactExcel",
     "vueExcel",
+    "reactexcel",
+    "vueexcel",
     "react-excel",
     "vue-excel"
   ]
