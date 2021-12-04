@@ -1,6 +1,6 @@
 {
   "name": "excel-filejs",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "excel文件上传填充表格和将表格导数据出excel文件",
   "main": "index.js",
   "scripts": {
