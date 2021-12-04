@@ -588,5 +588,57 @@
       document.body
     );
     //写两个是为了解决 ie 和非ie 浏览器关于事件捕获 的兼容性问题
+	var list = [
+		{
+			value:[{
+				name:'123',
+				b:'123453',
+				c:'12345',
+				d:'1236',
+			},
+			{
+				name:'222',
+				b:'12345',
+				c:'123123',
+				d:'123456',
+			},{
+				name:'333',
+				b:'12343',
+				c:'12311',
+				d:'123111',}]
+		},{
+			value:[{
+				name:'123',
+				b:'221232',
+				c:'12345',
+				d:'1236',
+			},
+			{
+				name:'222',
+				b:'12312',
+				c:'123123',
+				d:'123456',
+			},{
+				name:'333',
+				b:'1231231',
+				c:'12311',
+				d:'123111',
+			}]
+		}
+	]
+	var namess = ["","","333"]
+	
+	var newList=list.map((item)=>{
+		item.value=item.value.filter((id)=>{
+			for(var i = 0; i<namess.length;i++){
+				console.log(namess[i], id)
+				if(namess[i] === id.name){
+					return id;
+				}
+			}
+		})
+		return item;
+	})
+	console.log(namess.length,newList)
   </script>
 </html>
