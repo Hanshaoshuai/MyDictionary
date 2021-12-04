@@ -297,13 +297,19 @@ https://www.cnblogs.com/bluestorm/p/6252900.html
 十、发布安装包命令
 865923han
 Underscore.js
+首先要看镜像在不在npmjs.org 上
+查看镜像 npm config set registry
+要切换成 npm config set registry = https://registry.npmjs.org   执行命令=号两边没有空格；
+完事后切换回来 npm config set registry = https://registry.npm.taobao.org  执行命令=号两边没有空格；
+
 1、首先执行npm adduser
 2、Username: hanshaoshuai
 3、Password: 865923han
 4、Email: (this IS public) 361062939@qq.com
-5、Logged in as hanshaoshuai on https://registry.npmjs.org/.
+5、Logged in as hanshaoshuai on https://registry.npmjs.org/.  会显示这句话成功；
 
 	在执行npm publish
+
 如果出现下面报错说明package.json中的mame属性名有人用过了换一个就行了  如果 ERR! publish Failed PUT 400  说明你package.json中的mame属性名有大写字母不允许大写；
 		npm ERR! publish Failed PUT 403
 		npm ERR! code E403
