@@ -205,3 +205,55 @@ const Selector = ({
 
 export const SelectorTabs = Selector;
 export default Selector;
+
+/* <div
+        style={{
+          width: '100%',
+          height: '100%',
+          // position: 'fixed',
+          // top: '0',
+          // left: '0',
+          background: '#fff',
+          zIndex: 1000000000,
+        }}
+      >
+        <div
+          style={{
+            width: '100%',
+            height: '50%',
+            background: '#fff',
+            zIndex: 1000000000,
+          }}
+        >
+          <Selector
+            defaults={2} // 设置默认高亮；如果与<SelectorTabs/>一起使用默认值要与<SelectorTabs/>的setSelectedKey值相等
+            dataList={dataList1} // 数据[]SwitchContent
+            selectedKey={selectedKey} // 回调函数返回当前高亮数据；动态控制高亮回调无效：() => {}
+            inclination={10} // 设置向右侧偏移度可更改 number 开启覆盖默认
+            styles={{ overflow: '', color: '#ff7a59' }} // 溢出内容是否遮盖或其他样式设置，hidden
+            itemHeight={20} // 设置高亮区域高度 开启覆盖默认
+            borderColor={'1px solid #ff7a59'} // 设置高亮区域边框，动态控制高亮的时候不生效；
+            blurLayer={false} // 未高亮的每项是否渐变模糊默认开启，false关闭；白色背景可以使用；blurLayer和transparency选一
+            transparency={0.4} // 未高亮的每项是否渐变模糊默认开启，其他背景使用；blurLayer和transparency选一 范围(0.1-1)
+          />
+        </div>
+        <div
+          style={{
+            width: '100%',
+            height: '50%',
+            background: '#fff',
+            zIndex: 1000000000,
+          }}
+        >
+          <SelectorTabs
+            dataList={dataList} // 数据[]SwitchContent
+            inclination={0} // 设置向右侧偏移度可更改 number 开启覆盖默认
+            styles={{ overflow: '' }} // 溢出内容是否遮盖或其他样式设置，hidden
+            itemHeight={40} // 设置高亮区域高度 开启覆盖默认
+            borderColor={'1px solid #ff7a59'} // 设置高亮区域边框，动态控制高亮的时候不生效；
+            setSelectedKey={setSelectedKey} // 动态控制高亮
+            gradientSpeed={0.03} // 控制渐变速度需要和动态控制高亮一起用生效；
+            alignItems // flex属性内容默认左右居中,string: flex-start，flex-end
+          />
+        </div>
+      </div> */
