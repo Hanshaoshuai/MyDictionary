@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <link rel="stylesheet" href="%PUBLIC_URL%/Cesium/Widgets/widgets.css" />
+    <title>全球通</title>
+    <script type="text/javascript">
+      const ua = navigator.userAgent.toLowerCase();
+      !(function (e) {
+        function t(n) {
+          if (i[n]) return i[n].exports;
+          const r = (i[n] = { exports: {}, id: n, loaded: !1 });
+          return (
+            e[n].call(r.exports, r, r.exports, t), (r.loaded = !0), r.exports
+          );
+        }
+        var i = {};
+        return (t.m = e), (t.c = i), (t.p = ''), t(0);
+      })([
+        function (e, t) {
+          Object.defineProperty(t, '__esModule', { value: !0 });
+          const i = window;
+          (t.default = i.vl =
+            function (e, t) {
+              const n = e || 100;
+              const r = t || 750;
+              const a = i.document;
+              const d = navigator.userAgent;
+              const o = d.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i);
+              const l = d.match(/U3\/((\d+|\.){5,})/i);
+              const s = l && parseInt(l[1].split('.').join(''), 10) >= 80;
+              const u = a.documentElement;
+              let c = 1;
+              if ((o && o[1] > 534) || s) {
+                u.style.fontSize = `${n}px`;
+                const p = a.createElement('div');
+                p.setAttribute('style', 'width: 1rem;display:none'),
+                  u.appendChild(p);
+                const m = i.getComputedStyle(p).width;
+                if ((u.removeChild(p), m !== u.style.fontSize)) {
+                  const v = parseInt(m, 10);
+                  c = 100 / v;
+                }
+              }
+              let f = a.querySelector('meta[name="viewport"]');
+              f ||
+                ((f = a.createElement('meta')),
+                f.setAttribute('name', 'viewport'),
+                a.head.appendChild(f)),
+                f.setAttribute(
+                  'content',
+                  'width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1'
+                );
+              const h = function () {
+                u.style.fontSize = `${(n / r) * u.clientWidth * c}px`;
+              };
+              h(), i.addEventListener('resize', h);
+            }),
+            (e.exports = t.default);
+        },
+      ]);
+      // 设置基础字体大小及字体缩放比例
+      if (
+        ua.match(/iPad/i) != 'ipad' ||
+        navigator.userAgent.indexOf('iPad') == -1
+      ) {
+        vl(100, 750);
+        // vl(100, 1080);
+      } else {
+        vl(100, 1024);
+      }
+    </script>
+    <style id="splash-spinner">
+      .spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 30px;
+        height: 30px;
+        margin-left: -15px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #ff7a59;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div class="spinner"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <script src="%PUBLIC_URL%/Cesium/Cesium.js"></script>
+  </body>
+</html>
