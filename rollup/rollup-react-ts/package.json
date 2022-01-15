@@ -1,0 +1,39 @@
+{
+  "name": "rollup-react-ts",
+  "version": "1.0.0",
+  "main": "build/bundle.js",
+  "license": "MIT",
+  "types": "build/bundle.d.ts",
+  "scripts": {
+    "build": "yarn run rollup -c",
+    "start": "yarn run rollup -c -w"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@emotion/babel-preset-css-prop": "^11.2.0",
+    "postcss": "^8.4.5",
+    "postcss-nested": "^5.0.6",
+    "rollup": "^2.63.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-tslint": "^0.2.2",
+    "stylelint-config-standard": "^24.0.0"
+  },
+  "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.7.1",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@types/react": "^17.0.38",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
+  }
+}
