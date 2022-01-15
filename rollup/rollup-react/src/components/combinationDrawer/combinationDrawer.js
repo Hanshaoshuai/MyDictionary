@@ -117,7 +117,7 @@ const CombinationDrawer = (props, ref) => {
           item.notExpanded = true;
         }
       } else {
-        if (titles && title) {
+        if (title) {
           // 初始展开
           if (initial && Number(keyId) !== newList.length) {
             const obj = newList[keyId];
@@ -126,7 +126,7 @@ const CombinationDrawer = (props, ref) => {
 
           if (item.fatherSonConnection === index.toString()) {
             index = Number(index);
-            if (title) {
+            if (titles && title) {
               const titleList = [];
               titleList.push(newList[index].title);
               titleList.push(

@@ -3048,7 +3048,7 @@ var CombinationDrawer = function CombinationDrawer(props, ref) {
           item.notExpanded = true;
         }
       } else {
-        if (titles && title) {
+        if (title) {
           // 初始展开
           if (initial && Number(keyId) !== newList.length) {
             var _obj2 = newList[keyId];
@@ -3058,7 +3058,7 @@ var CombinationDrawer = function CombinationDrawer(props, ref) {
           if (item.fatherSonConnection === index.toString()) {
             index = Number(index);
 
-            if (title) {
+            if (titles && title) {
               var titleList = [];
               titleList.push(newList[index].title);
               titleList.push(jsx("span", {

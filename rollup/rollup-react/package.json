@@ -1,6 +1,6 @@
 {
   "name": "combination-drawer-react",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "基于react抽屉嵌套，类似手风琴效果",
   "main": "build/bundle.js",
   "license": "ISC",
