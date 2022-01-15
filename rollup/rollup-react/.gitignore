@@ -1,9 +1,8 @@
 node_modules
-/build
-# rollup.config.js
-# src
-# .babelrc
-# .yarnignore
+rollup.config.js
+src
+.babelrc
+.yarnignore
 
 **/.umi
 **/.umi-production
