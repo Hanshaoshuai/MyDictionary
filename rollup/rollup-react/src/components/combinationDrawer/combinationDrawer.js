@@ -28,7 +28,7 @@ const CombinationDrawer = (props, ref) => {
         const domList = [...node.children].filter((i, index) => index > 0);
         const newList = [...newData];
         domList.map((item, index) => {
-          newList[index].width = item.clientWidth + 1;
+          newList[index].width = item.clientWidth;
           return item;
         });
         setNewData(newList);

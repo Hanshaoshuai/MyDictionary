@@ -2953,7 +2953,7 @@ var CombinationDrawer = function CombinationDrawer(props, ref) {
       var newList = _toConsumableArray(newData);
 
       domList.map(function (item, index) {
-        newList[index].width = item.clientWidth + 1;
+        newList[index].width = item.clientWidth;
         return item;
       });
       setNewData(newList);

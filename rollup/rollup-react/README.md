@@ -11,49 +11,51 @@ npm install combination-drawer-react --save
 ### 引入方式
 
 ```javascript
-import CombinationDrawer from 'combination-drawer-react'; // 项目没有用TS，可以这样引入;
-const CombinationDrawer = require('combination-drawer-react'); // 项目中使用了TS，可以这样引入;
+import { CombinationDrawer } from 'combination-drawer-react'; // 项目没有用TS，可以这样引入;
+const { CombinationDrawer } = require('combination-drawer-react'); // 项目中使用了TS，可以这样引入;
 ```
 
 #### 使用方法
 
+```javascript
 数据格式规定如下：
-const list = [
-{
-key: '0', // 必须
-title: '',
-// width: 200, 可有可无
-transition: 0, // 必须
-notExpanded: false, // 必须
-fatherSonConnection: '-1', // 必须,一级为-1，往下叠加
-value: ( // 必须
 
-<div style={{ width: '100px', height: '20px' }}>
-<div onClick={() => indexFilter('0', '点击我 1')}>点击我 1</div>
-<div onClick={() => indexFilter('0', '点击我 2')}>点击我 2</div>
-<div onClick={() => indexFilter('0', '点击我 3')}>点击我 3</div>
-</div>
-),
-state: true, // 必须第一级必须为 true 往下为 false
-},
-{
-key: '1',
-title: '',
-// width: 200,
-transition: 0,
-notExpanded: false,
-fatherSonConnection: '0',
-value: (
-<div style={{ width: '160px', height: '20px' }}>
-<div onClick={() => indexFilter('1', '一级点击我 1')}>一级点击我 1</div>
-<div onClick={() => indexFilter('1', '一级点击我 2')}>一级点击我 2</div>
-</div>
-),
-state: false,
-},
+const list = [
+  {
+    key: '0', // 必须
+    title: '',
+    // width: 200, 可有可无
+    transition: 0, // 必须
+    notExpanded: false, // 必须
+    fatherSonConnection: '-1', // 必须,一级为-1，往下叠加
+    value: ( // 必须
+      <div style={{ width: '100px', height: '20px' }}>
+        <div onClick={() => indexFilter('0', '点击我 1')}>点击我 1</div>
+        <div onClick={() => indexFilter('0', '点击我 2')}>点击我 2</div>
+        <div onClick={() => indexFilter('0', '点击我 3')}>点击我 3</div>
+      </div>
+    ),
+    state: true, // 必须第一级必须为 true 往下为 false
+  },
+  {
+    key: '1',
+    title: '',
+    // width: 200,
+    transition: 0,
+    notExpanded: false,
+    fatherSonConnection: '0',
+    value: (
+      <div style={{ width: '160px', height: '20px' }}>
+        <div onClick={() => indexFilter('1', '一级点击我 1')}>一级点击我 1</div>
+        <div onClick={() => indexFilter('1', '一级点击我 2')}>一级点击我 2</div>
+      </div>
+    ),
+    state: false,
+  },
 ]
 
 const list1=[{}] // 自己的数据
+```
 
 ```javascript
 const drawers = useRef(null);

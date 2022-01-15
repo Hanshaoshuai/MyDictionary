@@ -1,9 +1,9 @@
 {
   "name": "combination-drawer-react",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "基于react抽屉嵌套，类似手风琴效果",
   "main": "build/bundle.js",
-  "license": "MIT",
+  "license": "ISC",
   "scripts": {
     "build": "yarn run rollup -c",
     "start": "yarn run rollup -c -w"

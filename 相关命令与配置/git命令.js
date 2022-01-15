@@ -298,7 +298,7 @@ https://www.cnblogs.com/bluestorm/p/6252900.html
 865923han
 Underscore.js
 首先要看镜像在不在npmjs.org 上
-查看镜像 npm config set registry
+查看镜像 npm config set registry // 不用执行了   这样会重置为空直接执行下面命令
 要切换成 npm config set registry = https://registry.npmjs.org   执行命令=号两边没有空格；
 完事后切换回来 npm config set registry = https://registry.npm.taobao.org  执行命令=号两边没有空格；
 
