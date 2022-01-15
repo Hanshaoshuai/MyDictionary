@@ -2,6 +2,7 @@
   "name": "rollup-react-ts",
   "version": "1.0.0",
   "main": "build/bundle.js",
+  "description": "excel文件上传填充表格和将表格导数据出excel文件",
   "license": "MIT",
   "types": "build/bundle.d.ts",
   "scripts": {
@@ -35,5 +36,12 @@
     "rollup-plugin-typescript2": "^0.31.1",
     "tslib": "^2.3.1",
     "typescript": "^4.5.4"
-  }
+  },
+  "author": "Hanshaoshuai",
+  "homepage": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/fengzhuangHeZujian/Excel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/fengzhuangHeZujian/Excel"
+  },
+  "keywords": []
 }

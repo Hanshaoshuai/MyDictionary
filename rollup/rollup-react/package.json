@@ -1,6 +1,7 @@
 {
-  "name": "rollup-react",
+  "name": "combination-drawer-react",
   "version": "1.0.0",
+  "description": "基于react抽屉嵌套，类似手风琴效果",
   "main": "build/bundle.js",
   "license": "MIT",
   "scripts": {
@@ -25,5 +26,23 @@
   "dependencies": {
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.7.1"
-  }
+  },
+  "author": "Hanshaoshuai",
+  "homepage": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/rollup/rollup-react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/rollup/rollup-react"
+  },
+  "keywords": [
+    "combination-drawer-react",
+    "combinationDrawer",
+    "combination-drawer",
+    "Drawer",
+    "drawer",
+    "react",
+    "react-drawer",
+    "reactDrawer",
+    "react-Drawer",
+    "drawer-react"
+  ]
 }
