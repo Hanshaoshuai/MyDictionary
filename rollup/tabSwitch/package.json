@@ -28,10 +28,10 @@
     "@emotion/react": "^11.7.1"
   },
   "author": "Hanshaoshuai",
-  "homepage": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/rollup/rollup-react",
+  "homepage": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/rollup/tabSwitch",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/rollup/rollup-react"
+    "url": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/rollup/tabSwitch"
   },
   "keywords": [
     "tab-switch-react",
