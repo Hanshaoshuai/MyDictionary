@@ -1,0 +1,52 @@
+{
+  "name": "tab-switch-react",
+  "version": "1.0.0",
+  "description": "基于react的类似选择器视图，tabSwitch和tabSwitchPage可以组合使用联动效果，又类似轮播",
+  "main": "build/bundle.js",
+  "license": "ISC",
+  "scripts": {
+    "build": "yarn run rollup -c",
+    "start": "yarn run rollup -c -w"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "@emotion/babel-preset-css-prop": "^11.2.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "postcss": "^8.4.5",
+    "postcss-nested": "^5.0.6",
+    "rollup": "^2.63.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-postcss": "^4.0.2"
+  },
+  "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.7.1"
+  },
+  "author": "Hanshaoshuai",
+  "homepage": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/rollup/rollup-react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hanshaoshuai/MyDictionary/tree/master/rollup/rollup-react"
+  },
+  "keywords": [
+    "tab-switch-react",
+    "tab-switch",
+    "tabSwitch",
+    "react-tab-switch",
+    "tab-react",
+    "react",
+    "react-tab-switch-page",
+    "tab-switch-page",
+    "tabSwitchPage",
+    "tab-switch-page-react",
+    "PickerView",
+    "picker-view",
+    "PickerViewReact",
+    "picker-view-react"
+  ]
+}
