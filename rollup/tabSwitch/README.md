@@ -1,104 +1,78 @@
 ### 描述
 
-基于 react 抽屉嵌套，类似手风琴效果
+基于 react 的类似选择器视图，tabSwitch 和 tabSwitchPage 可以组合使用联动效果，又类似轮播
 
 ### 安装
 
 ```javascript
-npm install combination-drawer-react --save
+npm install tab-switch-react --save
 ```
 
 ### 引入方式
 
 ```javascript
-import { CombinationDrawer } from 'combination-drawer-react'; // 项目没有用TS，可以这样引入;
-const { CombinationDrawer } = require('combination-drawer-react'); // 项目中使用了TS，可以这样引入;
+import { tabSwitch, tabSwitchPage } from 'tab-switch-react'; // 项目没有用TS，可以这样引入;
+const { tabSwitch, tabSwitchPage } = require('tab-switch-react'); // 项目中使用了TS，可以这样引入;
 ```
 
 #### 使用方法
 
 ```javascript
-数据格式规定如下：
-
-const list = [
-  {
-    key: '0', // 必须
-    title: '',
-    // width: 200, 可有可无
-    transition: 0, // 必须
-    notExpanded: false, // 必须
-    fatherSonConnection: '-1', // 必须,一级为-1，往下叠加
-    value: ( // 必须
-      <div style={{ width: '100px', height: '20px' }}>
-        <div onClick={() => indexFilter('0', '点击我 1')}>点击我 1</div>
-        <div onClick={() => indexFilter('0', '点击我 2')}>点击我 2</div>
-        <div onClick={() => indexFilter('0', '点击我 3')}>点击我 3</div>
-      </div>
-    ),
-    state: true, // 必须第一级必须为 true 往下为 false
-  },
-  {
-    key: '1',
-    title: '',
-    // width: 200,
-    transition: 0,
-    notExpanded: false,
-    fatherSonConnection: '0',
-    value: (
-      <div style={{ width: '160px', height: '20px' }}>
-        <div onClick={() => indexFilter('1', '一级点击我 1')}>一级点击我 1</div>
-        <div onClick={() => indexFilter('1', '一级点击我 2')}>一级点击我 2</div>
-      </div>
-    ),
-    state: false,
-  },
-]
-
-const list1=[{}] // 自己的数据
-```
-
-```javascript
-const drawers = useRef(null);
-const [drawerShow, setDrawerShow] = useState(false);
-const [filters, setFilters] = useState({});
-const indexFilter = (index, title) => {
-  // 进入下一层抽屉
-  setFilters({ index, title });
+const selectedKey = (state) => {
+  const { e, key, value } = state;
+  console.log(state, e, key, value);
+  setSetSelectedKey(key);
 };
-const submitClose = (index) => {
-  // 提交事件后关闭该层抽屉
-  if (drawers) {
-    drawers.current.getInfo(index);
-  }
-};
-const [newList, setNewList] = useState(list);
-const onSetDrawerShows = (index) => {
-  if (index === 1) {
-    setNewList(list);
-  }
-  if (index === 2) {
-    setNewList(list1);
-  }
-  setDrawerShow(true);
-};
+
 return (
-  <div>
-    <div onClick={() => onSetDrawerShows(1)} style={{ cursor: 'pointer' }}>
-      点击1
+  <div
+    style={{
+      width: '100%',
+      height: '100%',
+      // position: 'fixed',
+      // top: '0',
+      // left: '0',
+      background: '#fff',
+      zIndex: 1000000000,
+    }}
+  >
+    <div
+      style={{
+        width: '100%',
+        height: '50%',
+        background: '#fff',
+        zIndex: 1000000000,
+      }}
+    >
+      <TabSwitch
+        defaults={2} // 设置默认高亮；如果与<TabSwitchTabs/>一起使用默认值要与<TabSwitchTabs/>的setSelectedKey值相等
+        dataList={dataList1} // 数据[]SwitchContent
+        selectedKey={selectedKey} // 回调函数返回当前高亮数据；动态控制高亮回调无效：() => {}
+        inclination={10} // 设置向右侧偏移度可更改 number 开启覆盖默认
+        styles={{ overflow: '', color: '#ff7a59' }} // 溢出内容是否遮盖或其他样式设置，hidden
+        itemHeight={20} // 设置高亮区域高度 开启覆盖默认
+        borderColor={'1px solid #ff7a59'} // 设置高亮区域边框，动态控制高亮的时候不生效；
+        blurLayer={false} // 未高亮的每项是否渐变模糊默认开启，false关闭；白色背景可以使用；blurLayer和transparency选一
+        transparency={0.4} // 未高亮的每项是否渐变模糊默认开启，其他背景使用；blurLayer和transparency选一 范围(0.1-1)
+      />
     </div>
-    <div onClick={() => onSetDrawerShows(2)} style={{ cursor: 'pointer' }}>
-      点击2
-    </div>
-    <div>
-      <CombinationDrawer
-        ref={drawers}
-        list={newList} // 数据
-        drawerShow={drawerShow} // 抽屉开关true/false
-        setDrawerShow={setDrawerShow} // 关闭抽屉事件
-        filters={filters} // 进入下一层抽屉参数（index，和 标题）
-        titles={true} // 是否显示顶部标题层级关系：如（第一层/第二次/第三层）并点击返回该层抽屉
-        redundantWidth={35} // 每层抽屉露出的宽度
-        initial={false} // 设置true，初始化最多展示1个抽屉；
+    <div
+      style={{
+        width: '100%',
+        height: '50%',
+        background: '#fff',
+        zIndex: 1000000000,
+      }}
+    >
+      <TabSwitchTabs
+        dataList={dataList} // 数据[]SwitchContent
+        inclination={0} // 设置向右侧偏移度可更改 number 开启覆盖默认
+        styles={{ overflow: '' }} // 溢出内容是否遮盖或其他样式设置，hidden
+        itemHeight={40} // 设置高亮区域高度 开启覆盖默认
+        borderColor={'1px solid #ff7a59'} // 设置高亮区域边框，动态控制高亮的时候不生效；
+        setSelectedKey={setSelectedKey} // 动态控制高亮
+        gradientSpeed={0.03} // 控制渐变速度需要和动态控制高亮一起用生效；
+        alignItems // flex属性内容默认左右居中,string: flex-start，flex-end
       />
     </div>
   </div>
