@@ -18,6 +18,65 @@ const { tabSwitch, tabSwitchPage } = require('tab-switch-react'); // 项目中�
 #### 使用方法
 
 ```javascript
+数据格式规定如下：
+
+  const dataList1 = [
+    {
+      key: 0,
+      content: <div>我们</div>,
+    },
+    {
+      key: 1,
+      content: (
+        <div>
+          <div>是否</div>
+        </div>
+      ),
+    },
+    {
+      key: 2,
+      content: '可以',
+    },
+    {
+      key: 3,
+      content: '携手',
+    },
+    {
+      key: 4,
+      content: '共进',
+    },
+  ];
+  const dataList = [
+    {
+      key: 0,
+      content: <div>我们一起</div>,
+    },
+    {
+      key: 1,
+      content: (
+        <div>
+          <div>看日出</div>
+          <div>看日落</div>
+        </div>
+      ),
+    },
+    {
+      key: 2,
+      content: '每天睁开眼第一看到就是你',
+    },
+    {
+      key: 3,
+      content: '无论吃饭早与晚都有你陪伴',
+    },
+    {
+      key: 4,
+      content: '幸福生活',
+    },
+  ];
+```
+
+```javascript
+const [setSelectedKey, setSetSelectedKey] = useState(2);
 const selectedKey = (state) => {
   const { e, key, value } = state;
   console.log(state, e, key, value);
