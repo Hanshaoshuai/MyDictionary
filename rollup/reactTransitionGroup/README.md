@@ -2,6 +2,10 @@
 
 基于 react 的路由切换左右滑动动画
 
+### 效果如图
+
+!(https://cloud.githubusercontent.com/assets/4214509/22519594/709cbdc6-e8e3-11e6-9e35-1182e6121e27.gif)
+
 ### 安装
 
 ```javascript
