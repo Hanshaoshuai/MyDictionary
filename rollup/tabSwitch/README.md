@@ -4,7 +4,7 @@
 
 ### 效果如图
 
-![效果如图](https://cloud.githubusercontent.com/assets/4214509/22519594/709cbdc6-e8e3-11e6-9e35-1182e6121e27.gif)
+![效果如图](https://github.com/Hanshaoshuai/MyDictionary/blob/master/rollup/WeChat_20220120165631.gif)
 
 ### 安装
 
