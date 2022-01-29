@@ -15,8 +15,8 @@ npm install tab-switch-react --save
 ### 引入方式
 
 ```javascript
-import { tabSwitch, tabSwitchPage } from 'tab-switch-react'; // 项目没有用TS，可以这样引入;
-const { tabSwitch, tabSwitchPage } = require('tab-switch-react'); // 项目中使用了TS，可以这样引入;
+import { TabSwitch, TabSwitchPage } from 'tab-switch-react'; // 项目没有用TS，可以这样引入;
+const { TabSwitch, TabSwitchPage } = require('tab-switch-react'); // 项目中使用了TS，可以这样引入;
 ```
 
 #### 使用方法
