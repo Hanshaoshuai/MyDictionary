@@ -1,6 +1,6 @@
 {
   "name": "tab-switch-react",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "基于react的类似选择器视图，tabSwitch和tabSwitchPage可以组合使用联动效果，又类似轮播",
   "main": "build/bundle.js",
   "license": "ISC",
