@@ -539,7 +539,7 @@
           if (lefts <= 160) {
             mv.style.left = '160px';
             leftChenge(160);
-            if ((ee.clientX || e.touches['0']?.clientX) < 0) {
+            if ((e.clientX || e.touches['0']?.clientX) < 0) {
               //		            			that.moveup();
             }
           } else if (lefts + mv.clientWidth >= 800) {
@@ -594,11 +594,13 @@
         mv.ontouchstart = this.movedown;
         mv.ontouchmove = this.move;
         // window.ontouchend = this.moveup;
+        mv.style.width = '31px';
       } else {
         console.log('手机');
         mv.ontouchstart = this.movedown;
         mv.ontouchmove = this.move;
         // window.ontouchend = this.moveup;
+        mv.style.width = '31px';
       }
     }
     new Play(
