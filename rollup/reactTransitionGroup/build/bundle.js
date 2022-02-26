@@ -3000,12 +3000,13 @@ var ReactTransitionGroup = function ReactTransitionGroup(_ref) {
         width: "".concat(switchs ? '200%' : '100%'),
         height: '100%'
       }
-    }, switchs && states === '上一次操作路由向下' && jsx("div", {
+    }, jsx("div", {
       style: {
         position: 'relative',
         width: '50%',
         height: '100%',
-        "float": 'left'
+        "float": 'left',
+        display: "".concat(switchs && states === '上一次操作路由向下' ? 'block' : 'none')
       }
     }, odDom), jsx("div", {
       style: {
@@ -3018,12 +3019,13 @@ var ReactTransitionGroup = function ReactTransitionGroup(_ref) {
       path: path,
       exact: true,
       component: component
-    })), switchs && states === '上一次操作路由返回' && jsx("div", {
+    })), jsx("div", {
       style: {
         position: 'relative',
         width: '50%',
         height: '100%',
-        "float": 'left'
+        "float": 'left',
+        display: "".concat(switchs && states === '上一次操作路由返回' ? 'block' : 'none')
       }
     }, odDom));
   } else {
