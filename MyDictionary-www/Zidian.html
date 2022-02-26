@@ -440,7 +440,7 @@
           </div>
           <div id="box3_5"></div>
           <div class="box4">
-			  <p class="main"></p>
+            <p class="main"></p>
           </div>
         </div>
       </div>
@@ -449,6 +449,7 @@
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript">
     function Play(mv, box, body) {
+      var ua = navigator.userAgent.toLowerCase();
       var box0 = document.getElementsByClassName('box0')[0];
       var box = document.getElementsByClassName('box')[0];
       var box2 = document.getElementsByClassName('box2')[0];
@@ -488,19 +489,17 @@
             .children('font')
             .css({ background: 'none' });
           p[this.index].style.color = '#d200d2';
-		  $('.main')[0].innerHTML=loadPage('main/main' + x + '.html')
+          $('.main')[0].innerHTML = loadPage('main/main' + x + '.html');
         };
         p[i].children[0].innerHTML = String(i + 1) + '.';
       }
-	  
-	  function loadPage(href)
-	  {
-		  var xmlhttp = new XMLHttpRequest();
-		  xmlhttp.open("GET", href, false);
-		  xmlhttp.send();
-		  return xmlhttp.responseText;
-	  }
 
+      function loadPage(href) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('GET', href, false);
+        xmlhttp.send();
+        return xmlhttp.responseText;
+      }
       this.startx = 0;
       this.starty;
       this.startLeft;
@@ -513,27 +512,34 @@
       this.movedown = function (e) {
         e = e ? e : window.event;
         if (!window.captureEvents) {
-          this.setCapture();
+          // this.setCapture();
         } //事件捕获仅支持ie
         //            函数功能：该函数在属于当前线程的指定窗口里设置鼠标捕获。一旦窗口捕获了鼠标，
         //            所有鼠标输入都针对该窗口，无论光标是否在窗口的边界内。同一时刻只能有一个窗口捕获鼠标。
         //            如果鼠标光标在另一个线程创建的窗口上，只有当鼠标键按下时系统才将鼠标输入指向指定的窗口。
         //            非ie浏览器 需要在document上设置事件
         that.isDown = true;
-        that.startx = e.clientX;
-        that.starty = e.clientY;
-        that.startLeft = parseInt(mv.offsetLeft);
-        that.startTop = parseInt(mv.offsetTop);
+        var left = mv.style.left || mv.offsetLeft;
+        var top = mv.style.top || mv.offsetTop;
+        that.startx = e.clientX || e.touches['0']?.clientX;
+        that.starty = e.clientY || e.touches['0']?.clientY;
+        that.startLeft = parseInt(left);
+        that.startTop = parseInt(top);
+        console.log('平板', left, top);
       };
       this.move = function (e) {
         e = e ? e : window.event;
         if (that.isDown) {
-          var lefts = e.clientX - (that.startx - that.startLeft);
-          var tops = e.clientY - (that.starty - that.startTop);
+          var lefts =
+            (e.clientX || e.touches['0']?.clientX) -
+            (that.startx - that.startLeft);
+          var tops =
+            (e.clientY || e.touches['0']?.clientY) -
+            (that.starty - that.startTop);
           if (lefts <= 160) {
             mv.style.left = '160px';
             leftChenge(160);
-            if (e.clientX < 0) {
+            if ((ee.clientX || e.touches['0']?.clientX) < 0) {
               //		            			that.moveup();
             }
           } else if (lefts + mv.clientWidth >= 800) {
@@ -549,7 +555,7 @@
           }
           if (tops <= 0) {
             //		            		mv.style.top = "0px";
-            if (e.clientY < 0) {
+            if ((e.clientY || e.touches['0']?.clientY) < 0) {
               //		            			that.moveup();
             }
           } else if (tops + mv.clientHeight >= that.clientHeight) {
@@ -573,14 +579,27 @@
         //	        	box3.scrollLeft = 0;
         that.isDown = false;
         if (!window.captureEvents) {
-          this.releaseCapture();
+          // this.releaseCapture();
         } //事件捕获仅支持ie
       };
-      mv.onmousedown = this.movedown;
-      mv.onmousemove = this.move;
-      window.onmouseup = this.moveup;
-      //非ie浏览器
-      document.addEventListener('mousemove', this.move, true);
+
+      if (ua.indexOf('windows') >= 0) {
+        mv.onmousedown = this.movedown;
+        mv.onmousemove = this.move;
+        window.onmouseup = this.moveup;
+        //非ie浏览器
+        document.addEventListener('mousemove', this.move, true);
+      } else if (navigator.userAgent.indexOf('iPad') >= 0) {
+        console.log('平板');
+        mv.ontouchstart = this.movedown;
+        mv.ontouchmove = this.move;
+        // window.ontouchend = this.moveup;
+      } else {
+        console.log('手机');
+        mv.ontouchstart = this.movedown;
+        mv.ontouchmove = this.move;
+        // window.ontouchend = this.moveup;
+      }
     }
     new Play(
       document.getElementById('box3_5'),
@@ -588,57 +607,65 @@
       document.body
     );
     //写两个是为了解决 ie 和非ie 浏览器关于事件捕获 的兼容性问题
-	var list = [
-		{
-			value:[{
-				name:'123',
-				b:'123453',
-				c:'12345',
-				d:'1236',
-			},
-			{
-				name:'222',
-				b:'12345',
-				c:'123123',
-				d:'123456',
-			},{
-				name:'333',
-				b:'12343',
-				c:'12311',
-				d:'123111',}]
-		},{
-			value:[{
-				name:'123',
-				b:'221232',
-				c:'12345',
-				d:'1236',
-			},
-			{
-				name:'222',
-				b:'12312',
-				c:'123123',
-				d:'123456',
-			},{
-				name:'333',
-				b:'1231231',
-				c:'12311',
-				d:'123111',
-			}]
-		}
-	]
-	var namess = ["","","333"]
-	
-	var newList=list.map((item)=>{
-		item.value=item.value.filter((id)=>{
-			for(var i = 0; i<namess.length;i++){
-				console.log(namess[i], id)
-				if(namess[i] === id.name){
-					return id;
-				}
-			}
-		})
-		return item;
-	})
-	console.log(namess.length,newList)
+    var list = [
+      {
+        value: [
+          {
+            name: '123',
+            b: '123453',
+            c: '12345',
+            d: '1236',
+          },
+          {
+            name: '222',
+            b: '12345',
+            c: '123123',
+            d: '123456',
+          },
+          {
+            name: '333',
+            b: '12343',
+            c: '12311',
+            d: '123111',
+          },
+        ],
+      },
+      {
+        value: [
+          {
+            name: '123',
+            b: '221232',
+            c: '12345',
+            d: '1236',
+          },
+          {
+            name: '222',
+            b: '12312',
+            c: '123123',
+            d: '123456',
+          },
+          {
+            name: '333',
+            b: '1231231',
+            c: '12311',
+            d: '123111',
+          },
+        ],
+      },
+    ];
+    var namess = ['', '', '333'];
+
+    var newList = list.map((item) => {
+      item.value = item.value.filter((id) => {
+        for (var i = 0; i < namess.length; i++) {
+          console.log(namess[i], id);
+          if (namess[i] === id.name) {
+            return id;
+          }
+        }
+      });
+      return item;
+    });
+    console.log(namess.length, newList);
   </script>
 </html>
