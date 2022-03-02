@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<head> </head>
+
+<body>
+  <script>
+    var rr = cv(dd);
+    console.log(rr);
+
+    function cv(data, titleAttr = 'text') {
+      const result = [];
+      const temp = [];
+      if (!Array.isArray(data)) {
+        return result;
+      }
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].children) {
+          temp.push({ ...data[i] });
+        } else {
+          temp.push({ ...data[i], children: [] });
+        }
+      }
+      const map = {};
+      for (let i = 0; i < temp.length; i++) {
+        map[temp[i].id] = temp[i];
+      }
+      for (let i = 0; i < temp.length; i++) {
+        const ii = {};
+        Object.assign(ii, temp[i]);
+        ii.title = temp[i][titleAttr];
+        const parent = map[temp[i].parent];
+        if (parent) {
+          // children属性必须存在，不然无法生成树
+          parent.children.push(ii);
+        } else {
+          result.push(ii);
+        }
+      }
+      return result;
+    }
+
+    function addchildren(list, id, parent) {
+      let dealOptions = [];
+      // 给每个数据加children属性
+      list.forEach((one) => {
+        one.children = [];
+      });
+      list.forEach((one) => {
+        let findIndex = list.findIndex((item) => {
+          return item[id] === one[parent];
+        });
+        if (
+          (!one[parent] && one[parent] !== 0 && one[parent] !== false) ||
+          findIndex === -1
+        ) {
+          dealOptions.push(one);
+        } else {
+          list[findIndex].children.push(one);
+        }
+      });
+      return dealOptions;
+    }
+    console.log(addchildren(dd, 'id', 'parent'));
+  </script>
+</body>
