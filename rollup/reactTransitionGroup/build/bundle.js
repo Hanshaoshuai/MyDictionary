@@ -3008,7 +3008,7 @@ var ReactTransitionGroup = function ReactTransitionGroup(_ref) {
         "float": 'left',
         display: "".concat(switchs && states === '上一次操作路由向下' ? 'block' : 'none')
       }
-    }, odDom), jsx("div", {
+    }, switchs && odDom), jsx("div", {
       style: {
         position: 'relative',
         width: "".concat(switchs ? '50%' : '100%'),
@@ -3027,7 +3027,7 @@ var ReactTransitionGroup = function ReactTransitionGroup(_ref) {
         "float": 'left',
         display: "".concat(switchs && states === '上一次操作路由返回' ? 'block' : 'none')
       }
-    }, odDom));
+    }, switchs && odDom));
   } else {
     return jsx("div", null);
   }

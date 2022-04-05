@@ -77,7 +77,7 @@ const ReactTransitionGroup = ({ path, component }) => {
               }`,
           }}
         >
-          {odDom}
+          {switchs && odDom}
         </div>
         <div
           style={{
@@ -99,7 +99,7 @@ const ReactTransitionGroup = ({ path, component }) => {
               }`,
           }}
         >
-          {odDom}
+          {switchs && odDom}
         </div>
       </div>
     );
