@@ -1,7 +1,7 @@
 node_modules
-rollup.config.js
-src
-.babelrc
+# rollup.config.js
+# src
+# .babelrc
 .yarnignore
 
 **/.umi
