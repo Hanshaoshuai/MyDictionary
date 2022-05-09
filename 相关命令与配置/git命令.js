@@ -280,6 +280,7 @@ https://www.cnblogs.com/bluestorm/p/6252900.html
 // 然后再切换到自己的dev分支和刚pull下来的master上最新的代码合并    git merge master  这是你的代码就是为最新的代码
 // 如果有冲突  解决一下该删除的删除该留的留  解决完事后   再走一遍流程  git add .   git commit -m "feat: XXX"
 // 最后可以提交远程了   git push origin HEAD:master    HEAD意思应该就是快捷方式指向当前本地分支  想提交到哪个分支HEAD: 后面就写哪个分支名
+// git push origin --delete new_a  删除远程分支
 二、 git使用 - 已add但未commit的文件，在本地重置后怎么找回
 // 1.使用 git fsck --lost-found
 // 2.进入项目下的.git文件夹，找到lost-found/other文件，这个文件夹下面的文件就是丢失的文件
